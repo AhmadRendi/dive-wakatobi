@@ -22,13 +22,13 @@
                     <h5 class="card-title">Pemesanan</h5>
                 </div>
                 <button class="btn btn-success rounded border border-none" data-bs-toggle="modal"
-                    data-bs-target="#addJadwal">Tambahkan Paket</button>
+                    data-bs-target="#addKursus">Tambahkan Kursus</button>
                 <div class="table-responsive">
                     <table id="data_table" class="display" style="width:100%">
                         <thead style="background-color:rgb(15, 60, 225); color:white;">
                             <tr>
                                 <th>No</th>
-                                <th>Nama Paket</th>
+                                <th>Nama Kursus</th>
                                 <th>Deskripsi</th>
                                 <th>Harga</th>
                                 <th>Aksi</th>
@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['namaPaket']); ?>
+                                        <?php echo htmlspecialchars($order['namaKursus']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -58,7 +58,7 @@
                                     </h6>
                                 </td>
                                 <td class="table-actions">
-                                    <a href="" data-bs-target="#editJadwal" data-bs-toggle="modal"
+                                    <a href="" data-bs-target="#editKursus" data-bs-toggle="modal"
                                         class="btn bg-warning btn-sm" data-id="">Edit</a>
                                     <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
                                 </td>
@@ -74,20 +74,20 @@
 
 
 <!-- Modal Edit Jadwal -->
-<div class="modal fade" id="editJadwal" tabindex="-1" aria-labelledby="editJadwalLabel" aria-hidden="true">
+<div class="modal fade" id="editKursus" tabindex="-1" aria-labelledby="editKursusLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editJadwalLabel">Edit</h1>
+                <h1 class="modal-title fs-5" id="editKursusLabel">Edit</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="" method="post">
                     <input type="hidden" name="id" id="editId">
                     <div class="mb-3">
-                        <label for="editNamaPaket" class="form-label">Nama Paket</label>
-                        <input type="text" class="form-control border border-dark" id="editNamaPaket"
-                            name="editNamaPaket" readonly>
+                        <label for="editNamaKursus" class="form-label">Nama Kursus</label>
+                        <input type="text" class="form-control border border-dark" id="editNamaKursus"
+                            name="editNamaKursus" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editDeskripsi" class="form-label">Deskripsi</label>
@@ -111,18 +111,18 @@
 </div>
 
 <!-- Modal Penambahan jadwal -->
-<div class="modal fade" id="addJadwal" tabindex="-1" aria-labelledby="addJadwalLabel" aria-hidden="true">
+<div class="modal fade" id="addKursus" tabindex="-1" aria-labelledby="addKursusLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addJadwalLabel">Tambah Jadwal</h1>
+                <h1 class="modal-title fs-5" id="addKursusLabel">Tambah Kursus</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="" method="post">
                     <div class="mb-3">
-                        <label for="namaPaket" class="form-label">Nama Paket</label>
-                        <input type="text" class="form-control border border-dark" id="namaPaket" name="namaPaket"
+                        <label for="namaKursus" class="form-label">Nama Kursus</label>
+                        <input type="text" class="form-control border border-dark" id="namaKursus" name="namaKursus"
                             readonly>
                     </div>
                     <div class="mb-3">
