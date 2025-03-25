@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content overflow-y-visible">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
@@ -8,63 +8,61 @@
             <span class="text-muted small">
                 <?= $_SESSION['position']?>
             </span>
-            <img src="<?= BASEURL;?>/img/asset/image.png>" class="rounded-circle ms-2" alt="Profile"
+            <a href="<?= BASEURL ?>/Profile" class="ms-2">
+                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
+            </a>
         </div>
     </div>
 
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-body shadow p-3 bg-body rounded">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="card-title">Pemesanan</h5>
                 </div>
+                <button class="btn btn-success rounded border border-none" data-bs-toggle="modal"
+                    data-bs-target="#addJadwal">Tambahkan Paket</button>
                 <div class="table-responsive">
                     <table id="data_table" class="display" style="width:100%">
                         <thead style="background-color:rgb(15, 60, 225); color:white;">
                             <tr>
                                 <th>No</th>
-                                <th>Nama Wisatawan</th>
-                                <th>Tanggal Pemesanan</th>
-                                <th>Paket</th>
-                                <th>Status</th>
+                                <th>Nama Paket</th>
+                                <th>Deskripsi</th>
+                                <th>Harga</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($data['orders'] as $index => $order): ?>
-                                <tr>
-                                    <td>
-                                        <h6>
-                                            <?php echo $index + 1; ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['tourist']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['date']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['package']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['status']); ?>
-                                        </h6>
-                                    </td>
-                                    <td class="table-actions">
-                                        <a href="" data-bs-target="#exampleModal" data-bs-toggle="modal"
-                                         class="btn btn-primary btn-sm" data-id="">Lihat</a>
-                                        <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
-                                    </td>
-                                </tr>
+                            <?php foreach($data as $index => $order): ?>
+                            <tr>
+                                <td>
+                                    <h6>
+                                        <?php echo $index + 1; ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['namaPaket']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['deskripsi']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['harga']); ?>
+                                    </h6>
+                                </td>
+                                <td class="table-actions">
+                                    <a href="" data-bs-target="#editJadwal" data-bs-toggle="modal"
+                                        class="btn bg-warning btn-sm" data-id="">Edit</a>
+                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -75,21 +73,73 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<!-- Modal Edit Jadwal -->
+<div class="modal fade" id="editJadwal" tabindex="-1" aria-labelledby="editJadwalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editJadwalLabel">Modal Edit</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="" method="post">
+                    <input type="hidden" name="id" id="editId">
+                    <div class="mb-3">
+                        <label for="editNamaPaket" class="form-label">Nama Paket</label>
+                        <input type="text" class="form-control border border-dark" id="editNamaPaket"
+                            name="editNamaPaket" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDeskripsi" class="form-label">Deskripsi</label>
+                        <textarea type="textarea" class="form-control border border-dark" id="editDeskripsi"
+                            name="editDeskripsi" required> </textarea>
+                        <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="editHarga" class="form-label">Harga</label>
+                        <input type="text" class="form-control border border-dark" id="editHarga" name="editHarga"
+                            required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- Modal Penambahan jadwal -->
+<div class="modal fade" id="addJadwal" tabindex="-1" aria-labelledby="addJadwalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addJadwalLabel">Tambah Jadwal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="" method="post">
+                    <div class="mb-3">
+                        <label for="namaPaket" class="form-label">Nama Paket</label>
+                        <input type="text" class="form-control border border-dark" id="namaPaket" name="namaPaket"
+                            readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <textarea class="form-control border border-dark" id="deskripsi" name="deskripsi"
+                            required> </textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

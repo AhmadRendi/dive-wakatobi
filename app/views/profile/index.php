@@ -8,7 +8,7 @@
             <span class="text-muted small">
                 <?= $_SESSION['position']?>
             </span>
-            <img src="<?= BASEURL;?>/img/asset/image.png>" class="rounded-circle ms-2" alt="Profile"
+            <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
         </div>
     </div>

@@ -25,7 +25,7 @@ $(function () {
     new DataTable('#data_table', {
         paging: true,
         scrollCollapse: true,
-        scrollY: '400px'
+        scrollY: '370px'
     });
 
 
