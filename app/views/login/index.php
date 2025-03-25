@@ -4,7 +4,7 @@
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <h2 class="text-center mb-4">Login Wisata</h2>
-                    <form action="<?= BASEURL ?>/Login/session" method="">
+                    <form action="<?= BASEURL ?>/Dashboard" method="">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>

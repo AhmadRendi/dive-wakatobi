@@ -1,10 +1,11 @@
 <?php
 
-class Dashboard extends Controller
-{
-    public function index()
-    {
+session_start();
 
+class Dashboard extends Controller {
+
+    public function index() {
+        $_SESSION['user_role'] = "USER";
         $data = [
             'stats' => [
                 'packages' => 50,
@@ -26,8 +27,6 @@ class Dashboard extends Controller
                 ]
             ]
         ];
-        // $this->middleware('auth');
-        // $this->middleware('admin');
 
         $this->view('template/Header'); 
         $this->view('template/Sidebar');

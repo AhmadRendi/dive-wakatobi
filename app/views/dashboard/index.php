@@ -1,42 +1,66 @@
-<div class="container">
-    <h2>Dasbor</h2>
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>
-                    <?= $data['stats']['packages'] ?>
-                </h3>
-                <p>Paket Wisata</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>
-                    <?= $data['stats']['orders'] ?>
-                </h3>
-                <p>Pemesanan Paket</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>
-                    <?= $data['stats']['success_rate'] ?>%
-                </h3>
-                <p>Transaksi Berhasil</p>
-            </div>
+<div class="main-content">
+    <div class="header mb-4 d-flex justify-content-between align-items-center">
+        <h4 class="m-0">Panel ADMIN</h4>
+        <div class="d-flex align-items-center">
+            <span class="me-2">
+                <?= $_SESSION['name_user']?>
+            </span>
+            <span class="text-muted small">
+                <?= $_SESSION['position']?>
+            </span>
+            <a href="<?= BASEURL ?>/Profile" class="ms-2">
+                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                style="width: 40px; height: 40px;">
+            </a>
         </div>
     </div>
 
-    <div class="activities-card card mt-4">
-        <div class="card-header">
-            Aktivitas Terbaru
+    <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card-body shadow p-3 bg-body rounded">
+                <h2>Dasbor</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <h3>
+                                <?= $data['stats']['packages'] ?>
+                            </h3>
+                            <p>Paket Wisata</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <h3>
+                                <?= $data['stats']['orders'] ?>
+                            </h3>
+                            <p>Pemesanan Paket</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <h3>
+                                <?= $data['stats']['success_rate'] ?>%
+                            </h3>
+                            <p>Transaksi Berhasil</p>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="activities-card card mt-4 shadow-lg">
+                            <div class="card-header">
+                                Aktivitas Terbaru
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <?php foreach($data['activities'] as $activity): ?>
+                                    <li class="list-group-item">
+                                    <?= $activity['text'] ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <?php foreach($data['activities'] as $activity): ?>
-            <li class="list-group-item">
-                <?= $activity['text'] ?>
-            </li>
-            <?php endforeach; ?>
-        </ul>
     </div>
 </div>

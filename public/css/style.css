@@ -48,13 +48,13 @@
 /* batas */
 
 .sidebar {
-    background-color: #343a40; /* Dark background for sidebar */
-    color: white; /* Text color */
-    min-height: 100vh; /* Full height */
-    width: 250px; /* Fixed width for sidebar */
-    position: fixed; /* Fixed position */
-    left: 0; /* Align to the left */
-    top: 0; /* Align to the top */
+    background-color: #343a40;
+    color: white; 
+    min-height: 100vh;
+    width: 250px; 
+    position: fixed;
+    left: 0; 
+    top: 0; 
 }
 
 .sidebar-header {
@@ -81,25 +81,19 @@
 }
 
 .sidebar-menu li:hover {
-    background-color: #495057; /* Darker background on hover */
-}
-
-.main-content {
-    margin-left: 250px; /* Space for sidebar */
-    padding: 20px; /* Padding for main content */
-    width: calc(100% - 250px); /* Adjust width */
+    background-color: #495057; 
 }
 
 .dashboard-card {
-    background-color: #f8f9fa; /* Light background for cards */
+    background-color: #f8f9fa;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    margin-bottom: 20px; /* Space between cards */
+    margin-bottom: 20px;
 }
 
 .activities-card {
-    margin-top: 20px; /* Space above activities card */
+    margin-top: 20px;
 }
 
 .dashboard-card {
@@ -175,6 +169,8 @@
     padding: 2px 8px;
     font-size: 14px;
 }
+
+/* batas */
 
 
 /* .body-login{
@@ -278,34 +274,34 @@
     border-bottom: 1px solid #dee2e6;
 } */
 
-/* .main-content {
+.main-content {
     margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
-    } */
+}
 
 /* .sidebar .nav-link {
-    color: #fff;
+    color: #080808;
     padding: 10px 20px;
     opacity: 0.8;
-} */
+}
 
-/* .sidebar .nav-link:hover {
+.sidebar .nav-link:hover {
     opacity: 1;
-    background-color: rgba(255,255,255,0.1);
-} */
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
-/* .sidebar .nav-link.active {
+.sidebar .nav-link.active {
     opacity: 1;
     color: #ff6b35;
 } */
 
-/* .stats-card {
+.stats-card {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} */
+}
 
 /* .stats-icon {
     background-color: #000;

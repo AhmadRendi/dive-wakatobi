@@ -1,18 +1,18 @@
 <?php if ($_SESSION['user_role'] == "ADMIN" || $_SESSION['user_role'] == "USER") : ?>
   <div class="sidebar">
-    <div class="sidebar-header">Menu</div>
-    <ul class="sidebar-menu">
-        <li><a class="nav-link" href="">Dashboard</a></li>
+    <ul class="sidebar-menu mt-4">
+        <li><a class="nav-link" href="<?= BASEURL ?>/Dashboard">Dashboard</a></li>
         <li><a class="nav-link" href="">Pemesanan Paket Penyelaman</a></li>
         <li><a class="nav-link" href="">Pengelolaan Jadwal Penyelaman</a></li>
         <li><a class="nav-link" href="">Pengelolaan Wisata</a></li>
         <li><a class="nav-link" href="">Pembayaran</a></li>
         <li><a class="nav-link" href="">Laporan</a></li>
-        <li><a class="nav-link" href="">Profil</a></li>
+        <!-- <li><a class="nav-link" href="<?= BASEURL ?>/Profile" arial-disable=true>Profil</a></li> -->
         <li><a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a></li>
     </ul>
 </div>
 <?php endif; ?>
+
 <?php if ($_SESSION['user_role'] == null || $_SESSION['user_role'] == null) : ?>
 <nav class="navbar shadow navbar-expand-lg">
   <div class="container-fluid justify-content-center">
