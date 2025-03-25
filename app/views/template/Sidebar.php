@@ -2,7 +2,7 @@
   <div class="sidebar">
     <ul class="sidebar-menu mt-4">
         <li><a class="nav-link" href="<?= BASEURL ?>/Dashboard">Dashboard</a></li>
-        <li><a class="nav-link" href="">Pemesanan Paket Penyelaman</a></li>
+        <li><a class="nav-link" href="<?= BASEURL ?>/Pemesanan">Pemesanan Paket Penyelaman</a></li>
         <li><a class="nav-link" href="">Pengelolaan Jadwal Penyelaman</a></li>
         <li><a class="nav-link" href="">Pengelolaan Wisata</a></li>
         <li><a class="nav-link" href="">Pembayaran</a></li>
