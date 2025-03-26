@@ -16,7 +16,7 @@
     </div>
 
     <div class="container-fluid">
-        <div class="card mb-4">
+        <div class="card mb-4 border border-0 shadow-lg">
             <div class="card-body shadow p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="card-title">Pengelolaan Jadwal</h5>

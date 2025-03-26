@@ -48,7 +48,7 @@
 /* batas */
 
 .sidebar {
-    background-color: #343a40;
+    background-color: #0683ff;
     color: white; 
     min-height: 100vh;
     width: 250px; 
@@ -71,7 +71,7 @@
 
 .sidebar-menu li {
     padding: 10px 15px;
-    border-bottom: 1px solid #343a40;
+    border-bottom: 1px solid #2085ea;
 }
 
 .sidebar-menu li a {
@@ -81,7 +81,7 @@
 }
 
 .sidebar-menu li:hover {
-    background-color: #495057; 
+    background-color: #1574d3; 
 }
 
 .dashboard-card {

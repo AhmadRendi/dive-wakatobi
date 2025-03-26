@@ -1,4 +1,4 @@
-<div class="main-content overflow-y-visible">
+<div class="main-content">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
@@ -17,20 +17,27 @@
 
     <div class="container-fluid">
         <div class="card mb-4 border border-0 shadow-lg">
-            <div class="card-body shadow p-3 bg-body rounded">
+            <div class="card-body  p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pengelolaan Pembayaran</h5>
+                    <h5 class="card-title">Pengelolaan Laporan</h5>
+                </div>
+                <div class="card border border-0 shadow-sm" style="width: 50%;">
+                    <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end"> 
+                        <label class="form-label mt-2">Filter Berdasarkan Tanggal</label>
+                        <input type="date" class="form-control rounded border border-0 shadow-lg"  placeholder="Select Date" aria-label="Select Date">
+                        <input type="date" class="form-control border border-0 rounded shadow-lg"  placeholder="Select Date" aria-label="Select Date">
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table id="data_table" class="display" style="width:100%">
                         <thead style="background-color:rgb(15, 60, 225); color:white;">
                             <tr>
                                 <th>No</th>
-                                <th>Nama Wisata</th>
-                                <th>Paket</th>
-                                <th>Metode Pembayaran</th>
+                                <th>ID Pemesanan</th>
+                                <th>Nama Wisatawan</th>
+                                <th>Tanggal Pemesanan</th>
                                 <th>Status Pembayaran</th>
-                                <th>Aksi</th>
+                                <th>Total Pembayaran</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,17 +50,17 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['nama']); ?>
+                                        <?php echo htmlspecialchars($order['idPemesanan']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['namaPaket']); ?>
+                                        <?php echo htmlspecialchars($order['name']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['metodePembayaran']); ?>
+                                        <?php echo htmlspecialchars($order['tanggalPemesanan']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -61,36 +68,16 @@
                                         <?php echo htmlspecialchars($order['statusPembayaran']); ?>
                                     </h6>
                                 </td>
-                                <td class="table-actions">
-                                    <a href="" data-bs-target="#verifikasi" data-bs-toggle="modal"
-                                        class="btn bg-warning btn-sm" data-id="">Verifikasi</a>
-                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['totalPembayaran']); ?>
+                                    </h6>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Verifikasi Confirmation Modal -->
-<div class="modal fade" id="verifikasi" tabindex="-1" aria-labelledby="verifikasiLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="verifikasiLabel">Konfirmasi Verifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Yakin ingin Memverifikasi dokumen ini?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="confirmVerification">Verifikasi</button>
             </div>
         </div>
     </div>

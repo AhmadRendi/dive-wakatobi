@@ -16,12 +16,12 @@
     </div>
 
     <div class="container-fluid">
-        <div class="card mb-4">
+        <div class="card mb-4 border border-0 shadow-lg">
             <div class="card-body shadow p-3 bg-body rounded">
                 <h2>Dasbor</h2>
                 <div class="row mt-4">
                     <div class="col-md-4">
-                        <div class="dashboard-card">
+                        <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
                                 <?= $data['stats']['packages'] ?>
                             </h3>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="dashboard-card">
+                        <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
                                 <?= $data['stats']['orders'] ?>
                             </h3>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="dashboard-card">
+                        <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
                                 <?= $data['stats']['success_rate'] ?>%
                             </h3>

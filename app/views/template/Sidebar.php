@@ -6,11 +6,10 @@
         <li><a class="nav-link" href="<?= BASEURL ?>/Jadwal">Pengelolaan Jadwal Penyelaman</a></li>
         <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Pengelolaan Kursus</a></li>
         <li><a class="nav-link" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
-        <li><a class="nav-link" href="">Laporan</a></li>
-        <!-- <li><a class="nav-link" href="<?= BASEURL ?>/Profile" arial-disable=true>Profil</a></li> -->
+        <li><a class="nav-link" href="<?= BASEURL ?>/Laporan">Laporan</a></li>
         <li><a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a></li>
     </ul>
-</div>
+  </div>
 <?php endif; ?>
 
 <?php if ($_SESSION['user_role'] == null || $_SESSION['user_role'] == null) : ?>
@@ -41,9 +40,6 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= BASEURL ?>/Login">Login</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li> -->
       </ul>
     </div>
   </div>
