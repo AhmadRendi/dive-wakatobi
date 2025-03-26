@@ -19,7 +19,7 @@
         <div class="card mb-4">
             <div class="card-body shadow p-3 bg-body rounded">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pemesanan</h5>
+                    <h5 class="card-title">Pengelolaan Pemesanan</h5>
                 </div>
                 <div class="table-responsive">
                     <table id="data_table" class="display" style="width:100%">

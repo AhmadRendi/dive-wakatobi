@@ -5,7 +5,7 @@
         <li><a class="nav-link" href="<?= BASEURL ?>/Pemesanan">Pemesanan Paket Penyelaman</a></li>
         <li><a class="nav-link" href="<?= BASEURL ?>/Jadwal">Pengelolaan Jadwal Penyelaman</a></li>
         <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Pengelolaan Kursus</a></li>
-        <li><a class="nav-link" href="">Pembayaran</a></li>
+        <li><a class="nav-link" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
         <li><a class="nav-link" href="">Laporan</a></li>
         <!-- <li><a class="nav-link" href="<?= BASEURL ?>/Profile" arial-disable=true>Profil</a></li> -->
         <li><a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a></li>
