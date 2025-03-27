@@ -28,6 +28,10 @@ $(function () {
         scrollY: '370px'
     });
 
+    $('#table_datatables').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
 
     // Add User
     $('#form_registration').on('submit', function(e) {

@@ -1,26 +1,21 @@
 $( function () {
 
-    $('.tampilModalUpdate').on('click', function () {
+    $('.lihatDetailPemesanan').on('click', function () {
         const id = $(this).data('id');
-        // console.log(id);
         $.ajax({
-            url: 'http://localhost/web-ic/public/Pengarsipan/getDocument',
+            url: 'http://localhost/dive-trip/public/Pemesanan/detail',
             data: {id: id},
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
-                $('#editId').val(data.id_document);
-                $('#editNomorSurat').val(data.nmr_surat);
-                $('#editTanggal').val(data.date);
-                $('#editJenis').val(data.jenis).change(); // Memicu event change
-                $('#editKategori').val(data.kategory);
-                $('#editPengirim').val(data.pengirim);
-                $('#editPenerima').val(data.penerima);
-                $('#editDokumen').val(data.document);
-    
-                // Tampilkan modal setelah semua nilai di-set
-                $('#editModal').modal('show');
+                $('#detailNamaWisatawan').val(data.nama);
+                $('#tanggalPemesanan').val(data.tanggal);
+                $('#paket').val(data.paket).change();
+                $('#status').val(data.status);
+                $('#jumlahPeserta').val(data.jumlahPeserta);
+                $('#harga').val(data.harga);
+
+                $('#lihatDetail').modal('show');
             }
         });
     });

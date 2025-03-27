@@ -10,7 +10,7 @@
             </span>
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
                 <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
-                style="width: 40px; height: 40px;">
+                    style="width: 40px; height: 40px;">
             </a>
         </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="card mb-4 border border-0 shadow-lg">
             <div class="card-body shadow p-3 bg-body rounded">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="card-title">Pengelolaan Pemesanan</h5>
                 </div>
                 <div class="table-responsive">
@@ -34,39 +34,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($data['orders'] as $index => $order): ?>
-                                <tr>
-                                    <td>
-                                        <h6>
-                                            <?php echo $index + 1; ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['tourist']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['date']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['package']); ?>
-                                        </h6>
-                                    </td>
-                                    <td>
-                                        <h6>
-                                            <?php echo htmlspecialchars($order['status']); ?>
-                                        </h6>
-                                    </td>
-                                    <td class="table-actions">
-                                        <a href="" data-bs-target="#exampleModal" data-bs-toggle="modal"
-                                         class="btn btn-primary btn-sm" data-id="">Lihat</a>
-                                        <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
-                                    </td>
-                                </tr>
+                            <?php foreach($data as $index => $order): ?>
+                            <tr>
+                                <td>
+                                    <h6>
+                                        <?php echo $index + 1; ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['nama']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['tanggal']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['paket']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($order['status']); ?>
+                                    </h6>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn btn-primary btn-sm lihatDetailPemesanan"
+                                        data-id="<?= $order['id']; ?>">Lihat</button>
+                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -78,20 +78,50 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<div class="modal fade" id="lihatDetail" tabindex="-1" aria-labelledby="lihatDetail" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lihatDetail">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="" method="post">
+                    <input type="hidden" name="id" id="editId">
+                    <div class="mb-3">
+                        <label for="detailNamaWisatawan" class="form-label">Nama Wisatawan</label>
+                        <input type="text" class="form-control border border-dark" id="detailNamaWisatawan"
+                            name="detailNamaWisatawan" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggalPemesanan" class="form-label">Tanggal Pemesanan</label>
+                        <input type="textarea" class="form-control border border-dark" id="tanggalPemesanan"
+                            name="tanggalPemesanan" required>
+                        <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="paket" class="form-label">Paket</label>
+                        <input type="text" class="form-control border border-dark" id="paket" name="paket" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <input type="text" class="form-control border border-dark" id="status" name="status" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jumlahPeserta" class="form-label">Jumlah Peserta</label>
+                        <input type="text" class="form-control border border-dark" id="jumlahPeserta"
+                            name="jumlahPeserta" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <!-- <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

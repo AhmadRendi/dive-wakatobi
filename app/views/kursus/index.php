@@ -134,6 +134,10 @@
                         <label for="harga" class="form-label">Harga</label>
                         <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto</label>
+                        <input type="file" class="form-control border border-dark" id="foto" name="foto" required>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>

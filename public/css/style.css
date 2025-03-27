@@ -25,8 +25,9 @@
 .footer {
     background-color: #343a40;
     color: white;
-    padding: 15px 0;
+    padding: 5px 0;
     text-align: center;
+    justify-content: center;
 }
 
 .navbar {
@@ -169,6 +170,24 @@
     padding: 2px 8px;
     font-size: 14px;
 }
+
+/* Increase specificity */
+.dataTables_wrapper .dt-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: rgb(22, 0, 0); /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 15px; /* Padding */
+    margin: 5px; /* Margin between buttons */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.dataTables_wrapper .dt-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+
 
 /* batas */
 

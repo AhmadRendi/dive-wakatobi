@@ -16,20 +16,20 @@
     </div>
 
     <div class="container-fluid">
-        <div class="card mb-4 border border-0 shadow-lg">
+        <div class="card border border-0 shadow-lg">
             <div class="card-body  p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="card-title">Pengelolaan Laporan</h5>
                 </div>
-                <div class="card border border-0 shadow-sm" style="width: 50%;">
+                <div class="card border border-0" style="width: 50%;">
                     <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end"> 
                         <label class="form-label mt-2">Filter Berdasarkan Tanggal</label>
-                        <input type="date" class="form-control rounded border border-0 shadow-lg"  placeholder="Select Date" aria-label="Select Date">
-                        <input type="date" class="form-control border border-0 rounded shadow-lg"  placeholder="Select Date" aria-label="Select Date">
+                        <input type="date" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date">
+                        <input type="date" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date">
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table id="data_table" class="display" style="width:100%">
+                    <table id="table_datatables" class="display" style="width:100%">
                         <thead style="background-color:rgb(15, 60, 225); color:white;">
                             <tr>
                                 <th>No</th>
