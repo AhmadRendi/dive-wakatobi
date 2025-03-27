@@ -1,23 +1,25 @@
 <div class="main-content">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
-        <h4 class="m-0">Panel ADMIN</h4>
-        <div class="d-flex align-items-center">
-            <span class="me-2">
-                <?= $_SESSION['name_user']?>
-            </span>
-            <span class="text-muted small">
-                <?= $_SESSION['position']?>
-            </span>
-            <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
-                style="width: 40px; height: 40px;">
-        </div>
+        <?php if ($_SESSION['user_role'] == "ADMIN") : ?>
+            <h4 class="m-0">Panel ADMIN</h4>
+            <div class="d-flex align-items-center">
+                <span class="me-2">
+                    <?= $_SESSION['name_user']?>
+                </span>
+                <span class="text-muted small">
+                    <?= $_SESSION['position']?>
+                </span>
+                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                    style="width: 40px; height: 40px;">
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-body shadow p-3 bg-body rounded">
                 <div class="profile-container">
-                    <h2 class="text-center mb-4">Profil Admin</h2>
+                    <h2 class="text-center mb-4">Profil</h2>
 
                     <div class="profile-image">
                         <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"

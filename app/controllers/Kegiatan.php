@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 class Kegiatan extends Controller {
     public function index() {
         $data = [

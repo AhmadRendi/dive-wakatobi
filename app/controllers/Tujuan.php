@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 class Tujuan extends Controller {
     
     public function index() {

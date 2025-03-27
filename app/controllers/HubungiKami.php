@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 class HubungiKami extends Controller {
     public function index() {
         $this->view('template/Header');

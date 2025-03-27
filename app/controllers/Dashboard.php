@@ -5,7 +5,6 @@ session_start();
 class Dashboard extends Controller {
 
     public function index() {
-        $_SESSION['user_role'] = "USER";
         $data = [
             'stats' => [
                 'packages' => 50,

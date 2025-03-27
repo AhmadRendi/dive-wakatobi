@@ -19,6 +19,49 @@ $( function () {
             }
         });
     });
+
+    // Login User
+    $('#login_form').on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+
+        var params = new URLSearchParams(data);
+
+        var username = params.get('username');
+        var password = params.get('password');
+
+        var dataToSend = {
+            username: username,
+            password: password
+        };
+
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Login/session',
+            data: {data: dataToSend},
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    if (data.role === 'ADMIN') {
+                        window.location.href = "http://localhost/dive-trip/public/Dashboard";
+                    }else if(data.role === 'USER') {
+                        window.location.href = "http://localhost/dive-trip/public/Home";
+                    }
+                } else {
+                    $('#errorLogin .modal-body').text(data.message);
+                    $('#errorLogin').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#errorLogin .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#errorLogin').modal('show');
+            }
+        });
+    });
+
+
+    // Batas Terbaru
     
     // edit Document
     $('#editForm').on('submit', function(e) {
@@ -104,42 +147,7 @@ $( function () {
         location.reload();
     });
 
-    // Login User
-        $('#login_form').on('submit', function(e) {
-            e.preventDefault();
-            let data = $(this).serialize();
-
-            var params = new URLSearchParams(data);
-
-            var username = params.get('username');
-            var password = params.get('password');
-
-            var dataToSend = {
-                username: username,
-                password: password
-            };
-
-            $.ajax({
-                url: 'http://localhost/web-ic/public/Login/session',
-                data: {data: dataToSend},
-                method: 'post',
-                dataType: 'json',
-                success: function(data, textStatus, jqXHR) {
-                    console.log(data);
-                    if (data.status === 'success') {
-                        // $('#successRegistration').modal('show');
-                        window.location.href = "http://localhost/web-ic/public/Dashboard";
-                    } else {
-                        $('#errorLogin .modal-body').text(data.message);
-                        $('#errorLogin').modal('show');
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('#errorLogin .modal-body').text('Terjadi kesalahan: ' + errorThrown);
-                    $('#errorLogin').modal('show');
-                }
-            });
-        });
+    
 
 
     // update user

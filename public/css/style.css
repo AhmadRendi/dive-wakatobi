@@ -188,6 +188,14 @@
 }
 
 
+.package-card {
+    height: 200px; /* Sesuaikan tinggi sesuai kebutuhan */
+    background-color: #f0f0f0; /* Warna latar belakang */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 
 /* batas */
 
