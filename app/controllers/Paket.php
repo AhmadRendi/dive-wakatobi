@@ -3,7 +3,7 @@
 
 session_start();
 
-class Jadwal extends Controller {
+class Paket extends Controller {
 
 
     public function index(){
@@ -63,7 +63,7 @@ class Jadwal extends Controller {
 
         $this->view('template/Header');
         $this->view('template/Sidebar');
-        $this->view('jadwal/index', $data);
+        $this->view('paket/index', $data);
         $this->view('template/Footer');
     }
 

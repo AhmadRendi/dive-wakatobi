@@ -8,7 +8,7 @@
     <div class="row">
         <?php foreach($data['destinations'] as $destination): ?>
             <div class="col-md-3 mb-4">
-                <div class="card h-100 shadow">
+                <div class="card h-100 shadow-lg border-0">
                     <div class="card-body">
                         <h5 class="card-title"><?= $destination['title'] ?></h5>
                         <p class="card-text"><?= $destination['description'] ?></p>

@@ -1,7 +1,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-12 text-center mb-4">
-            <h2>Paket Perjalanan Wakatobi</h2>
+            <h2>Paket Penyelaman Wakatobi</h2>
             <p>Pilih paket perjalanan yang sesuai dengan kebutuhan Anda</p>
         </div>
     </div>

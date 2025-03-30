@@ -3,7 +3,7 @@
   <ul class="sidebar-menu mt-4">
     <li><a class="nav-link" href="<?= BASEURL ?>/Dashboard">Dashboard</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Pemesanan">Pemesanan Paket Penyelaman</a></li>
-    <li><a class="nav-link" href="<?= BASEURL ?>/Jadwal">Pengelolaan Jadwal Penyelaman</a></li>
+    <li><a class="nav-link" href="<?= BASEURL ?>/Paket">Pengelolaan Paket Penyelaman</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Pengelolaan Kursus</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Laporan">Laporan</a></li>
@@ -25,7 +25,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="<?= BASEURL ?>/Home">Home</a>
         </li>
-        <li class="nav-item">
+        
+        <?php if ($_SESSION['user_role'] == null) : ?>
+          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="<?= BASEURL ?>/TentangKami">Tentang Kami</a>
         </li>
         <li class="nav-item">
@@ -37,12 +39,14 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= BASEURL ?>/HubungiKami">Hubungi Kami</a>
         </li>
-        <?php if ($_SESSION['user_role'] == null) : ?>
         <li class="nav-item">
           <a class="nav-link" href="<?= BASEURL ?>/Login">Login</a>
         </li>
         <?php endif; ?>
         <?php if ($_SESSION['user_role'] == "USER") : ?>
+          <li class="nav-item">
+          <a class="nav-link" href="<?= BASEURL ?>/Penyelam">Peket Penyelaman</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a>
         </li>

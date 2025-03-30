@@ -19,7 +19,7 @@
         <div class="card mb-4 border border-0 shadow-lg">
             <div class="card-body shadow p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pengelolaan Jadwal</h5>
+                    <h5 class="card-title">Pengelolaan Paket</h5>
                 </div>
                 <button class="btn btn-success rounded border border-none" data-bs-toggle="modal"
                     data-bs-target="#addJadwal">Tambahkan Paket</button>
