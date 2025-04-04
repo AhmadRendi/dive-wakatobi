@@ -28,34 +28,37 @@
         
         <?php if ($_SESSION['user_role'] == null) : ?>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?= BASEURL ?>/TentangKami">Tentang Kami</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/Kegiatan">Kegiatan</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/Tujuan">Tujuan</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/HubungiKami">Hubungi Kami</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/Login">Login</a>
-        </li>
+            <a class="nav-link active" aria-current="page" href="<?= BASEURL ?>/TentangKami">Tentang Kami</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Kegiatan">Kegiatan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Tujuan">Tujuan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/HubungiKami">Hubungi Kami</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Login">Login</a>
+          </li>
         <?php endif; ?>
         <?php if ($_SESSION['user_role'] == "USER") : ?>
           <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/Penyelam">Peket Penyelaman</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a href="<?= BASEURL ?>/Profile" class="ms-2">
-            <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
-              style="width: 40px; height: 40px;">
-          </a>
-        </li>
+            <a class="nav-link" href="<?= BASEURL ?>/Penyelam">Peket Penyelaman</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Kursus">Paket Kursus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= BASEURL ?>/Profile" class="ms-2">
+              <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                style="width: 40px; height: 40px;">
+            </a>
+          </li>
         <?php endif; ?>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 $( function () {
 
+    // lihat detail pemesanan oleh admin
     $('.lihatDetailPemesanan').on('click', function () {
         const id = $(this).data('id');
         $.ajax({
@@ -60,6 +61,92 @@ $( function () {
         });
     });
 
+    // Lihat Detail Paket Penyelaman oleh user
+    $('.lihatDetaiPaketPenyelaman').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Penyelam/detailPaket',
+            data: {id: id},
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#id').val(data.id);
+                $('#namaPaket').val(data.nama);
+                $('#deskripsi').val(data.deskripsi);
+                $('#harga').val(data.harga).change();
+
+                $('#lihatDetailPenyelaman').modal('show');
+            }
+        });
+    });
+
+    // Pesan Selanjutnya
+    $('#detailPaketPenyelaman').on('click', function (event) {
+        event.preventDefault();
+        const idSelected = document.getElementById('tourGuide').value;
+        const idPaket = document.getElementById('id').value;
+
+        const today = new Date(); // Mendapatkan tanggal hari ini
+        const day = String(today.getDate()).padStart(2, '0'); // Mengambil hari dan menambahkan 0 di depan jika perlu
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Mengambil bulan (0-11) dan menambahkan 0 di depan
+        const year = today.getFullYear(); // Mengambil tahun
+    
+        // Mengatur nilai input tanggal dengan format YYYY-MM-DD
+        const formattedDate = `${year}-${month}-${day}`;
+        document.getElementById('tanggalPemesanan').value = formattedDate; // Mengatur nilai input
+
+        if (idSelected === "") {
+            $('#id').val(idPaket);
+            document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
+            document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
+            document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian
+            document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
+            document.getElementById('guideImage').src = "";
+            $('#guideModal').modal('show');
+            return;
+        }
+    });
+
+    // $('#selectGuideForm').on('click', function (event) {
+    //     event.preventDefault();
+    //     console.log("Select Guide");
+        // const idSelected = document.getElementById('tourGuide').value;
+        // const idPaket = document.getElementById('id').value;
+
+        // const today = new Date(); // Mendapatkan tanggal hari ini
+        // const day = String(today.getDate()).padStart(2, '0'); // Mengambil hari dan menambahkan 0 di depan jika perlu
+        // const month = String(today.getMonth() + 1).padStart(2, '0'); // Mengambil bulan (0-11) dan menambahkan 0 di depan
+        // const year = today.getFullYear(); // Mengambil tahun
+    
+        // // Mengatur nilai input tanggal dengan format YYYY-MM-DD
+        // const formattedDate = `${year}-${month}-${day}`;
+        // document.getElementById('tanggalPemesanan').value = formattedDate; // Mengatur nilai input
+
+        // if (idSelected === "") {
+        //     $('#id').val(idPaket);
+        //     document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
+        //     document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
+        //     document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian
+        //     document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
+        //     document.getElementById('guideImage').src = "";
+            // $('#pesanPaketPenyelaman').modal('show');
+        //     return;
+        // }
+    // });
+
+
+    // Configurasi DataTable
+    new DataTable('#data_table', {
+        paging: true,
+        scrollCollapse: true,
+        scrollY: '370px'
+    });
+
+    $('#table_datatables').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
 
     // Batas Terbaru
     

@@ -1,76 +1,128 @@
-<div class="main-content overflow-y-visible">
-    <div class="header mb-4 d-flex justify-content-between align-items-center">
-        <h4 class="m-0">Panel ADMIN</h4>
-        <div class="d-flex align-items-center">
-            <span class="me-2">
-                <?= $_SESSION['name_user']?>
-            </span>
-            <span class="text-muted small">
-                <?= $_SESSION['position']?>
-            </span>
-            <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
-                style="width: 40px; height: 40px;">
-            </a>
+<?php if($_SESSION['user_role'] == "ADMIN"): ?>
+    <div class="main-content overflow-y-visible">
+        <div class="header mb-4 d-flex justify-content-between align-items-center">
+            <h4 class="m-0">Panel ADMIN</h4>
+            <div class="d-flex align-items-center">
+                <span class="me-2">
+                    <?= $_SESSION['name_user']?>
+                </span>
+                <span class="text-muted small">
+                    <?= $_SESSION['position']?>
+                </span>
+                <a href="<?= BASEURL ?>/Profile" class="ms-2">
+                    <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                    style="width: 40px; height: 40px;">
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div class="container-fluid">
-        <div class="card mb-4 border border-0 shadow-lg">
-            <div class="card-body shadow p-3 bg-body rounded">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pengelolaan Kursus</h5>
-                </div>
-                <button class="btn btn-success rounded border border-none" data-bs-toggle="modal"
-                    data-bs-target="#addKursus">Tambahkan Kursus</button>
-                <div class="table-responsive">
-                    <table id="data_table" class="display" style="width:100%">
-                        <thead style="background-color:rgb(15, 60, 225); color:white;">
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Kursus</th>
-                                <th>Deskripsi</th>
-                                <th>Harga</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($data as $index => $order): ?>
-                            <tr>
-                                <td>
-                                    <h6>
-                                        <?php echo $index + 1; ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['namaKursus']); ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['deskripsi']); ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['harga']); ?>
-                                    </h6>
-                                </td>
-                                <td class="table-actions">
-                                    <a href="" data-bs-target="#editKursus" data-bs-toggle="modal"
-                                        class="btn bg-warning btn-sm" data-id="">Edit</a>
-                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+        <div class="container-fluid">
+            <div class="card mb-4 border border-0 shadow-lg">
+                <div class="card-body shadow p-3 bg-body rounded">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="card-title">Pengelolaan Kursus</h5>
+                    </div>
+                    <button class="btn btn-success rounded border border-none" data-bs-toggle="modal"
+                        data-bs-target="#addKursus">Tambahkan Kursus</button>
+                    <div class="table-responsive">
+                        <table id="data_table" class="display" style="width:100%">
+                            <thead style="background-color:rgb(15, 60, 225); color:white;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kursus</th>
+                                    <th>Deskripsi</th>
+                                    <th>Harga</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($data as $index => $order): ?>
+                                <tr>
+                                    <td>
+                                        <h6>
+                                            <?php echo $index + 1; ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            <?php echo htmlspecialchars($order['namaKursus']); ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            <?php echo htmlspecialchars($order['deskripsi']); ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6> Rp
+                                            <?= number_format($order['harga'], 0, ',', '.') ?>
+                                        </h6>
+                                    </td>
+                                    <td class="table-actions">
+                                        <a href="" data-bs-target="#editKursus" data-bs-toggle="modal"
+                                            class="btn bg-warning btn-sm" data-id="">Edit</a>
+                                        <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
+
+<?php if($_SESSION['user_role'] == "USER"): ?>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h2>Paket Kursus Wakatobi</h2>
+                <p>Pilih paket perjalanan yang sesuai dengan kebutuhan Anda</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <?php if(!empty($data)): ?>
+            <?php foreach($data as $package): ?>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-lg border border-0 align-items-center">
+                    <div>
+                        <img src="<?= BASEURL ?>/img/asset/<?= $package['gambar'] ?>" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card border border-0 align-items-center">
+                        <div class="card mt-3 mb-3 border border-0 justify-content-center">
+                            <h5 class="card-title">
+                                <?= $package['namaKursus'] ?>
+                            </h5>
+                        </div>
+                        <div class="card mb-3 border border-0 justify-content-center">
+                            <p class="card-text">
+                                <?= substr($package['deskripsi'], 0, 100) . (strlen($package->deskripsi) > 100 ? '...' : '') ?>
+                            </p>
+                        </div>
+                        <div class="card border border-0 mb-3 justify-content-center">
+                            <p class="card-text font-weight-bold">Rp
+                                <?= number_format($package['harga'], 0, ',', '.') ?>
+                            </p>
+                        </div>
+                        <div class="card border border-0 mb-3 justify-content-center">
+                            <button class="btn btn-primary">Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <div class="col-md-12">
+                <div class="alert alert-info">Tidak ada paket perjalanan yang tersedia saat ini.</div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
 
 
 <!-- Modal Edit Jadwal -->
