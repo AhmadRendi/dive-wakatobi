@@ -70,7 +70,6 @@ function updateKeahlian() {
 
 function lakukanPemesananPaketPenyelaman(event){
     event.preventDefault();
-    console.log("Select Guide");
     const idPaket = document.getElementById('id').value;
     const idKeahlian = document.getElementById('keahlian').value;
     const idGuide = document.getElementById('idGuide').value;
@@ -83,6 +82,7 @@ function lakukanPemesananPaketPenyelaman(event){
 
 }
 
+// document.getElementById('registerForm').addEventListener('sumbit', registration);
 document.getElementById('selectGuideForm').addEventListener('submit', lakukanPemesananPaketPenyelaman);
 document.getElementById('tourGuide').addEventListener('change', checkSelection);
 document.getElementById('keahlian').addEventListener('change', checkSelection);

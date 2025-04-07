@@ -17,11 +17,11 @@ class Controller {
         return $mode;
     }
 
-    public function models($model){
-        require_once '../app/models/' . $model . '.php';
-        // $mode = new $model();
-        return new $model();
-    }
+    // public function models($model){
+    //     require_once '../app/models/' . $model . '.php';
+    //     // $mode = new $model();
+    //     return new $model();
+    // }
 
     public function utils($utils){
         require_once '../app/Utils/' . $utils . '.php';

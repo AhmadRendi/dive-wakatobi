@@ -7,11 +7,9 @@ class Profile extends Controller {
     public function index() {
         // $_SESSION['user_role'] = "USER";
         $data = [
-            'admin' => [
                 'fullName' => 'Nama Admin',
                 'email' => 'admin@email.com',
-                'username' => 'admin123'
-            ]
+                'nmrTelepon' => '082222222222',
         ];
         
         $this->view('template/Header'); 

@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'db_mallawa');
+define('DB_NAME', 'db_dive_trip');
 
 // Base URL configuration
 define('BASEURL', 'http://localhost/dive-trip/public');

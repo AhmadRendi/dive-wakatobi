@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="fullName" name="fullName"
-                                    value="<?= $data['admin']['fullName'] ?>">
+                                    value="<?= $data['fullName'] ?>">
                             </div>
                         </div>
 
@@ -51,17 +51,17 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="<?= $data['admin']['email'] ?>">
+                                    value="<?= $data['email'] ?>">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label for="username" class="form-label">Nama belakang</label>
+                                <label for="nmrTelepon" class="form-label">Nomor Telepon</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="username" name="username"
-                                    value="<?= $data['admin']['username'] ?>">
+                                <input type="text" class="form-control" id="nmrTelepon" name="nmrTelepon"
+                                    value="<?= $data['nmrTelepon'] ?>">
                             </div>
                         </div>
 

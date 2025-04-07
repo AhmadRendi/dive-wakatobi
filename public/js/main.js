@@ -108,33 +108,37 @@ $( function () {
         }
     });
 
-    // $('#selectGuideForm').on('click', function (event) {
-    //     event.preventDefault();
-    //     console.log("Select Guide");
-        // const idSelected = document.getElementById('tourGuide').value;
-        // const idPaket = document.getElementById('id').value;
+    // register user 
+    $('#registerForm').on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Register/save',
+            data: data,
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#successRegister .modal-body').text(data.message);
+                    $('#successRegister').modal('show');
+                } else {
+                    console.log("masuk Kedalam error");
+                    $('#errorRegistration .modal-body').text(data.message);
+                    $('#errorRegistration').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#errorRegister .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#errorRegister').modal('show');
+            }
+        });
+    });
 
-        // const today = new Date(); // Mendapatkan tanggal hari ini
-        // const day = String(today.getDate()).padStart(2, '0'); // Mengambil hari dan menambahkan 0 di depan jika perlu
-        // const month = String(today.getMonth() + 1).padStart(2, '0'); // Mengambil bulan (0-11) dan menambahkan 0 di depan
-        // const year = today.getFullYear(); // Mengambil tahun
-    
-        // // Mengatur nilai input tanggal dengan format YYYY-MM-DD
-        // const formattedDate = `${year}-${month}-${day}`;
-        // document.getElementById('tanggalPemesanan').value = formattedDate; // Mengatur nilai input
-
-        // if (idSelected === "") {
-        //     $('#id').val(idPaket);
-        //     document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
-        //     document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
-        //     document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian
-        //     document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
-        //     document.getElementById('guideImage').src = "";
-            // $('#pesanPaketPenyelaman').modal('show');
-        //     return;
-        // }
-    // });
-
+    $('#successRegister').on('hidden.bs.modal', function () {
+        // Reload halaman setelah modal ditutup
+        location.reload();
+    });
 
     // Configurasi DataTable
     new DataTable('#data_table', {
