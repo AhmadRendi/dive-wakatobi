@@ -7,21 +7,21 @@
     </div>
 
     <div class="row justify-content-center">
-        <?php if(!empty($data)): ?>
-        <?php foreach($data as $package): ?>
+        <?php if(!empty($data['paket'])): ?>
+        <?php foreach($data['paket'] as $package): ?>
         <div class="col-md-3 mb-4">
             <div class="card h-100 shadow-lg border border-0 align-items-center">
                 <div>
-                    <img src="<?= BASEURL ?>/img/asset/<?= $package['gambar'] ?>" class="card-img-top" alt="...">
+                    <img src="<?= BASEURL ?>/img/asset/<?= $package['picture'] ?>" class="card-img-top" alt="...">
                 </div>
                 <div class="card border border-0 align-items-center">
                     <div class="card mt-3 mb-3 border border-0 justify-content-center">
                         <h5 class="card-title">
-                            <?= $package['nama'] ?>
+                            <?= $package['namaPaket'] ?>
                         </h5>
                     </div>
-                    <div class="card mb-3 border border-0 justify-content-center">
-                        <p class="card-text">
+                    <div class="card mb-3 border border-0">
+                        <p class="card-text d-flex justify-content-center align-items-center">
                             <?= substr($package['deskripsi'], 0, 100) . (strlen($package->description) > 100 ? '...' : '') ?>
                         </p>
                     </div>
@@ -64,15 +64,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="textarea" class="form-control border border-dark" id="deskripsi"
-                            name="deskripsi" readonly>
+                        <textarea type="textarea" class="form-control border border-dark" id="deskripsi"
+                            name="deskripsi" readonly></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
                         <input type="text" class="form-control border border-dark" id="harga" name="harga" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lanjut</button>
                     </div>
                 </form>
@@ -101,9 +100,9 @@
                                 <label for="keahlian" class="form-label">Pilih Keahlian</label>
                                 <select class="form-select" id="keahlian" onChange="updateKeahlian()">
                                     <option value="" selected>-- Pilih Keahlian --</option>
-                                    <option value="1">Keahlian 1 - Snorkeling</option>
-                                    <option value="2">Keahlian 2 - Scuba Diving</option>
-                                    <option value="3">Keahlian 3 - Advanced Diving</option>
+                                    <?php foreach($data['keahlian'] as $keahlian): ?>
+                                        <option value="<?= $keahlian['id'] ?>"><?= $keahlian['namaKeahlian'] ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <!-- <div class="col-md-4">
@@ -114,9 +113,9 @@
                                 <label for="tourGuide" class="form-label">Pilih Tour Guide</label>
                                 <select class="form-select" id="tourGuide" onChange="updateGuide()">
                                     <option value="" selected>-- Pilih Tour Guide --</option>
-                                    <option value="1">Guide 1 (Rating 7.5)</option>
-                                    <option value="2">Guide 2 (Rating 6.8)</option>
-                                    <option value="3">Guide 3 (Rating 8.2)</option>
+                                    <?php foreach($data['guide'] as $guide): ?>
+                                        <option value="<?= $guide['id'] ?>"><?= $guide['guideName'] ?> (Rating <?= $guide['guideRating'] ?>)</option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -129,16 +128,15 @@
                                     <img src="" alt="Guide 2" class="img-fluid rounded" id="guideImage">
                                 </div>
                                 <div class="col-md-9">
-                                    <h4 id="guideName">Guide 2</h4>
-                                    <p><strong>Rating:</strong> <span id="guideRating">6.8</span></p>
-                                    <p><strong>Keahlian:</strong> <span id="guideKeahlian">Scuba Diving, memiliki sertifikasi internasional. Spesialis dalam penyelaman mendalam.</span></p>
-                                    <p><strong>Bio:</strong> <span id="guideBio">Guide 2 adalah seorang yang memiliki pengalaman lebih dari 7 tahun dalam dunia scuba diving. Terlatih untuk menyelam di lokasi yang lebih dalam.</span></p>
+                                    <h4 id="guideName"></h4>
+                                    <p><strong>Rating:</strong> <span id="guideRating"></span></p>
+                                    <p><strong>Keahlian:</strong> <span id="guideKeahlian"></span></p>
+                                    <p><strong>Bio:</strong> <span id="guideBio"></span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="container modal-footer d-flex align-items-center border border-0">
-                        <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                         <button class="btn btn-primary" data-bs-dismiss="modal" id="btnSelanjutnya" data-id="" disabled>Selanjutnya</button>
                     </div>
                 </form>

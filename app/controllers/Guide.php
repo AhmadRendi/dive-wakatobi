@@ -47,11 +47,16 @@ class Guide extends Controller {
         ]
     ];
 
+    public function models(){
+        return $this->model('Guides');
+    }
+
     public function getGuide(){
         header('Content-Type: application/json');
         try{
+            $data = $this->models()->getGuide();
             $id = $_POST['id'];
-            $dataReturn = array_filter($this->data['guides'], function($item) use ($id){
+            $dataReturn = array_filter($data, function($item) use ($id){
                 return $item['id'] == $id;
             });
             $result = !empty($dataReturn) ? (object) array_values($dataReturn)[0] : null;
@@ -64,8 +69,9 @@ class Guide extends Controller {
     public function getKeahlian(){
         header('Content-Type: application/json');
         try{
+            $data = $this->model('Keahlian')->getKeahlian();
             $id = $_POST['id'];
-            $dataReturn = array_filter($this->data['keahlian'], function($item) use ($id){
+            $dataReturn = array_filter($data, function($item) use ($id){
                 return $item['id'] == $id;
             });
             $result = !empty($dataReturn) ? (object) array_values($dataReturn)[0] : null;

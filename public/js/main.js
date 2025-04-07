@@ -72,9 +72,9 @@ $( function () {
             dataType: 'json',
             success: function (data) {
                 $('#id').val(data.id);
-                $('#namaPaket').val(data.nama);
+                $('#namaPaket').val(data.namaPaket);
                 $('#deskripsi').val(data.deskripsi);
-                $('#harga').val(data.harga).change();
+                $('#harga').val(formatRupiah(data.harga)).change();
 
                 $('#lihatDetailPenyelaman').modal('show');
             }
@@ -107,6 +107,20 @@ $( function () {
             return;
         }
     });
+
+    $('#pesanPaketPenyelaman').on('hidden.bs.modal', function () {
+        location.reload();
+    });
+
+    $('#guideModal').on('hidden.bs.modal', function () {
+        document.getElementById('tourGuide').value = ""; // Reset tour guide
+        document.getElementById('keahlian').value = ""; // Reset keahlian
+        document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
+        document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
+        document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian
+        document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
+    });
+
 
     // register user 
     $('#registerForm').on('submit', function(e) {

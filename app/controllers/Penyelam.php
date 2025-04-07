@@ -43,17 +43,67 @@ class Penyelam extends Controller{
     ];
 
     public function index(){
+        $data = $this->mappingData();
         $this->view('template/Header');
         $this->view('template/Sidebar');
-        $this->view('penyelaman/index', $this->data);
+        $this->view('penyelaman/index', $data);
         $this->view('template/Footer');
+    }
+
+    private function mappingData(){
+        $dataPaket = $this->models()->getPaket();
+        $dataGuide = $this->model('Guides')->getGuide();
+        $dataKeahlian = $this->model('Keahlian')->getKeahlian();
+
+        $dataResult = [
+            'paket' => [],
+            'guide' => [],
+            'keahlian' => []
+        ];
+
+        // Mengumpulkan data paket
+        foreach ($dataPaket as $item) {
+            $dataResult['paket'][] = [
+                'id' => $item['id'],
+                'nama' => $item['nama'],
+                'deskripsi' => $item['deskripsi'],
+                'harga' => $item['harga'],
+                'picture' => $item['picture'],
+            ];
+        }
+
+        // // Mengumpulkan data guide
+        foreach ($dataGuide as $item) {
+            $dataResult['guide'][] = [
+                'id' => $item['id'],
+                'guideName' => $item['guideName'],
+                'guideRating' => $item['guideRating'],
+                'guideBio' => $item['guideBio'],
+            ];
+        }
+
+        // // Mengumpulkan data keahlian
+        foreach ($dataKeahlian as $item) {
+            $dataResult['keahlian'][] = [
+                'id' => $item['id'],
+                'namaKeahlian' => $item['namaKeahlian'],
+                'keahlian' => $item['keahlian'],
+            ];
+        }
+
+        return $dataResult;
+    }
+
+    private function models(){
+        return $this->model('Packet');
     }
 
     public function detailPaket(){
         header('Content-Type: application/json');
         try{
+            $data = $this->models()->getPaket();
             $id = $_POST['id'];
-            $datas = array_filter($this->data, function($item) use ($id){
+            $datas = array_filter($data, function($item) use ($id){
                 return $item['id'] == $id;
             });
             $result = !empty($datas) ? (object) array_values($datas)[0] : null;

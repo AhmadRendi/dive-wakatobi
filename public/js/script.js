@@ -64,7 +64,6 @@ function checkSelection() {
 function updateGuide() {
     const idSelected = document.getElementById('tourGuide').value;
     backDefaultValue();
-
     $.ajax({
         url: 'http://localhost/dive-trip/public/Guide/getGuide',
         data: { id: idSelected },
@@ -75,7 +74,7 @@ function updateGuide() {
             $('#guideName').text(data.guideName);
             $('#guideRating').text(data.guideRating);
             $('#guideBio').text(data.guideBio);
-            $('#guideImage').attr('src', data.guideImage);
+            // $('#guideImage').attr('src', data.guideImage);
             checkSelection();
         },
         error: function (xhr, status, error) {
@@ -95,7 +94,7 @@ function updateKeahlian() {
         dataType: 'json',
         success: function (data) {
             $('#idKeahlian').val(data.id);
-            $('#guideKeahlian').text(data.guideKeahlian);
+            $('#guideKeahlian').text(data.keahlian);
             checkSelection();
         },
         error: function (xhr, status, error) {
@@ -115,7 +114,6 @@ function lakukanPemesananPaketPenyelaman(event){
     console.log(idGuide);
     const myModal = new bootstrap.Modal(document.getElementById('pesanPaketPenyelaman'));
     myModal.show();
-
 }
 
 // document.getElementById('registerForm').addEventListener('sumbit', registration);
