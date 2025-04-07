@@ -25,4 +25,34 @@ class Packet {
         }
     }
 
+    public function getPaket(){
+        try{
+            $query = "SELECT * FROM $this->table WHERE paket = 'PENYELAM'";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }catch (PDOException $e){
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function getPaketKursus(){
+        try{
+            $query = "SELECT * FROM $this->table WHERE paket = 'KURSUS'";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }catch (PDOException $e){
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function getPaketById($id){
+        try{
+            $query = "SELECT * FROM $this->table WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            return $this->db->single();
+        }catch (PDOException $e){
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
 }

@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         <h6>
-                                            <?php echo htmlspecialchars($order['namaKursus']); ?>
+                                            <?php echo htmlspecialchars($order['namaPaket']); ?>
                                         </h6>
                                     </td>
                                     <td>
@@ -59,8 +59,7 @@
                                         </h6>
                                     </td>
                                     <td class="table-actions">
-                                        <a href="" data-bs-target="#editKursus" data-bs-toggle="modal"
-                                            class="btn bg-warning btn-sm" data-id="">Edit</a>
+                                    <button class="btn bg-warning btn-sm editPaket" data-id= <?= $order['id']; ?> >Edit</button>
                                         <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
                                     </td>
                                 </tr>
@@ -89,12 +88,12 @@
             <div class="col-md-3 mb-4">
                 <div class="card h-100 shadow-lg border border-0 align-items-center">
                     <div>
-                        <img src="<?= BASEURL ?>/img/asset/<?= $package['gambar'] ?>" class="card-img-top" alt="...">
+                        <img src="<?= BASEURL ?>/img/asset/<?= $package['picture'] ?>" class="card-img-top" alt="...">
                     </div>
                     <div class="card border border-0 align-items-center">
                         <div class="card mt-3 mb-3 border border-0 justify-content-center">
                             <h5 class="card-title">
-                                <?= $package['namaKursus'] ?>
+                                <?= $package['namaPaket'] ?>
                             </h5>
                         </div>
                         <div class="card mb-3 border border-0 justify-content-center">
@@ -126,26 +125,25 @@
 
 
 <!-- Modal Edit Jadwal -->
-<div class="modal fade" id="editKursus" tabindex="-1" aria-labelledby="editKursusLabel" aria-hidden="true">
+<div class="modal fade" id="editPaketMenyelam" tabindex="-1" aria-labelledby="editJadwalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editKursusLabel">Edit</h1>
+                <h1 class="modal-title fs-5" id="editJadwalLabel">Edit</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="" method="post">
                     <input type="hidden" name="id" id="editId">
                     <div class="mb-3">
-                        <label for="editNamaKursus" class="form-label">Nama Kursus</label>
-                        <input type="text" class="form-control border border-dark" id="editNamaKursus"
-                            name="editNamaKursus" readonly>
+                        <label for="editNamaPaket" class="form-label">Nama Paket</label>
+                        <input type="text" class="form-control border border-dark" id="editNamaPaket"
+                            name="editNamaPaket" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editDeskripsi" class="form-label">Deskripsi</label>
                         <textarea type="textarea" class="form-control border border-dark" id="editDeskripsi"
                             name="editDeskripsi" required> </textarea>
-                        <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
                     </div>
                     <div class="mb-3">
                         <label for="editHarga" class="form-label">Harga</label>
@@ -171,11 +169,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="" method="post">
+                <form id="savePaketKursusForm" method="post">
                     <div class="mb-3">
-                        <label for="namaKursus" class="form-label">Nama Kursus</label>
-                        <input type="text" class="form-control border border-dark" id="namaKursus" name="namaKursus"
-                            readonly>
+                        <label for="namaPaket" class="form-label">Nama Kursus</label>
+                        <input type="text" class="form-control border border-dark" id="namaPaket" name="namaPaket"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
@@ -184,7 +182,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
+                        <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
                     </div>
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
@@ -198,4 +196,38 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal untuk Menampilkan Pesan Kesalahan -->
+<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="errorLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#error" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal untuk Menampilkan Pesan Success -->
+<div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="successLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#success" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
 </div>

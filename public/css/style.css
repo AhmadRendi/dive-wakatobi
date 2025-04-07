@@ -197,6 +197,12 @@
     margin-bottom: 20px;
 }
 
+.card-img-top {
+    width: 261px;   /* Mengatur lebar gambar */
+    height: 250px;  /* Mengatur tinggi gambar */
+    object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+}
+
 /* batas */
 
 

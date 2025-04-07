@@ -36,33 +36,32 @@
                         </thead>
                         <tbody>
                             <?php foreach($data as $index => $order): ?>
-                            <tr>
-                                <td>
-                                    <h6>
-                                        <?php echo $index + 1; ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['namaPaket']); ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['deskripsi']); ?>
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        <?php echo htmlspecialchars($order['harga']); ?>
-                                    </h6>
-                                </td>
-                                <td class="table-actions">
-                                    <a href="" data-bs-target="#editJadwal" data-bs-toggle="modal"
-                                        class="btn bg-warning btn-sm" data-id="">Edit</a>
-                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <h6>
+                                            <?php echo $index + 1; ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            <?= htmlspecialchars($order['namaPaket']); ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            <?= htmlspecialchars($order['deskripsi']); ?>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6> Rp
+                                            <?= number_format($order['harga'], 0, ',', '.') ?>
+                                        </h6>
+                                    </td>
+                                    <td class="table-actions">
+                                        <button class="btn bg-warning btn-sm editPaket" data-id= <?= $order['id']; ?> >Edit</button>
+                                        <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -74,7 +73,7 @@
 
 
 <!-- Modal Edit Jadwal -->
-<div class="modal fade" id="editJadwal" tabindex="-1" aria-labelledby="editJadwalLabel" aria-hidden="true">
+<div class="modal fade" id="editPaketMenyelam" tabindex="-1" aria-labelledby="editJadwalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,7 +92,6 @@
                         <label for="editDeskripsi" class="form-label">Deskripsi</label>
                         <textarea type="textarea" class="form-control border border-dark" id="editDeskripsi"
                             name="editDeskripsi" required> </textarea>
-                        <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
                     </div>
                     <div class="mb-3">
                         <label for="editHarga" class="form-label">Harga</label>

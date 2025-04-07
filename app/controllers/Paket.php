@@ -8,63 +8,70 @@ class Paket extends Controller {
 
     public function index(){
 
-        $data = [
-                [
-                    'namaPaket' => 'Paket A',
-                    'deskripsi' => 'Paket A adalah paket yang paling murah',
-                    'harga' => 'Rp. 1.000.000'
-                ],
-                [
-                    'namaPaket' => 'Paket B',
-                    'deskripsi' => 'Paket B adalah paket yang paling mahal',
-                    'harga' => 'Rp. 2.000.000'
-                ],
-                [
-                    'namaPaket' => 'Paket C',
-                    'deskripsi' => 'Paket C adalah paket yang paling menarik',
-                    'harga' => 'Rp. 1.500.000'
-                ],
-                [
-                    'namaPaket' => 'Paket D',
-                    'deskripsi' => 'Paket D adalah paket yang paling seru',
-                    'harga' => 'Rp. 1.750.000'
-                ],
-                [
-                    'namaPaket' => 'Paket E',
-                    'deskripsi' => 'Paket E adalah paket yang paling menantang',
-                    'harga' => 'Rp. 1.250.000'
-                ],
-                [
-                    'namaPaket' => 'Paket F',
-                    'deskripsi' => 'Paket F adalah paket yang paling berkesan',
-                    'harga' => 'Rp. 1.800.000'
-                ],
-                [
-                    'namaPaket' => 'Paket G',
-                    'deskripsi' => 'Paket G adalah paket yang paling menyenangkan',
-                    'harga' => 'Rp. 1.600.000'
-                ],
-                [
-                    'namaPaket' => 'Paket H',
-                    'deskripsi' => 'Paket H adalah paket yang paling mengesankan',
-                    'harga' => 'Rp. 1.900.000'
-                ],
-                [
-                    'namaPaket' => 'Paket I',
-                    'deskripsi' => 'Paket I adalah paket yang paling menghibur',
-                    'harga' => 'Rp. 1.300.000'
-                ],
-                [
-                    'namaPaket' => 'Paket J',
-                    'deskripsi' => 'Paket J adalah paket yang paling menyegarkan',
-                    'harga' => 'Rp. 1.700.000'
-                ],
-        ];
+        // $data = [
+        //         [
+        //             'namaPaket' => 'Paket A',
+        //             'deskripsi' => 'Paket A adalah paket yang paling murah',
+        //             'harga' => 'Rp. 1.000.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket B',
+        //             'deskripsi' => 'Paket B adalah paket yang paling mahal',
+        //             'harga' => 'Rp. 2.000.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket C',
+        //             'deskripsi' => 'Paket C adalah paket yang paling menarik',
+        //             'harga' => 'Rp. 1.500.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket D',
+        //             'deskripsi' => 'Paket D adalah paket yang paling seru',
+        //             'harga' => 'Rp. 1.750.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket E',
+        //             'deskripsi' => 'Paket E adalah paket yang paling menantang',
+        //             'harga' => 'Rp. 1.250.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket F',
+        //             'deskripsi' => 'Paket F adalah paket yang paling berkesan',
+        //             'harga' => 'Rp. 1.800.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket G',
+        //             'deskripsi' => 'Paket G adalah paket yang paling menyenangkan',
+        //             'harga' => 'Rp. 1.600.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket H',
+        //             'deskripsi' => 'Paket H adalah paket yang paling mengesankan',
+        //             'harga' => 'Rp. 1.900.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket I',
+        //             'deskripsi' => 'Paket I adalah paket yang paling menghibur',
+        //             'harga' => 'Rp. 1.300.000'
+        //         ],
+        //         [
+        //             'namaPaket' => 'Paket J',
+        //             'deskripsi' => 'Paket J adalah paket yang paling menyegarkan',
+        //             'harga' => 'Rp. 1.700.000'
+        //         ],
+        // ];
 
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('paket/index', $data);
-        $this->view('template/Footer');
+        $data = $this->models()->getPaket();
+
+        try{
+            $this->view('template/Header');
+            $this->view('template/Sidebar');
+            $this->view('paket/index', $data);
+            $this->view('template/Footer');
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
+        
     }
 
     private function models(){
@@ -174,6 +181,52 @@ class Paket extends Controller {
 
             $result = $this->models()->savePaket($data, $file);
             echo json_encode(['status' => 'success','message' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
+    }
+
+    public function savePaketKursus(){
+        header('Content-Type: application/json');
+        try{
+            $data = [
+                'namaPaket' => $_POST['namaPaket'],
+                'deskripsi' => $_POST['deskripsi'],
+                'harga' => $_POST['harga'],
+                'paket' => 'KURSUS',
+
+            ];
+
+            $file = $this->uploadImage($_FILES['foto']);
+
+            $this->validatePaket($data);
+            $this->validateName($data['namaPaket']);
+            $this->validateDeskripsi($data['deskripsi']);
+            $this->validateHarga($data['harga']);
+
+            $result = $this->models()->savePaket($data, $file);
+            echo json_encode(['status' => 'success','message' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
+    }
+
+    public function getPaket(){
+        header('Content-Type: application/json');
+        try{
+            $result = $this->models()->getPaket();
+            echo json_encode(['status' => 'success','data' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
+    }
+
+    public function getPaketById(){
+        header('Content-Type: application/json');
+        try{
+            $id = $_POST['id'];
+            $result = $this->models()->getPaketById($id);
+            echo json_encode(['status' => 'success','data' => $result]);
         }catch (Exception $e){
             echo json_encode(['status' => 'error','message' => $e->getMessage()]);
         }
