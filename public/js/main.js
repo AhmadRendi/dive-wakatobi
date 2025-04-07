@@ -135,8 +135,8 @@ $( function () {
         });
     });
 
+    // Reload halaman setelah modal ditutup
     $('#successRegister').on('hidden.bs.modal', function () {
-        // Reload halaman setelah modal ditutup
         location.reload();
     });
 

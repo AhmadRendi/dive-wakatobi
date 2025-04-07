@@ -11,20 +11,38 @@ class Login extends Controller {
         $this->view('template/Footer');
     }
 
+    private function verifyPassword($password, $hash) {
+        return password_verify($password, $hash);
+    }
+
+    private function verification($email, $password){
+        $model = $this->model('Users');
+        $user = $model->getUserByEmail($email);
+        if ($user) {
+            if ($this->verifyPassword($password, $user['password'])) {
+                return $user['role'];
+            } else {
+                throw new Exception("Password salah");
+            }
+        } else {
+            throw new Exception("Email tidak terdaftar");
+        }
+    }
+
     public function session(){
         header('Content-Type: application/json');
         try{
+
             $data = $_POST['data'];
             $username = $data['username'];
             $password = $data['password'];
 
-            if($username == "user" && $password == "user"){
+            $roleSession = $this->verification($username, $password);
+
+            if($roleSession == "USER"){
                 $_SESSION['user_role'] = "USER";
-            }else if ($username == "admin" && $password == "admin"){
+            }else if ($roleSession == "ADMIN"){
                 $_SESSION['user_role'] = "ADMIN";
-    
-            }else {
-                throw new Exception("Username atau password salah");
             }
             
             echo json_encode(['status' => 'success', 'role' => $_SESSION['user_role']]);

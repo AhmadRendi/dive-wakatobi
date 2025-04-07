@@ -21,7 +21,7 @@ class Users {
             $this->db->bind(4, password_hash($data['password'], PASSWORD_DEFAULT));
             $this->db->bind(5, $data['role']);
             $this->db->bind(6, $data['picture']);
-            // $this->db->execute();
+            $this->db->execute();
             return "User registered successfully";
         }catch (PDOException $e){
             throw new Exception($e->getMessage());

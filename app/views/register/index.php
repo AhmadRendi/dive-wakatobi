@@ -55,7 +55,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Show a second modal and hide this one with the button below. -->
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-bs-target="#errorRegistration" data-bs-dismiss="modal">Tutup</button>
