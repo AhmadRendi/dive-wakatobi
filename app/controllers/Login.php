@@ -20,6 +20,7 @@ class Login extends Controller {
         $user = $model->getUserByEmail($email);
         if ($user) {
             if ($this->verifyPassword($password, $user['password'])) {
+                $_SESSION['picture'] = $user['picture'];
                 return $user['role'];
             } else {
                 throw new Exception("Password salah");

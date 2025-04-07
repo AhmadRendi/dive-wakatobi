@@ -140,6 +140,41 @@ $( function () {
         location.reload();
     });
 
+    // Melakukan penambahakan data paket penyelaman
+    $('#savePaketNyelamForm').on('submit', function(e) {
+        e.preventDefault();
+        let data = new FormData(this);
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Paket/savePaketNyelam',
+            data: data,
+            method: 'post',
+            processData: false, // Penting untuk FormData
+            contentType: false,
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    // console.log("masuk Kedalam success");
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    // console.log("masuk Kedalam error");
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
+      // Reload halaman setelah modal ditutup
+      $('#success').on('hidden.bs.modal', function () {
+        location.reload();
+    });
+
     // Configurasi DataTable
     new DataTable('#data_table', {
         paging: true,

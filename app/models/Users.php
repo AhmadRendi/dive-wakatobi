@@ -22,7 +22,7 @@ class Users {
             $this->db->bind(5, $data['role']);
             $this->db->bind(6, $data['picture']);
             $this->db->execute();
-            return "User registered successfully";
+            return "Data berhasil disimpan";
         }catch (PDOException $e){
             throw new Exception($e->getMessage());
         }

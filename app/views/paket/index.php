@@ -9,7 +9,7 @@
                 <?= $_SESSION['position']?>
             </span>
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture']?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
             </a>
         </div>
@@ -119,11 +119,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="" method="post">
+                <form id="savePaketNyelamForm" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="namaPaket" class="form-label">Nama Paket</label>
                         <input type="text" class="form-control border border-dark" id="namaPaket" name="namaPaket"
-                            readonly>
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
+                        <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
                     </div>
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
@@ -146,4 +146,39 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal untuk Menampilkan Pesan Kesalahan -->
+<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="errorLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#error" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal untuk Menampilkan Pesan Success -->
+<div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="successLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#success" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
 </div>
