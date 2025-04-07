@@ -19,6 +19,7 @@ class Login extends Controller {
         $model = $this->model('Users');
         $user = $model->getUserByEmail($email);
         if ($user) {
+            $_SESSION['email'] = $user['email'];
             if ($this->verifyPassword($password, $user['password'])) {
                 $_SESSION['picture'] = $user['picture'];
                 return $user['role'];

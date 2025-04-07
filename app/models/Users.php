@@ -38,4 +38,33 @@ class Users {
             throw new Exception($e->getMessage());
         }
     }
+
+    public function updateUserByEmail($email, $data, $file){
+        if($file != null){
+            try{
+                $query = "UPDATE $this->table SET namaLengkap = ?, noTelepon = ?, picture = ? WHERE email = ?";
+                $this->db->query($query);
+                $this->db->bind(1, $data['namaLengkap']);
+                $this->db->bind(2, $data['nmrTelepon']);
+                $this->db->bind(3, $file);
+                $this->db->bind(4, $email);
+                $this->db->execute();
+                return "Data berhasil diupdate";
+            }catch (PDOException $e){
+                throw new Exception($e->getMessage());
+            }
+        }else{
+            $query = "UPDATE $this->table SET namaLengkap = ?, noTelepon = ? WHERE email = ?";
+            try{
+                $this->db->query($query);
+                $this->db->bind(1, $data['namaLengkap']);
+                $this->db->bind(2, $data['nmrTelepon']);
+                $this->db->bind(3, $email);
+                $this->db->execute();
+                return "Data berhasil diupdate";
+            }catch (PDOException $e){
+                throw new Exception($e->getMessage());
+            }
+        }
+    }
 }

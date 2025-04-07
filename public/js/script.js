@@ -1,3 +1,39 @@
+$(function() {
+
+    $('#editProfileForm').on('submit', function(e) {
+        e.preventDefault();
+        let data = new FormData(this);
+        console.log(data);
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Profile/updateProfile',
+            data: data,
+            method: 'post',
+            processData: false, // Penting untuk FormData
+            contentType: false,
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
+      // Reload halaman setelah modal ditutup
+      $('#success').on('hidden.bs.modal', function () {
+        location.reload();
+    });
+
+});
+
 function backDefaultValue(){
     const idSelected = document.getElementById('tourGuide').value;
     const keahlianSelected = document.getElementById('keahlian').value;
@@ -86,3 +122,5 @@ function lakukanPemesananPaketPenyelaman(event){
 document.getElementById('selectGuideForm').addEventListener('submit', lakukanPemesananPaketPenyelaman);
 document.getElementById('tourGuide').addEventListener('change', checkSelection);
 document.getElementById('keahlian').addEventListener('change', checkSelection);
+
+
