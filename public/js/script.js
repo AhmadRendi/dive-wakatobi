@@ -3,7 +3,6 @@ $(function() {
     $('#editProfileForm').on('submit', function(e) {
         e.preventDefault();
         let data = new FormData(this);
-        console.log(data);
         $.ajax({
             url: 'http://localhost/dive-trip/public/Profile/updateProfile',
             data: data,
@@ -30,6 +29,31 @@ $(function() {
       // Reload halaman setelah modal ditutup
       $('#success').on('hidden.bs.modal', function () {
         location.reload();
+    });
+
+    $("#pesanPaketPenyelam").on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Penyelam/savePemesanan',
+            data: data,
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
     });
 
 });
@@ -112,6 +136,9 @@ function lakukanPemesananPaketPenyelaman(event){
     console.log(idPaket);
     console.log(idKeahlian);
     console.log(idGuide);
+    $('#idPaket').val(idPaket);
+    $('#keahlianId').val(idKeahlian);
+    $('#guideId').val(idGuide);
     const myModal = new bootstrap.Modal(document.getElementById('pesanPaketPenyelaman'));
     myModal.show();
 }

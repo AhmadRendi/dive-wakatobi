@@ -65,7 +65,7 @@ class Penyelam extends Controller{
         foreach ($dataPaket as $item) {
             $dataResult['paket'][] = [
                 'id' => $item['id'],
-                'nama' => $item['nama'],
+                'namaPaket' => $item['namaPaket'],
                 'deskripsi' => $item['deskripsi'],
                 'harga' => $item['harga'],
                 'picture' => $item['picture'],
@@ -111,6 +111,41 @@ class Penyelam extends Controller{
         }catch(Exception $e){
             echo json_encode(['error' => 'Terjadi kesalahan saat memproses permintaan.']);
         }
-        
+    }
+
+    public function savePemesanan(){
+        header('Content-Type: application/json');
+        try{
+
+            $modelUser = $this->model('Users')->getUserByEmail($_SESSION['email']);
+
+            if($modelUser == null){
+                throw new Exception('User tidak ditemukan');
+            }
+
+            $idUser = $modelUser['id'];
+
+            $modelPaket = $this->models()->getPaketById($_POST['idPaket']);
+
+            $harga = $modelPaket['harga'];
+
+            $data = [
+                'id_user' => $idUser,
+                'id_paket' => $_POST['idPaket'],
+                'id_quide' => $_POST['guideId'],
+                'id_keahlian' => $_POST['keahlianId'],
+                'namaLengkap' => $_POST['namaLengkap'],
+                'tanggalPemesanan' => $_POST['tanggalPemesanan'],
+                'status' => 'Menunggu Pembayaran',
+                'jmlPeserta' => $_POST['jmlPeserta'],
+                'harga' => $harga
+            ];
+
+            $result = $this->model("Pemesanan")->savePemesanan($data);
+            // $result = $_POST;
+            echo json_encode(['status' => 'success','message' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
     }
 }

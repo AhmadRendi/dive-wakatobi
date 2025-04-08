@@ -8,35 +8,35 @@
 
     <div class="row justify-content-center">
         <?php if(!empty($data['paket'])): ?>
-        <?php foreach($data['paket'] as $package): ?>
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 shadow-lg border border-0 align-items-center">
-                <div>
-                    <img src="<?= BASEURL ?>/img/asset/<?= $package['picture'] ?>" class="card-img-top" alt="...">
+            <?php foreach($data['paket'] as $package): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-lg border border-0 align-items-center">
+                        <div class="card-img-top">
+                            <img src="<?= BASEURL ?>/img/asset/<?= $package['picture'] ?>" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card border border-0 align-items-center">
+                            <div class="card mt-3 mb-3 border border-0 justify-content-center">
+                                <h5 class="card-title">
+                                    <?= $package['namaPaket'] ?>
+                                </h5>
+                            </div>
+                            <div class="card mb-3 border border-0">
+                                <p class="card-text d-flex justify-content-center align-items-center">
+                                    <?= substr($package['deskripsi'], 0, 100) . (strlen($package->description) > 100 ? '...' : '') ?>
+                                </p>
+                            </div>
+                            <div class="card border border-0 mb-3 justify-content-center">
+                                <p class="card-text font-weight-bold">Rp
+                                    <?= number_format($package['harga'], 0, ',', '.') ?>
+                                </p>
+                            </div>
+                            <div class="card border border-0 mb-3 justify-content-center">
+                                <button class="btn btn-primary lihatDetaiPaketPenyelaman" data-id="<?= $package['id']; ?>">Detail</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card border border-0 align-items-center">
-                    <div class="card mt-3 mb-3 border border-0 justify-content-center">
-                        <h5 class="card-title">
-                            <?= $package['namaPaket'] ?>
-                        </h5>
-                    </div>
-                    <div class="card mb-3 border border-0">
-                        <p class="card-text d-flex justify-content-center align-items-center">
-                            <?= substr($package['deskripsi'], 0, 100) . (strlen($package->description) > 100 ? '...' : '') ?>
-                        </p>
-                    </div>
-                    <div class="card border border-0 mb-3 justify-content-center">
-                        <p class="card-text font-weight-bold">Rp
-                            <?= number_format($package['harga'], 0, ',', '.') ?>
-                        </p>
-                    </div>
-                    <div class="card border border-0 mb-3 justify-content-center">
-                        <button class="btn btn-primary lihatDetaiPaketPenyelaman" data-id="<?= $package['id']; ?>">Detail</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         <?php else: ?>
         <div class="col-md-12">
             <div class="alert alert-info">Tidak ada paket perjalanan yang tersedia saat ini.</div>
@@ -156,8 +156,8 @@
             <div class="modal-body">
                 <form id="pesanPaketPenyelam">
                     <input type="hidden" name="idPaket" id="idPaket">
-                    <input type="hidden" name="idGuide" id="idGuide">
-                    <input type="hidden" name="idKeahlian" id="idKeahlian">
+                    <input type="hidden" name="guideId" id="guideId">
+                    <input type="hidden" name="keahlianId" id="keahlianId">
                     <div class="mb-3">
                         <label for="namaLengkap" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control border border-dark" id="namaLengkap"
@@ -165,8 +165,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="textarea" class="form-control border border-dark" id="email"
-                            name="email" required>
+                        <input type="text" class="form-control border border-dark" id="email" name="email" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalPemesanan" class="form-label">Tanggal Pemesanan</label>
@@ -174,7 +173,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jmlPeserta" class="form-label">Jumlah Peserta</label>
-                        <input type="text" class="form-control border border-dark" id="jmlPeserta" name="jmlPeserta" required>
+                        <input type="number" class="form-control border border-dark" id="jmlPeserta" name="jmlPeserta" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
@@ -184,4 +183,38 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal untuk Menampilkan Pesan Kesalahan -->
+<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="errorLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#error" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal untuk Menampilkan Pesan Success -->
+<div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="successLabel">Pemberitahuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#success" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
 </div>

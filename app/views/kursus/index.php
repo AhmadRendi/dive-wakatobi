@@ -87,7 +87,7 @@
             <?php foreach($data as $package): ?>
             <div class="col-md-3 mb-4">
                 <div class="card h-100 shadow-lg border border-0 align-items-center">
-                    <div>
+                    <div class="card-img-top">
                         <img src="<?= BASEURL ?>/img/asset/<?= $package['picture'] ?>" class="card-img-top" alt="...">
                     </div>
                     <div class="card border border-0 align-items-center">
