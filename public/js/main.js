@@ -78,6 +78,7 @@ $( function () {
                 $('#harga').val(formatRupiah(data.harga)).change();
 
                 $('#lihatDetailPenyelaman').modal('show');
+                // $('#lihatDetailKursus').modal('show');
             }
         });
     });
@@ -108,8 +109,42 @@ $( function () {
         }
     });
 
+    let isModalClosedByJavaScript = false;
+
+    // melakukan pemesanan
+    $("#pesanPaketPenyelam").on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        $.ajax({
+            url: 'http://localhost/dive-trip/public/Penyelam/savePemesanan',
+            data: data,
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    isModalClosedByJavaScript = true;
+                    $('#pesanPaketPenyelaman').modal('hide');
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
     $('#pesanPaketPenyelaman').on('hidden.bs.modal', function () {
-        location.reload();
+        if (!isModalClosedByJavaScript) {
+            location.reload(); // Reload halaman ketika modal ditutup secara manual
+        }
+        // Reset flag setelah modal ditutup
+        isModalClosedByJavaScript = false;
     });
 
     $('#guideModal').on('hidden.bs.modal', function () {
@@ -184,10 +219,6 @@ $( function () {
         });
     });
 
-      // Reload halaman setelah modal ditutup
-      $('#success').on('hidden.bs.modal', function () {
-        location.reload();
-    });
 
     // Melakukan penambahakan data paket kursus
     $('#savePaketKursusForm').on('submit', function(e) {

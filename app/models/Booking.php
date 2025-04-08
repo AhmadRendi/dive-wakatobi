@@ -23,7 +23,7 @@ class Booking {
             $this->db->bind(7, $data['status']);
             $this->db->bind(8, $data['jmlPeserta']);
             $this->db->bind(9, $data['harga']);
-            $this->db->execute();
+            // $this->db->execute();
 
             return "Data pemesanan berhasil disimpan";
         }catch (PDOException $e){

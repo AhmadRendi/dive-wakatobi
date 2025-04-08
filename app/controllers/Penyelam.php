@@ -101,12 +101,14 @@ class Penyelam extends Controller{
     public function detailPaket(){
         header('Content-Type: application/json');
         try{
-            $data = $this->models()->getPaket();
+            // $data = $this->models()->getPaket();
             $id = $_POST['id'];
-            $datas = array_filter($data, function($item) use ($id){
-                return $item['id'] == $id;
-            });
-            $result = !empty($datas) ? (object) array_values($datas)[0] : null;
+            $data = $this->models()->getPaketById($id);
+            // $datas = array_filter($data, function($item) use ($id){
+            //     return $item['id'] == $id;
+            // });
+            // $result = !empty($datas) ? (object) array_values($datas)[0] : null;
+            $result = $data;
             echo json_encode($result);
         }catch(Exception $e){
             echo json_encode(['error' => 'Terjadi kesalahan saat memproses permintaan.']);
