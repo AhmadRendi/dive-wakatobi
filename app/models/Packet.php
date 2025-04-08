@@ -55,4 +55,15 @@ class Packet {
             throw new PDOException('Error: ' . $e->getMessage());
         }
     }
+
+    public function getNamePaketById($id){
+        try{
+            $query = "SELECT namaPaket FROM $this->table WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            return $this->db->single();
+        }catch (PDOException $e){
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
 }

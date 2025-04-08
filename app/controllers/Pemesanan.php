@@ -107,20 +107,42 @@ class Pemesanan  extends Controller {
     ];
 
     public function index(){
+
+        $data = $this->models()->getAllPesanan();
+        $pesananDenganNamaPaket = [];
+
+        foreach ($data as $value) {
+            $paket = $this->model("Packet")->getNamePaketById($value['id_paket']);
+            
+            $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
+        
+            $value['namaPaket'] = $namaPaket; 
+            $pesananDenganNamaPaket[] = $value;
+        }
+
         $this->view('template/Header');
         $this->view('template/Sidebar');
-        $this->view('pemesanan/index', $this->data);
+        $this->view('pemesanan/index', $pesananDenganNamaPaket);
         $this->view('template/Footer');
+    }
+
+    private function models(){
+        return $this->model('Booking');
     }
 
     public function detail(){
         header('Content-Type: application/json');
         try{
             $id = $_POST['id'];
-            $datas = array_filter($this->data, function($item) use ($id){
-                return $item['id'] == $id;
-            });
-            $result = !empty($datas) ? (object) array_values($datas)[0] : null;
+            $data = $this->models()->getPesananById($id);
+
+            $paket = $this->model("Packet")->getNamePaketById($data['id_paket']);
+            
+            $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
+
+            $data['namaPaket'] = $namaPaket;
+
+            $result = $data;
             echo json_encode($result);
         }catch(Exception $e){
             echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);

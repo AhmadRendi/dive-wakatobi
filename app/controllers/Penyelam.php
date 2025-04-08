@@ -141,7 +141,7 @@ class Penyelam extends Controller{
                 'harga' => $harga
             ];
 
-            $result = $this->model("Pemesanan")->savePemesanan($data);
+            $result = $this->model("Booking")->savePemesanan($data);
             // $result = $_POST;
             echo json_encode(['status' => 'success','message' => $result]);
         }catch (Exception $e){

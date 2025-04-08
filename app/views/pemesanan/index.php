@@ -2,14 +2,8 @@
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
-            <span class="me-2">
-                <?= $_SESSION['name_user']?>
-            </span>
-            <span class="text-muted small">
-                <?= $_SESSION['position']?>
-            </span>
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture']; ?>" class="rounded-circle ms-2" alt="Profile"
                     style="width: 40px; height: 40px;">
             </a>
         </div>
@@ -43,17 +37,17 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['nama']); ?>
+                                        <?php echo htmlspecialchars($order['namaLengkap']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['tanggal']); ?>
+                                        <?php echo htmlspecialchars($order['tanggalPemesanan']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['paket']); ?>
+                                        <?php echo htmlspecialchars($order['namaPaket']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -96,25 +90,25 @@
                     <div class="mb-3">
                         <label for="tanggalPemesanan" class="form-label">Tanggal Pemesanan</label>
                         <input type="textarea" class="form-control border border-dark" id="tanggalPemesanan"
-                            name="tanggalPemesanan" required>
+                            name="tanggalPemesanan" readonly>
                         <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
                     </div>
                     <div class="mb-3">
-                        <label for="paket" class="form-label">Paket</label>
-                        <input type="text" class="form-control border border-dark" id="paket" name="paket" required>
+                        <label for="namaPaket" class="form-label">Paket</label>
+                        <input type="text" class="form-control border border-dark" id="namaPaket" name="namaPaket" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
-                        <input type="text" class="form-control border border-dark" id="status" name="status" required>
+                        <input type="text" class="form-control border border-dark" id="status" name="status" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="jumlahPeserta" class="form-label">Jumlah Peserta</label>
                         <input type="text" class="form-control border border-dark" id="jumlahPeserta"
-                            name="jumlahPeserta" required>
+                            name="jumlahPeserta" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="text" class="form-control border border-dark" id="harga" name="harga" required>
+                        <input type="text" class="form-control border border-dark" id="harga" name="harga" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

@@ -9,12 +9,13 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                $('#detailNamaWisatawan').val(data.nama);
-                $('#tanggalPemesanan').val(data.tanggal);
-                $('#paket').val(data.paket).change();
+                $('#detailNamaWisatawan').val(data.namaLengkap);
+                $('#tanggalPemesanan').val(data.tanggalPemesanan);
+                $('#namaPaket').val(data.namaPaket);
                 $('#status').val(data.status);
-                $('#jumlahPeserta').val(data.jumlahPeserta);
-                $('#harga').val(data.harga);
+                $('#jumlahPeserta').val(data.jmlPeserta);
+                // $('#harga').val(data.harga);
+                $('#harga').val(formatRupiah(data.harga)).change();
 
                 $('#lihatDetail').modal('show');
             }
@@ -87,14 +88,13 @@ $( function () {
         const idSelected = document.getElementById('tourGuide').value;
         const idPaket = document.getElementById('id').value;
 
-        const today = new Date(); // Mendapatkan tanggal hari ini
-        const day = String(today.getDate()).padStart(2, '0'); // Mengambil hari dan menambahkan 0 di depan jika perlu
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // Mengambil bulan (0-11) dan menambahkan 0 di depan
-        const year = today.getFullYear(); // Mengambil tahun
+        const today = new Date(); 
+        const day = String(today.getDate()).padStart(2, '0'); 
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = today.getFullYear(); 
     
-        // Mengatur nilai input tanggal dengan format YYYY-MM-DD
         const formattedDate = `${year}-${month}-${day}`;
-        document.getElementById('tanggalPemesanan').value = formattedDate; // Mengatur nilai input
+        document.getElementById('tanggalPemesanan').value = formattedDate;
 
         if (idSelected === "") {
             $('#id').val(idPaket);

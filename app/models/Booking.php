@@ -1,6 +1,6 @@
 <?php
 
-class Pemesanan {
+class Booking {
 
     private $db;
     private $table = 'tbl_pemesanan';
@@ -28,6 +28,28 @@ class Pemesanan {
             return "Data pemesanan berhasil disimpan";
         }catch (PDOException $e){
             throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function getAllPesanan(){
+        try{
+            $query = "SELECT id, id_paket, namaLengkap, tanggalPemesanan, status FROM $this->table";
+            // $query = "SELECT * FROM $this->table";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }catch (PDOException $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function getPesananById($id){
+        try{
+            $query = "SELECT * FROM $this->table WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            return $this->db->single();
+        }catch (PDOException $e){
+            throw new Exception($e->getMessage());
         }
     }
 
