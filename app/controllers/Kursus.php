@@ -69,11 +69,18 @@ class Kursus extends Controller  {
 
     public function index(){
         try{
-            $data = $this->mappingData();
-            $this->view('template/Header');
-            $this->view('template/Sidebar');
-            $this->view('kursus/index', $data);
-            $this->view('template/Footer');
+            if($_SESSION['user_role'] == 'ADMIN' || $_SESSION['user_role'] == 'USER'){
+                $data = $this->mappingData();
+                $this->view('template/Header');
+                $this->view('template/Sidebar');
+                $this->view('kursus/index', $data);
+                $this->view('template/Footer');
+            }else {
+                // Flasher::setFlash('Anda tidak memiliki akses untuk mengakses halaman ini', 'danger');
+                header('Location: ' . BASEURL . '/home');
+                exit;
+            }
+            
         }catch (PDOException $e){
             throw new PDOException('Error: ' . $e->getMessage());
         }

@@ -51,11 +51,14 @@
             <a class="nav-link" href="<?= BASEURL ?>/Kursus">Paket Kursus</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?= BASEURL ?>/Riwayat">Riwayat Pemesanan</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a>
           </li>
           <li class="nav-item">
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-              <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+              <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ;?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
             </a>
           </li>

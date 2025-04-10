@@ -9,13 +9,14 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('#detailNamaWisatawan').val(data.namaLengkap);
                 $('#tanggalPemesanan').val(data.tanggalPemesanan);
                 $('#namaPaket').val(data.namaPaket);
                 $('#status').val(data.status);
                 $('#jumlahPeserta').val(data.jmlPeserta);
-                // $('#harga').val(data.harga);
                 $('#harga').val(formatRupiah(data.harga)).change();
+                $('#waktu').val(data.waktu);
 
                 $('#lihatDetail').modal('show');
             }
@@ -65,13 +66,13 @@ $( function () {
     // Lihat Detail Paket Penyelaman oleh user
     $('.lihatDetaiPaketPenyelaman').on('click', function () {
         const id = $(this).data('id');
-        console.log(id);
         $.ajax({
             url: 'http://localhost/dive-trip/public/Penyelam/detailPaket',
             data: {id: id},
             method: 'post',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('#id').val(data.id);
                 $('#namaPaket').val(data.namaPaket);
                 $('#deskripsi').val(data.deskripsi);
@@ -264,11 +265,13 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('#editId').val(data.data.id);
                 $('#editNamaPaket').val(data.data.namaPaket);
                 $('#editDeskripsi').val(data.data.deskripsi);
                 $('#editHarga').val(formatRupiah(data.data.harga)).change();
-
+                $('#editWaktu').val(data.data.waktu);
+                $('#editLokasi').val(data.data.lokasi);
                 $('#editPaketMenyelam').modal('show');
             }
         });

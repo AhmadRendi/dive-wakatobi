@@ -110,9 +110,12 @@
                         <label for="harga" class="form-label">Harga</label>
                         <input type="text" class="form-control border border-dark" id="harga" name="harga" readonly>
                     </div>
+                    <div class="mb-3">
+                        <label for="waktu" class="form-label">Waktu</label>
+                        <input type="text" class="form-control border border-dark" id="waktu" name="waktu" readonly>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <!-- <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button> -->
                     </div>
                 </form>
             </div>

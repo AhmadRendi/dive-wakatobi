@@ -115,7 +115,7 @@ class Pemesanan  extends Controller {
             $paket = $this->model("Packet")->getNamePaketById($value['id_paket']);
             
             $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
-        
+
             $value['namaPaket'] = $namaPaket; 
             $pesananDenganNamaPaket[] = $value;
         }
@@ -136,11 +136,14 @@ class Pemesanan  extends Controller {
             $id = $_POST['id'];
             $data = $this->models()->getPesananById($id);
 
-            $paket = $this->model("Packet")->getNamePaketById($data['id_paket']);
+            $paket = $this->model("Packet")->getPaketById($data['id_paket']);
             
             $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
+            $waktu = !empty($paket) ? $paket['waktu'] : '';
 
             $data['namaPaket'] = $namaPaket;
+            $data['waktu'] = $waktu;
+
 
             $result = $data;
             echo json_encode($result);

@@ -92,6 +92,16 @@
                         <input type="text" class="form-control border border-dark" id="editHarga" name="editHarga"
                             required>
                     </div>
+                    <div class="mb-3">
+                        <label for="editWaktu" class="form-label">Waktu</label>
+                        <input type="text" class="form-control border border-dark" id="editWaktu" name="editWaktu"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editLokasi" class="form-label">Lokasi</label>
+                        <input type="text" class="form-control border border-dark" id="editLokasi" name="editLokasi"
+                            required>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
@@ -127,6 +137,14 @@
                         <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
                     </div>
                     <div class="mb-3">
+                        <label for="waktu" class="form-label">Waktu</label>
+                        <input type="time" class="form-control border border-dark" id="waktu" name="waktu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lokasi" class="form-label">Lokasi</label>
+                        <input type="text" class="form-control border border-dark" id="lokasi" name="lokasi" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
                         <input type="file" class="form-control border border-dark" id="foto" name="foto" required>
                     </div>
@@ -138,39 +156,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<!-- Modal untuk Menampilkan Pesan Kesalahan -->
-<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="errorLabel">Pemberitahuan</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#error" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal untuk Menampilkan Pesan Success -->
-<div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="successLabel">Pemberitahuan</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#success" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
 </div>

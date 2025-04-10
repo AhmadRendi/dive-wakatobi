@@ -1,3 +1,4 @@
+const baseUrl = 'http://localhost/dive-trip/public/';
 $(function() {
 
     $('#editProfileForm').on('submit', function(e) {
@@ -26,37 +27,38 @@ $(function() {
         });
     });
 
-      // Reload halaman setelah modal ditutup
-      $('#success').on('hidden.bs.modal', function () {
-        location.reload();
+    $('.batalPesanan').on('click', function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        $('#id').val(id);
+        $('#confirm').modal('show');
     });
 
-    // $("#pesanPaketPenyelam").on('submit', function(e) {
-    //     e.preventDefault();
-    //     let data = $(this).serialize();
-    //     $.ajax({
-    //         url: 'http://localhost/dive-trip/public/Penyelam/savePemesanan',
-    //         data: data,
-    //         method: 'post',
-    //         dataType: 'json',
-    //         success: function(data, textStatus, jqXHR) {
-    //             console.log(data);
-    //             if (data.status === 'success') {
-    //                 $('#success .modal-body').text(data.message);
-    //                 $('#pesanPaketPenyelaman').modal('hide');
-    //                 $('#success').modal('show');
-    //             } else {
-    //                 $('#error .modal-body').text(data.message);
-    //                 $('#error').modal('show');
-    //             }
-    //         },
-    //         error: function(jqXHR, textStatus, errorThrown) {
-    //             $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
-    //             $('#error').modal('show');
-    //         }
-    //     });
-    // });
-
+    $('#formBatalPesanan').on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        console.log(data);
+        $.ajax({
+            url: baseUrl + 'Riwayat/batalPesanan',
+            data: data,
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
 });
 
 function backDefaultValue(){
