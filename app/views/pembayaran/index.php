@@ -2,14 +2,8 @@
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
-            <span class="me-2">
-                <?= $_SESSION['name_user']?>
-            </span>
-            <span class="text-muted small">
-                <?= $_SESSION['position']?>
-            </span>
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ;?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
             </a>
         </div>
@@ -43,7 +37,7 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['nama']); ?>
+                                        <?php echo htmlspecialchars($order['namaLengkap']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -58,13 +52,13 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($order['statusPembayaran']); ?>
+                                        <?php echo htmlspecialchars($order['status']); ?>
                                     </h6>
                                 </td>
                                 <td class="table-actions">
-                                    <a href="" data-bs-target="#verifikasi" data-bs-toggle="modal"
-                                        class="btn bg-warning btn-sm" data-id="">Verifikasi</a>
-                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                    <button class="btn bg-primary btn-sm lihatBuktiPembayaran" data-id=<?= $order['id'] ;?>>Lihat</button>
+                                    <button class="btn bg-warning btn-sm" data-id=<?= $order['id'] ;?>>Verifikasi</button>
+                                    <button class="btn btn-danger btn-sm" data-id=<?= $order['id'] ;?>>Hapus</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -91,6 +85,29 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-primary" id="confirmVerification">Verifikasi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal menampilkan bukti pembayaran -->
+<div class="modal fade" id="butiPembayaran" tabindex="-1" aria-labelledby="butiPembayaranLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="butiPembayaranLabel">Bukti Pembayaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-img-top">
+                    <img src="" class="card-img-top-lg" alt="...">
+                </div>
+                <div class="card-img-top">
+                    <input type="hidden">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

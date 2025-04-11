@@ -1,6 +1,7 @@
 const baseUrl = 'http://localhost/dive-trip/public/';
 $(function() {
 
+    // mengedit profile user
     $('#editProfileForm').on('submit', function(e) {
         e.preventDefault();
         let data = new FormData(this);
@@ -27,6 +28,7 @@ $(function() {
         });
     });
 
+    // Membatalkan Pesanan
     $('.batalPesanan').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
@@ -59,6 +61,7 @@ $(function() {
         });
     });
 
+    // membayar paket yang telah dipesan
     $('.bayarPesanan').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
@@ -67,6 +70,7 @@ $(function() {
         $('#bayar').modal('show');
     });
 
+    
     $('#bayarPaket').on('submit', function(e) {
         e.preventDefault();
         let data = new FormData(this);
@@ -82,6 +86,32 @@ $(function() {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
+    // melihat pembayaran oleh admin
+    $('.lihatBuktiPembayaran').on('click', function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        $.ajax({
+            url: baseUrl + 'Pembayaran/getBuktiPembayaran',
+            data: {id: id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                if (data.status === 'success') {
+                    var imageUrl = baseUrl + 'img/asset/' + data.data.picture;
+                    $('#butiPembayaran .card-img-top img').attr('src', imageUrl);
+                    $('#butiPembayaran').modal('show');
                 } else {
                     $('#error .modal-body').text(data.message);
                     $('#error').modal('show');
