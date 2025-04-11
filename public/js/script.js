@@ -44,6 +44,40 @@ $(function() {
             method: 'post',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
+    $('.bayarPesanan').on('click', function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        console.log(id);
+        $('#id_pembayaran').val(id);
+        $('#bayar').modal('show');
+    });
+
+    $('#bayarPaket').on('submit', function(e) {
+        e.preventDefault();
+        let data = new FormData(this);
+        $.ajax({
+            url: baseUrl + 'Riwayat/bayarPesanan',
+            data: data,
+            method: 'post',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
@@ -59,6 +93,7 @@ $(function() {
             }
         });
     });
+
 });
 
 function backDefaultValue(){

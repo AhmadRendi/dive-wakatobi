@@ -75,11 +75,43 @@
           <input type="hidden" name="id" id="id">
             <p>Apakah Anda yakin ingin membatalkan pemesanan ini?</p>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" data-bs-dismiss="modal">Tidak</button>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Tidak</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Ya</button>
             </div>
         </form>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="bayar" tabindex="-1" aria-labelledby="bayarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bayarLabel">Bayar Pesanan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="bayarPaket" enctype="multipart/form-data">
+                    <input type="hidden" name="id_pembayaran" id="id_pembayaran">
+                    <div class="mb-3">
+                        <label for="metodePembayaran" class="form-label">Metode Pembayaran</label>
+                        <select class="form-select" name="metodePembayaran" id="metodePembayaran" aria-label="Default select example">
+                            <option selected>Pilih Metode Pemayaran</option>
+                            <option value="CASH">Cash</option>
+                            <option value="TRANSFER">Transfer</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto</label>
+                        <input type="file" class="form-control border border-dark" id="foto" name="foto" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
