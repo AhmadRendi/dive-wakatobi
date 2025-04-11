@@ -124,6 +124,44 @@ $(function() {
         });
     });
 
+
+    // Melakukan verifikasi pembayaran oleh admin
+    $('.verifikasi').on('click', function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        console.log(id);
+        $('#id').val(id);
+        $('#verifikasi').modal('show');
+    });
+
+    $('#verfikasiForm').on('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(this);
+        console.log(data);
+        $.ajax({
+            url: baseUrl + 'Pembayaran/verifikasiPembayaran',
+            data: data,
+            method: 'post',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
 });
 
 function backDefaultValue(){

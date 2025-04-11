@@ -174,7 +174,7 @@ class Riwayat extends Controller {
 
             $file = $this->uploadImage($_FILES['foto']);
 
-            $result = $this->model('Pembayaran')->savePembayaran($data, $file);
+            $result = $this->model('Payment')->savePembayaran($data, $file);
 
             echo json_encode(['status' => 'success','message' => $result]);
         }catch (Exception $e){

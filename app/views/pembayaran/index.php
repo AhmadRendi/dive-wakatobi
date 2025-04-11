@@ -57,7 +57,11 @@
                                 </td>
                                 <td class="table-actions">
                                     <button class="btn bg-primary btn-sm lihatBuktiPembayaran" data-id=<?= $order['id'] ;?>>Lihat</button>
-                                    <button class="btn bg-warning btn-sm" data-id=<?= $order['id'] ;?>>Verifikasi</button>
+                                    <?php if ($order['status'] == 'Menunggu Verifikasi'): ?>
+                                        <button class="btn bg-warning btn-sm verifikasi" data-id=<?= $order['id_pemesanan'] ;?>>Verifikasi</button>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary btn-sm" disabled>Verifikasi</button>
+                                    <?php endif; ?>
                                     <button class="btn btn-danger btn-sm" data-id=<?= $order['id'] ;?>>Hapus</button>
                                 </td>
                             </tr>
@@ -81,10 +85,13 @@
             </div>
             <div class="modal-body">
                 <p>Yakin ingin Memverifikasi dokumen ini?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="confirmVerification">Verifikasi</button>
+                <form id="verfikasiForm">
+                    <input type="hidden" name="id" id="id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Verifikasi</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

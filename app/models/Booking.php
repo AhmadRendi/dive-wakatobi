@@ -79,4 +79,16 @@ class Booking {
         }
     }
 
+    public function verifikasiPembayaran($id){
+        try{
+            $query = "UPDATE $this->table SET status = 'Terverifikasi' WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            $this->db->execute();
+            return "Pembayaran berhasil diverifikasi";
+        }catch (PDOException $e){
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
+
 }

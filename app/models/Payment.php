@@ -28,7 +28,7 @@ class Payment {
 
     public function getPembayaran(){
         try{
-            $query = "SELECT pembayaran.id, pemesanan.status, pembayaran.metodePembayaran, user.namaLengkap, paket.`namaPaket`
+            $query = "SELECT pemesanan.id AS id_pemesanan, pembayaran.id AS id, pemesanan.status, pembayaran.metodePembayaran, user.namaLengkap, paket.`namaPaket`
                 FROM $this->table AS pembayaran
                 JOIN tbl_pemesanan AS pemesanan ON pembayaran.id_pemesanan = pemesanan.id
                 JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
@@ -50,5 +50,7 @@ class Payment {
             throw new PDOException('Error: ' . $e->getMessage());
         }
     }
+
+
 
 }

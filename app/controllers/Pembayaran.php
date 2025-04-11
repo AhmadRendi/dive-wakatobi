@@ -97,4 +97,15 @@ class Pembayaran extends Controller {
         }
     }
 
+    public function verifikasiPembayaran(){
+        header('Content-Type: application/json');
+        try{
+            $id = $_POST['id'];
+            $result = $this->model('Booking')->verifikasiPembayaran($id);
+            echo json_encode(['status' => 'success', 'message' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
 }
