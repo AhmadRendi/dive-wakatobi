@@ -5,7 +5,7 @@ session_start();
 class Dashboard extends Controller {
 
     public function index() {
-        $data = [
+        $datas = [
             'stats' => [
                 'packages' => 50,
                 'orders' => 120,
@@ -27,9 +27,16 @@ class Dashboard extends Controller {
             ]
         ];
 
+        $data = $this->model('Booking')->getTotalPesanan();
+
+        $associativeArray = array();
+        foreach ($data as $item) {
+            $associativeArray[$item['label']] = array("total" => $item['total']);
+        }
+
         $this->view('template/Header'); 
         $this->view('template/Sidebar');
-        $this->view('dashboard/index', $data);
+        $this->view('dashboard/index', $associativeArray);
         $this->view('template/Footer');
     }
 }

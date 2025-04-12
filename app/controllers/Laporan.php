@@ -6,7 +6,7 @@ class Laporan extends Controller {
 
     public function index(){
 
-        $data =[
+        $datas =[
                 [
                     'idPemesanan' => '1',
                     'name' => 'Wisatawan A',
@@ -78,6 +78,8 @@ class Laporan extends Controller {
                     'totalPembayaran' => 'Rp. 1.000.000'
                 ]
         ];
+
+        $data = $this->model('Booking')->getLaporan();
         $this->view('template/Header');
         $this->view('template/Sidebar');
         $this->view('laporan/index', $data);

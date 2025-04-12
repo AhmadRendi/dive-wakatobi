@@ -91,4 +91,48 @@ class Booking {
         }
     }
 
+    public function getLaporan(){
+        try{
+            $query = "SELECT pemesanan.id, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga FROM tbl_pemesanan AS pemesanan
+                JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
+                JOIN tb_user AS user ON pemesanan.id_user = user.id";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }catch (PDOException $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+
+    public function getTotalPesanan(){
+        try{
+            $query = "SELECT 
+                            'totalPaket' AS label, 
+                            COUNT(*) AS total 
+                        FROM 
+                            tbl_paket 
+
+                        UNION ALL 
+
+                        SELECT 
+                            'totalPemesanan' AS label, 
+                            COUNT(*) AS total 
+                        FROM 
+                            tbl_pemesanan 
+
+                        UNION ALL
+
+                        SELECT 
+                            'success_pemesanan' AS label, 
+                            CEIL(COUNT(CASE WHEN status = 'Terverifikasi' THEN 1 END) * 100.0 / COUNT(*)) AS total
+                        FROM 
+                            tbl_pemesanan";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }catch (PDOException $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+
 }

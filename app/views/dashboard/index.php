@@ -2,14 +2,8 @@
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
-            <span class="me-2">
-                <?= $_SESSION['name_user']?>
-            </span>
-            <span class="text-muted small">
-                <?= $_SESSION['position']?>
-            </span>
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle ms-2" alt="Profile"
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture']; ?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
             </a>
         </div>
@@ -23,7 +17,7 @@
                     <div class="col-md-4">
                         <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
-                                <?= $data['stats']['packages'] ?>
+                                <?= $data['totalPaket']['total'] ?>
                             </h3>
                             <p>Paket Wisata</p>
                         </div>
@@ -31,7 +25,7 @@
                     <div class="col-md-4">
                         <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
-                                <?= $data['stats']['orders'] ?>
+                                <?= $data['totalPemesanan']['total'] ?>
                             </h3>
                             <p>Pemesanan Paket</p>
                         </div>
@@ -39,7 +33,7 @@
                     <div class="col-md-4">
                         <div class="dashboard-card border border-0 shadow-sm">
                             <h3>
-                                <?= $data['stats']['success_rate'] ?>%
+                                <?= $data['success_pemesanan']['total'] ?>%
                             </h3>
                             <p>Transaksi Berhasil</p>
                         </div>
