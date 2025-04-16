@@ -4,50 +4,17 @@ session_start();
 
 class Penyelam extends Controller{
 
-    private $data = [
-        [
-            'id' => 1,
-            'nama' => 'Paket 1',
-            'deskripsi' => 'Deskripsi paket 1',
-            'harga' => 1000000,
-            'gambar' => 'wakatobi1.png'
-        ],
-        [
-            'id' => 2,
-            'nama' => 'Paket 2',
-            'deskripsi' => 'Deskripsi paket 2',
-            'harga' => 2000000,
-            'gambar' => 'wakatobi1.png'
-        ],
-        [
-            'id' => 3,
-            'nama' => 'Paket 3',
-            'deskripsi' => 'Deskripsi paket 3',
-            'harga' => 3000000,
-            'gambar' => 'wakatobi1.png'
-        ],
-        [
-            'id' => 4,
-            'nama' => 'Paket 4',
-            'deskripsi' => 'Deskripsi paket 4',
-            'harga' => 4000000,
-            'gambar' => 'wakatobi1.png'
-        ],
-        [
-            'id' => 5,
-            'nama' => 'Paket 5',
-            'deskripsi' => 'Deskripsi paket 5',
-            'harga' => 5000000,
-            'gambar' => 'wakatobi1.png'
-        ]
-    ];
-
     public function index(){
-        $data = $this->mappingData();
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('penyelaman/index', $data);
-        $this->view('template/Footer');
+        if($_SESSION['user_role'] == 'USER'){
+            $data = $this->mappingData();
+            $this->view('template/Header');
+            $this->view('template/Sidebar');
+            $this->view('penyelaman/index', $data);
+            $this->view('template/Footer');
+        }else {
+            header('Location: ' . BASEURL . '/Paket');
+            exit;
+        }
     }
 
     private function mappingData(){
@@ -101,13 +68,8 @@ class Penyelam extends Controller{
     public function detailPaket(){
         header('Content-Type: application/json');
         try{
-            // $data = $this->models()->getPaket();
             $id = $_POST['id'];
             $data = $this->models()->getPaketById($id);
-            // $datas = array_filter($data, function($item) use ($id){
-            //     return $item['id'] == $id;
-            // });
-            // $result = !empty($datas) ? (object) array_values($datas)[0] : null;
             $result = $data;
             echo json_encode($result);
         }catch(Exception $e){
@@ -144,7 +106,6 @@ class Penyelam extends Controller{
             ];
 
             $result = $this->model("Booking")->savePemesanan($data);
-            // $result = $_POST;
             echo json_encode(['status' => 'success','message' => $result]);
         }catch (Exception $e){
             echo json_encode(['status' => 'error','message' => $e->getMessage()]);

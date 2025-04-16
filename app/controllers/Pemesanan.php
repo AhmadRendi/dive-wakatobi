@@ -108,22 +108,24 @@ class Pemesanan  extends Controller {
 
     public function index(){
 
-        $data = $this->models()->getAllPesanan();
-        $pesananDenganNamaPaket = [];
+        if($_SESSION['role'] != 'ADMIN'){
+            $data = $this->models()->getAllPesanan();
+            $pesananDenganNamaPaket = [];
 
-        foreach ($data as $value) {
-            $paket = $this->model("Packet")->getNamePaketById($value['id_paket']);
-            
-            $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
-
-            $value['namaPaket'] = $namaPaket; 
-            $pesananDenganNamaPaket[] = $value;
+            foreach ($data as $value) {
+                $paket = $this->model("Packet")->getNamePaketById($value['id_paket']);
+                $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
+                $value['namaPaket'] = $namaPaket; 
+                $pesananDenganNamaPaket[] = $value;
+            }
+            $this->view('template/Header');
+            $this->view('template/Sidebar');
+            $this->view('pemesanan/index', $pesananDenganNamaPaket);
+            $this->view('template/Footer');
+        }else {
+            header('Location: ' . BASEURL . '/home');
+            exit;
         }
-
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('pemesanan/index', $pesananDenganNamaPaket);
-        $this->view('template/Footer');
     }
 
     private function models(){
