@@ -72,7 +72,7 @@ class Booking {
             $query = "UPDATE $this->table SET status = 'DiBatalkan'  WHERE id = ?";
             $this->db->query($query);
             $this->db->bind(1, $id);
-            // $this->db->execute();
+            $this->db->execute();
             return "Pesaanan Berhasil Dibatalkan";
         }catch (PDOException $e){
             throw new Exception($e->getMessage());

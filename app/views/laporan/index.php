@@ -3,7 +3,7 @@
         <h4 class="m-0">Panel ADMIN</h4>
         <div class="d-flex align-items-center">
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ; ?>r" class="rounded-circle ms-2" alt="Profile"
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ; ?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
             </a>
         </div>
