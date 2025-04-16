@@ -59,8 +59,8 @@
                                         </h6>
                                     </td>
                                     <td class="table-actions">
-                                    <button class="btn bg-warning btn-sm editPaket" data-id= <?= $order['id']; ?> >Edit</button>
-                                        <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                        <button class="btn bg-warning btn-sm editPaket" data-id= <?= $order['id']; ?> >Edit</button>
+                                        <button class="btn btn-danger btn-sm delete" data-id= <?= $order['id']; ?> >Hapus</button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

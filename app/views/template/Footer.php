@@ -41,7 +41,7 @@
       </div>
       <div class="modal-body">
         <form id='deleteForm'>
-          <input type="hidden" name="id" id="id">
+          <input type="hidden" name="idDelete" id="idDeelete">
           <p>Apakah Anda yakin ingin menghapus data ini?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Tidak</button>

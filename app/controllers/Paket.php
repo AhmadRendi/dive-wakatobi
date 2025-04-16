@@ -237,7 +237,7 @@ class Paket extends Controller {
     public function deletePaket(){
         header('Content-Type: application/json');
         try{
-            $id = $_POST['id'];
+            $id = $_POST['idDelete'];
             $result = $this->models()->deletePaket($id);
             echo json_encode(['status' => 'success','message' => $result]);
         }catch (Exception $e){

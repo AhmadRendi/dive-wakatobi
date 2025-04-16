@@ -166,7 +166,8 @@ $(function() {
     $('.delete').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
-        $('#id').val(id);
+        console.log(id);
+        $('#idDeelete').val(id);
         $('#delete').modal('show');
     });
 
@@ -174,6 +175,7 @@ $(function() {
     $('#deleteForm').on('submit', function(e) {
         e.preventDefault();
         const data = $(this).serialize();
+        console.log(data);
         $.ajax({
             url: baseUrl + 'Paket/deletePaket',
             data: data,
