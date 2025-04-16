@@ -1,0 +1,479 @@
+*{
+        font-family: "Poppins", serif;
+        font-weight: 200;
+        font-style: normal;
+}
+
+.body{
+    overflow: hidden !important;
+}
+
+.hero-section {
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.traveloka.com%2Fen-en%2Fexplore%2Fdestination%2Fpl-cg-getting-around-wakatobi-indonesia%2F231885&psig=AOvVaw0xRUIQR6Yeokp78aYdwRPo&ust=1742921547939000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDmofGWo4wDFQAAAAAdAAAAABAJ');
+    background-size: cover;
+    background-position: center;
+    background-color: #e9ecef;
+    padding: 60px 0;
+    text-align: center;
+    width: 100%;
+    min-height: 64.4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: #007bff !important;
+    font-weight: bold;
+    color: white;
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+    font-weight: bold;
+    color: white;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #000000;
+}
+
+/* batas */
+
+.sidebar {
+    background-color: #0683ff;
+    color: white; 
+    min-height: 100vh;
+    width: 250px; 
+    position: fixed;
+    left: 0; 
+    top: 0; 
+}
+
+.sidebar-header {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #2085ea;
+}
+
+.sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-menu li:hover {
+    background-color: #1574d3; 
+}
+
+.dashboard-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.activities-card {
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.dashboard-card h3 {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+.dashboard-card p {
+    margin: 0;
+    font-size: 14px;
+}
+.activities-card {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.activities-card .card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.activities-card .list-group-item {
+    padding: 10px 15px;
+    border-left: none;
+    border-right: none;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.profile-image span {
+    color: #adb5bd;
+}
+.edit-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.save-button {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+}
+.table-actions .btn {
+    padding: 2px 8px;
+    font-size: 14px;
+}
+
+/* Increase specificity */
+.dataTables_wrapper .dt-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: rgb(22, 0, 0); /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 15px; /* Padding */
+    margin: 5px; /* Margin between buttons */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.dataTables_wrapper .dt-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+.package-card {
+    height: 200px; /* Sesuaikan tinggi sesuai kebutuhan */
+    background-color: #f0f0f0; /* Warna latar belakang */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    width: 100%;   
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.card-img-top-lg {
+    width: 100%;   
+    height: auto; 
+    object-fit: cover; 
+}
+
+/* batas */
+
+
+/* .body-login{
+    background-image: url('http://localhost/web-ic/public/img/asset/background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    overflow: hidden;
+} */
+
+/* .container1{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/* 
+.img-logo-login {
+    width: 150px;
+    height: 150px;
+} */
+
+/* .poppins-thin {
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
+  } */
+
+/* .header-title {
+    color: #000;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+} */
+
+/* .login-btn {
+    background: #4834d4;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+} */
+
+/* .login-btn:hover {
+    background: #686de0;
+} */
+
+/* .create-account {
+    color: #666;
+    font-size: 0.9rem;
+} */
+/* 
+.create-account a {
+    color: #4834d4;
+    text-decoration: none;
+} */
+
+/* .input-group {
+    background: white;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+} */
+
+/* .input-group-text {
+    background: transparent;
+    border: none;
+    padding-right: 0;
+} */
+
+/* 
+.form-control:focus {
+    box-shadow: none;
+} */
+
+/* .wrapper {
+    display: flex;
+    min-height: 100vh;
+} */
+
+/* .sidebar {
+    width: 250px;
+    background-color: #212529;
+    color: #fff;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+} */
+
+/* .main-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px;
+    background: white;
+    z-index: 999;
+    border-bottom: 1px solid #dee2e6;
+} */
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+/* .sidebar .nav-link {
+    color: #080808;
+    padding: 10px 20px;
+    opacity: 0.8;
+}
+
+.sidebar .nav-link:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link.active {
+    opacity: 1;
+    color: #ff6b35;
+} */
+
+.stats-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* .stats-icon {
+    background-color: #000;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+} */
+
+.table-responsive {
+    margin: 0;
+    padding: 0;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+/* .search-box {
+    width: 300px;
+} */
+
+/* .btn-group .btn {
+    padding: 0.25rem 0.5rem;
+} */
+
+/* .btn-group .btn i {
+    font-size: 0.875rem;
+} */
+
+/* .modal-content {
+    border-radius: 10px;
+} */
+
+/* .modal-body {
+    padding: 1.5rem;
+    text-align: center;
+} */
+
+/* .modal-footer {
+    justify-content: center;
+    padding: 1rem;
+} */
+
+/* .profile-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+} */
+
+/* .profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+/* 
+.nav-tabs .nav-link {
+    color: #495057;
+} */
+
+/* .nav-tabs .nav-link.active {
+    color: #ff6b35;
+    border-bottom: 2px solid #ff6b35;
+} */
+
+/* .tab-content {
+    padding: 20px 0;
+} */
+
+/* .card-title {
+    color: #333;
+    margin-bottom: 5px;
+} */
+
+/* .card-subtitle {
+    font-size: 0.9rem;
+} */
+
+
+
+/* .btn-primary {
+    background-color: #ff6b35;
+    border-color: #ff6b35;
+} */
+
+/* .btn-primary:hover {
+    background-color: #e85d2b;
+    border-color: #e85d2b;
+} */
+
+/* .icon-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    border: none;
+} */
+
+/* .icon-button i {
+    font-size: 1.5rem;
+} */
+
+.bg-success-custom {
+    background-color: #28a745;
+}
+
+.bg-danger-custom {
+    background-color: #dc3545;
+}
+
+.bg-warning-custom {
+    background-color: #e2be31;
+}
+
+
+.table-container {
+    max-height: 650px;
+    overflow-y: auto;
+}
+.table {
+    table-layout: fixed; 
+}
+.table th {
+    position: sticky; 
+    top: 0; 
+    z-index: 10;
+}
