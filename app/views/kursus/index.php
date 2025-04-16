@@ -334,6 +334,20 @@
                         <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
                     </div>
                     <div class="mb-3">
+                        <label for="waktu" class="form-label">Waktu</label>
+                        <input type="time" class="form-control border border-dark" id="waktu" name="waktu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lokasi" class="form-label">Lokasi</label>
+                        <select class="form-select" name="lokasi" id="lokasi" aria-label="Default select example">
+                            <option selected>Pilih Lokasi</option>
+                            <option value="Wangi-Wangi">Wangi-Wangi</option>
+                            <option value="Kaledupa">Kaledupa</option>
+                            <option value="Tomia">Tomia</option>
+                            <option value="Binongko">Binongko</option>
+                        </select required>
+                    </div>
+                    <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
                         <input type="file" class="form-control border border-dark" id="foto" name="foto" required>
                     </div>

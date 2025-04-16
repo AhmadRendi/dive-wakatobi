@@ -195,7 +195,8 @@ class Paket extends Controller {
                 'deskripsi' => $_POST['deskripsi'],
                 'harga' => $_POST['harga'],
                 'paket' => 'KURSUS',
-
+                'waktu' => $_POST['waktu'],
+                'lokasi' => $_POST['lokasi'],
             ];
 
             $file = $this->uploadImage($_FILES['foto']);
