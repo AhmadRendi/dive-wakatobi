@@ -5,14 +5,22 @@ session_start();
 class Profile extends Controller {
 
     public function index() {
-        $data = $this->models()->getUserByEmail($_SESSION['email']);
-        if ($data['noTelepon'] == null) {
-            $data['noTelepon'] = 'Belum ada nomor telepon';
+        if($_SESSION['user_role'] == 'ADMIN' || $_SESSION['user_role'] == 'USER'){
+
+            $data = $this->models()->getUserByEmail($_SESSION['email']);
+            if ($data['noTelepon'] == null) {
+                $data['noTelepon'] = 'Belum ada nomor telepon';
+            }
+            $_SESSION['picture'] = $data['picture'];
+            $this->view('template/Header'); 
+            $this->view('template/Sidebar');
+            $this->view('profile/index', $data);
+            $this->view('template/Footer');
+        }else {
+            header('Location: ' . BASEURL . '/Login');
+            exit;
         }
-        $this->view('template/Header'); 
-        $this->view('template/Sidebar');
-        $this->view('profile/index', $data);
-        $this->view('template/Footer');
+        
     }
 
     public function models(){
