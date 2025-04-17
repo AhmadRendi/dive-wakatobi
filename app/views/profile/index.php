@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <?php if ($_SESSION['user_role'] == "ADMIN") : ?>
-        <h4 class="m-0">Panel ADMIN</h4>
+        <h4 class="m-0"></h4>
         <div class="d-flex align-items-center">
             <img src="<?= BASEURL;?>/img/asset/<?= $data['picture'];?>" class="rounded-circle ms-2" alt="Profile"
                 style="width: 40px; height: 40px;">
@@ -19,7 +19,7 @@
                         <img src="<?= BASEURL;?>/img/asset/<?= $data['picture'];?>" class="rounded-circle ms-2"
                             alt="Profile" style="width: 150px; height: 150px;">
                         <!-- <span>150 x 150</span> -->
-                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editProfile">
+                        <button class="edit-button lihatProfile">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="fullName" name="fullName"
-                                value="<?= $data['namaLengkap'] ?>">
+                                value="<?= $data['namaLengkap'] ?>" readonly>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-8">
                             <input type="email" class="form-control" id="email" name="email"
-                                value="<?= $data['email'] ?>">
+                                value="<?= $data['email'] ?>" readonly>
                         </div>
                     </div>
 
@@ -53,23 +53,9 @@
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="nmrTelepon" name="nmrTelepon"
-                                value="<?= $data['noTelepon'] ?>">
+                                value="<?= $data['noTelepon'] ?>" readonly>
                         </div>
                     </div>
-
-                    <!-- <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="password" class="form-label">Kata sandi</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="[Kata sandi tersimpan]">
-                            </div>
-                        </div> -->
-
-                    <!-- <div class="d-grid mt-4">
-                            <button type="submit" class="btn save-button">Simpan Perubahan</button>
-                        </div> -->
                 </div>
             </div>
         </div>
@@ -93,7 +79,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nmrTelepon" class="form-label">Nomor Telepon</label>
-                        <input class="form-control border border-dark" id="nmrTelepon" name="nmrTelepon"
+                        <input class="form-control border border-dark" id="nmrTelepons" name="nmrTelepons"
                             required> </input>
                     </div>
                     <div class="mb-3">
@@ -111,7 +97,7 @@
 </div>
 
 <!-- Modal untuk Menampilkan Pesan Kesalahan -->
-<div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
+<!-- <div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -125,10 +111,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal untuk Menampilkan Pesan Success -->
-<div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
+<!-- <div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -142,4 +128,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

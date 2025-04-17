@@ -31,7 +31,11 @@ class Profile extends Controller {
         header('Content-Type: application/json');
         try{
             $data = $this->models()->getUserByEmail($_SESSION['email']);
-            echo json_encode($data);
+            if($data['noTelepon'] == null) {
+                $data['noTelepon'] = 'Belum ada nomor telepon';
+            }
+            echo json_encode(array('status' => 'error', 'data' => $data));
+            // echo json_encode($data);
         }catch (Exception $e){
             echo json_encode(array('status' => 'error', 'message' => $e->getMessage()));
         }

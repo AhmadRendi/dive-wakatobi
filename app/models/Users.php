@@ -58,7 +58,7 @@ class Users {
             try{
                 $this->db->query($query);
                 $this->db->bind(1, $data['namaLengkap']);
-                $this->db->bind(2, $data['nmrTelepon']);
+                $this->db->bind(2, $data['nmrTelepons']);
                 $this->db->bind(3, $email);
                 $this->db->execute();
                 return "Data berhasil diupdate";

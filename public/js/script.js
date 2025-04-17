@@ -28,6 +28,35 @@ $(function() {
         });
     });
 
+    // melihat detail profile
+    $('.lihatProfile').on('click', function(e) {
+        // e.preventDefault();
+        // const id = $(this).data('id');
+        console.log("masuk");
+        $.ajax({
+            url: baseUrl + 'Profile/getProfile',
+            method: 'get',
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                console.log(data.data.namaLengkap);
+                console.log(data.data.noTelepon);
+                if (data.status === 'success') {
+                    $('#namaLengkap').val(data.data.namaLengkap);
+                    $('#nmrTelepons').val(data.data.noTelepon);
+                    $('#editProfile').modal('show');
+                } else {
+                    $('#error .modal-body').text(data.message);
+                    $('#error').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
     // Membatalkan Pesanan
     $('.batalPesanan').on('click', function(e) {
         e.preventDefault();
