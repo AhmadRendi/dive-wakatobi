@@ -313,9 +313,19 @@ function lakukanPemesananPaketPenyelaman(event){
     myModal.show();
 }
 
+function updateTanggal(){
+    const startAt = document.getElementById('startAt');
+    const endAt = document.getElementById('endAt');
+
+    if((startAt.value !== "") && (endAt !=="")){
+        console.log("Masuk");
+    }
+}
+
 // document.getElementById('registerForm').addEventListener('sumbit', registration);
 document.getElementById('selectGuideForm').addEventListener('submit', lakukanPemesananPaketPenyelaman);
 document.getElementById('tourGuide').addEventListener('change', checkSelection);
 document.getElementById('keahlian').addEventListener('change', checkSelection);
+document.getElementById('startAt').addEventListener('change', updateTanggal);
 
 

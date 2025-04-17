@@ -1,7 +1,7 @@
 <?php if($_SESSION['user_role'] == "ADMIN"): ?>
     <div class="main-content overflow-y-visible">
         <div class="header mb-4 d-flex justify-content-between align-items-center">
-            <h4 class="m-0">Panel ADMIN</h4>
+            <h4 class="m-0"></h4>
             <div class="d-flex align-items-center">
                 <a href="<?= BASEURL ?>/Profile" class="ms-2">
                     <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ; ?>" class="rounded-circle ms-2" alt="Profile"

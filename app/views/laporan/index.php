@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
-        <h4 class="m-0">Panel ADMIN</h4>
+        <h4 class="m-0"></h4>
         <div class="d-flex align-items-center">
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
                 <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ; ?>" class="rounded-circle ms-2" alt="Profile"
@@ -18,8 +18,8 @@
                 <div class="card border border-0" style="width: 50%;">
                     <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end"> 
                         <label class="form-label mt-2">Filter Berdasarkan Tanggal</label>
-                        <input type="date" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date">
-                        <input type="date" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date">
+                        <input type="date" id="startAt" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date" onChange="updateTanggal()">
+                        <input type="date" id="endAt" class="form-control rounded"  placeholder="Select Date" aria-label="Select Date" onChange="updateTanggal()">
                     </div>
                 </div>
                 <div class="table-responsive">

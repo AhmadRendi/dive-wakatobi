@@ -288,7 +288,10 @@ $( function () {
 
     $('#table_datatables').DataTable({
         dom: 'Bfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        paging: true,
+        scrollCollapse: true,
+        scrollY: '370px'
     });
 
     // Batas Terbaru
