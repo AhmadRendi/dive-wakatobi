@@ -317,8 +317,23 @@ function updateTanggal(){
     const startAt = document.getElementById('startAt');
     const endAt = document.getElementById('endAt');
 
-    if((startAt.value !== "") && (endAt !=="")){
-        console.log("Masuk");
+    const data = {
+        startAt: startAt.value,
+        endAt: endAt.value
+    };
+
+
+    if (startAt.value !== "" && endAt.value !== "") {
+        console.log("masuk");
+        $.ajax({
+            url: baseUrl + 'Laporan/index',
+            data: data,
+            method: 'post',
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
     }
 }
 

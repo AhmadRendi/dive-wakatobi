@@ -286,143 +286,15 @@ $( function () {
         scrollY: '370px'
     });
 
-    $('#table_datatables').DataTable({
-        dom: 'Bfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-        paging: true,
-        scrollCollapse: true,
-        scrollY: '370px'
-    });
+    // $('#table_datatables').DataTable({
+    //     dom: 'Bfrtip',
+    //     buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    //     paging: true,
+    //     scrollCollapse: true,
+    //     scrollY: '370px'
+    // });
 
     // Batas Terbaru
-    
-    // edit Document
-    $('#editForm').on('submit', function(e) {
-        e.preventDefault();
-        let data = new FormData(this);
-        $.ajax({
-            url: 'http://localhost/web-ic/public/Pengarsipan/updateData',
-            data: data,
-            method: 'post',
-            processData: false, // Penting untuk FormData
-            contentType: false,
-            success: function(data) {
-                console.log(data);
-                if (data.status === 'success') {
-                    $('#successEditDocument').modal('show');
-                } else {
-                    $('#failedEditDocument .modal-body').text(data.message);
-                    $('#failedEditDocument').modal('show');
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                $('#failedEditDocument .modal-body').text('Terjadi kesalahan: ' + errorThrown);
-                $('#failedEditDocument').modal('show');
-            }
-        });
-    });
-
-    $(document).on('click', '#reloadPage', function() {
-        location.reload(); // Reload halaman
-    });
-
-
-    // // Download Document
-    let idDocumentForDownload;
-
-    $('[data-bs-target="#downloadModal"]').on('click', function() {
-        idDocumentForDownload = $(this).data('id');
-    });
-
-    $('[data-bs-target="#downloadModal"]').on('click', function() {
-        idDocumentForDownload = $(this).data('id');
-    });
-
-    $('#confirmDownload').on('click', function() {
-        $.ajax({
-            url: 'http://localhost/web-ic/public/Pengarsipan/download',
-            data: {id : idDocumentForDownload},
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.status === 'success') {
-                    window.open(data.file, '_blank');
-                } else {
-                    alert('Gagal mengunduh file: ' + (data.message || 'Terjadi kesalahan'));
-                }
-            },
-            error: function() {
-                alert('Terjadi kesalahan saat menghubungi server');
-            }
-        });
-        $('#downloadModal').modal('hide');
-    });
-
-    // delete document
-    let idDocumentForDelete;
-
-    $('[data-bs-target="#deleteModal"]').on('click', function() {
-        idDocumentForDelete = $(this).data('id');
-    });
-
-    $('#confirmDelete').on('click', function() {
-        $.ajax({
-            url: 'http://localhost/web-ic/public/Pengarsipan/delete',
-            data: {id : idDocumentForDelete},
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-        $('#confirmDelete').modal('hide');
-        location.reload();
-    });
-
-    
-
-
-    // update user
-    $('#updateProfile').on('submit', function(e) {
-        e.preventDefault();
-        let data = new FormData(this); 
-        $('#errorUpdateProfile').modal('hide');
-    
-        $.ajax({
-            url: 'http://localhost/web-ic/public/User/editProfile',
-            data: data,
-            method: 'post',
-            processData: false, // Penting untuk FormData
-            contentType: false, // Penting untuk FormData
-            // dataType: 'json',
-            success: function(response) {
-                if (response.status === 'success') {
-                    var myModal = new bootstrap.Modal(document.getElementById('successUpdate'));
-                    myModal.show();
-                } else {
-                    $('#error-message').text(response.message || 'Terjadi kesalahan saat memperbarui profil.');
-                    var myModal = new bootstrap.Modal(document.getElementById('errorUpdateProfile'));
-                    myModal.show();
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                $('#error-message').text('Terjadi kesalahan: ' + errorThrown);
-                var myModal = new bootstrap.Modal(document.getElementById('errorUpdateProfile'));
-                myModal.show();
-            }
-        });
-    });
-    // Event listener untuk reload halaman setelah modal ditutup
-    var successModal = document.getElementById('successUpdate');
-    successModal.addEventListener('hidden.bs.modal', function () {
-        location.reload(); // Reload halaman
-    });
-
-    var errorModal = document.getElementById('errorUpdateProfile');
-    errorModal.addEventListener('hidden.bs.modal', function () {
-        location.reload(); // Reload halaman
-    });
 });
 
 function formatRupiah(angka) {
@@ -433,3 +305,43 @@ function formatRupiah(angka) {
     });
     return formatter.format(angka);
 }
+
+$(document).ready(function () {
+    const table = $('#table_datatables').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        paging: true,
+        scrollCollapse: true,
+        scrollY: '370px'
+    });
+
+    // Fungsi untuk memfilter data berdasarkan tanggal
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+        const startAt = $('#startAt').val();
+        const endAt = $('#endAt').val();
+        const dateField = data[3]; // Mengambil kolom tanggal pemesanan
+
+        // Mengubah format tanggal ke objek Date
+        const date = new Date(dateField);
+
+        // Mengubah input tanggal ke objek Date
+        const startDate = startAt ? new Date(startAt) : null;
+        const endDate = endAt ? new Date(endAt) : null;
+
+        // Memeriksa apakah tanggal dalam rentang yang ditentukan
+        if (
+            (startDate === null && endDate === null) ||
+            (startDate === null && date <= endDate) ||
+            (endDate === null && date >= startDate) ||
+            (date >= startDate && date <= endDate)
+        ) {
+            return true;
+        }
+        return false;
+    });
+
+    // Memanggil fungsi filter saat tanggal diubah
+    $('#startAt, #endAt').change(function () {
+        table.draw();
+    });
+});

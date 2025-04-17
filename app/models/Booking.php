@@ -91,15 +91,46 @@ class Booking {
         }
     }
 
-    public function getLaporan(){
-        try{
-            $query = "SELECT pemesanan.id, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga FROM tbl_pemesanan AS pemesanan
-                JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
-                JOIN tb_user AS user ON pemesanan.id_user = user.id";
+    // public function getLaporan(){
+    //     try{
+    //         $query = "SELECT pemesanan.id, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga FROM tbl_pemesanan AS pemesanan
+    //             JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
+    //             JOIN tb_user AS user ON pemesanan.id_user = user.id";
+    //         $this->db->query($query);
+    //         return $this->db->resultSet();
+    //     }catch (PDOException $e){
+    //         throw new Exception($e->getMessage());
+    //     }
+    // }
+    public function getLaporan($startAt = null, $endAt = null) {
+        try {
+            // Query dasar
+            $query = "SELECT pemesanan.id, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga 
+                      FROM tbl_pemesanan AS pemesanan
+                      JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
+                      JOIN tb_user AS user ON pemesanan.id_user = user.id";
+    
+            // Menyimpan kondisi dan parameter
+            $conditions;
+            
+            if(!empty($startAt) && !empty($endAt)) {
+                $conditions = "pemesanan.tanggalPemesanan BETWEEN ? AND ?";
+            }
+    
+            if (!empty($conditions)) {
+                $query .= " WHERE " . $conditions;
+            }
+    
             $this->db->query($query);
+
+            if(!empty($startAt) && !empty($endAt)) {
+                $this->db->bind(1, $startAt);
+                $this->db->bind(2, $endAt);
+            }
+    
             return $this->db->resultSet();
-        }catch (PDOException $e){
-            throw new Exception($e->getMessage());
+        } catch (PDOException $e) {
+            throw new Exception('Error: ' . $e->getMessage());
         }
     }
 

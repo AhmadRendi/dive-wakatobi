@@ -50,7 +50,4 @@ class Payment {
             throw new PDOException('Error: ' . $e->getMessage());
         }
     }
-
-
-
 }
