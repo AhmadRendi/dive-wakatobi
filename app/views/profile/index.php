@@ -95,37 +95,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal untuk Menampilkan Pesan Kesalahan -->
-<!-- <div class="modal fade" id="error" aria-hidden="true" aria-labelledby="errorLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="errorLabel">Pemberitahuan</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#error" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- Modal untuk Menampilkan Pesan Success -->
-<!-- <div class="modal fade" id="success" aria-hidden="true" aria-labelledby="successLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="successLabel">Pemberitahuan</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#success" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div> -->

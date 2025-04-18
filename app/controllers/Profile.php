@@ -34,8 +34,7 @@ class Profile extends Controller {
             if($data['noTelepon'] == null) {
                 $data['noTelepon'] = 'Belum ada nomor telepon';
             }
-            echo json_encode(array('status' => 'error', 'data' => $data));
-            // echo json_encode($data);
+            echo json_encode(array('status' => 'success', 'data' => $data));
         }catch (Exception $e){
             echo json_encode(array('status' => 'error', 'message' => $e->getMessage()));
         }

@@ -30,6 +30,7 @@ $(function() {
 
     // melihat detail profile
     $('.lihatProfile').on('click', function(e) {
+        console.log("masuk");
         $.ajax({
             url: baseUrl + 'Profile/getProfile',
             method: 'get',
