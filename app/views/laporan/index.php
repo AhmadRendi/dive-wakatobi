@@ -12,9 +12,9 @@
         <div class="card border border-0 shadow-lg">
             <div class="card-body p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pengelolaan Laporan</h5>
+                    <h2 class="card-title">Pengelolaan Laporan</h2>
                 </div>
-                <div class="card border border-0" style="width: 50%;">
+                <div class="card border border-0 mb-3" style="width: 50%;">
                     <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end"> 
                         <label class="form-label mt-2">Filter Berdasarkan Tanggal</label>
                         <input type="date" id="startAt" class="form-control rounded" placeholder="Select Date" aria-label="Select Date">

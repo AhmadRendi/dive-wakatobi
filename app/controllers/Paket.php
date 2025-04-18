@@ -194,4 +194,27 @@ class Paket extends Controller {
             echo json_encode(['status' => 'error','message' => $e->getMessage()]);
         }
     }
+
+    public function updatePaket(){
+        header('Content-Type: application/json');
+        try{
+            $data = [
+                'id' => $_POST['id'],
+                'namaPaket' => $_POST['editNamaPaket'],
+                'deskripsi' => $_POST['editDeskripsi'],
+                'harga' => $_POST['editHarga'],
+                'waktu' => $_POST['editWaktu'],
+                'lokasi' => $_POST['editLokasi'],
+            ];
+
+            $this->validateName($data['namaPaket']);
+            $this->validateDeskripsi($data['deskripsi']);
+            $this->validateHarga($data['harga']);
+
+            $result = $this->models()->updatePaket($data);
+            echo json_encode(['status' => 'success','message' => $result]);
+        }catch (Exception $e){
+            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+        }
+    }
 }

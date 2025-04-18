@@ -75,12 +75,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="" method="post">
+                <form id="editPaketForm">
                     <input type="hidden" name="id" id="editId">
                     <div class="mb-3">
                         <label for="editNamaPaket" class="form-label">Nama Paket</label>
                         <input type="text" class="form-control border border-dark" id="editNamaPaket"
-                            name="editNamaPaket" readonly>
+                            name="editNamaPaket" required>
                     </div>
                     <div class="mb-3">
                         <label for="editDeskripsi" class="form-label">Deskripsi</label>
@@ -89,12 +89,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="editHarga" class="form-label">Harga</label>
-                        <input type="text" class="form-control border border-dark" id="editHarga" name="editHarga"
+                        <input type="number" class="form-control border border-dark" id="editHarga" name="editHarga"
                             required>
                     </div>
                     <div class="mb-3">
                         <label for="editWaktu" class="form-label">Waktu</label>
-                        <input type="text" class="form-control border border-dark" id="editWaktu" name="editWaktu"
+                        <input type="time" class="form-control border border-dark" id="editWaktu" name="editWaktu"
                             required>
                     </div>
                     <div class="mb-3">

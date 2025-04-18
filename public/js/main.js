@@ -269,7 +269,7 @@ $( function () {
                 $('#editId').val(data.data.id);
                 $('#editNamaPaket').val(data.data.namaPaket);
                 $('#editDeskripsi').val(data.data.deskripsi);
-                $('#editHarga').val(formatRupiah(data.data.harga)).change();
+                $('#editHarga').val(data.data.harga);
                 $('#editWaktu').val(data.data.waktu);
                 $('#editLokasi').val(data.data.lokasi);
                 $('#editPaketMenyelam').modal('show');
