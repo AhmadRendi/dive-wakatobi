@@ -2,9 +2,9 @@
 <div class="sidebar">
   <ul class="sidebar-menu mt-4">
     <li><a class="nav-link" href="<?= BASEURL ?>/Dashboard">Dashboard</a></li>
-    <li><a class="nav-link" href="<?= BASEURL ?>/Pemesanan">Pemesanan Paket Penyelaman</a></li>
-    <li><a class="nav-link" href="<?= BASEURL ?>/Paket">Pengelolaan Paket Penyelaman</a></li>
-    <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Pengelolaan Kursus</a></li>
+    <li><a class="nav-link" href="<?= BASEURL ?>/Pemesanan">Pesanan Paket</a></li>
+    <li><a class="nav-link" href="<?= BASEURL ?>/Paket">Paket Penyelaman</a></li>
+    <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Paket Kursus</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Laporan">Laporan</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a></li>

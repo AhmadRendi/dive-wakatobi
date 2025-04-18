@@ -9,7 +9,7 @@
 }
 
 .hero-section {
-    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.traveloka.com%2Fen-en%2Fexplore%2Fdestination%2Fpl-cg-getting-around-wakatobi-indonesia%2F231885&psig=AOvVaw0xRUIQR6Yeokp78aYdwRPo&ust=1742921547939000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDmofGWo4wDFQAAAAAdAAAAABAJ');
+    background-image: url('https://www.pesonaindo.com/wp-content/uploads/2016/04/Paket-Wisata-Wakatobi-Pesona-Indonesia-fototrip-1.jpg');
     background-size: cover;
     background-position: center;
     background-color: #e9ecef;
@@ -72,6 +72,7 @@
 
 .sidebar-menu li {
     padding: 10px 15px;
+    height: 40px; 
     border-bottom: 1px solid #2085ea;
 }
 

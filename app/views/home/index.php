@@ -1,5 +1,5 @@
 <div class="hero-section">
-    <div class="container">
+    <div class="container text-white">
         <h1>Selamat Datang di Wakatobi Dive Center</h1>
         <p class="lead">Temukan pengalaman menyelam terbaik di surga bawah laut Wakatobi.</p>
         <a href="#" class="btn btn-success">Lihat Testimoni</a>
