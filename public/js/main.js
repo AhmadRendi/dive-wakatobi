@@ -9,7 +9,6 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $('#detailNamaWisatawan').val(data.namaLengkap);
                 $('#tanggalPemesanan').val(data.tanggalPemesanan);
                 $('#namaPaket').val(data.namaPaket);
@@ -44,7 +43,6 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     if (data.role === 'ADMIN') {
                         window.location.href = "http://localhost/dive-trip/public/Dashboard";
@@ -72,14 +70,12 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $('#id').val(data.id);
                 $('#namaPaket').val(data.namaPaket);
                 $('#deskripsi').val(data.deskripsi);
                 $('#harga').val(formatRupiah(data.harga)).change();
 
                 $('#lihatDetailPenyelaman').modal('show');
-                // $('#lihatDetailKursus').modal('show');
             }
         });
     });
@@ -122,7 +118,6 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     isModalClosedByJavaScript = true;
@@ -168,12 +163,10 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     $('#successRegister .modal-body').text(data.message);
                     $('#successRegister').modal('show');
                 } else {
-                    console.log("masuk Kedalam error");
                     $('#errorRegistration .modal-body').text(data.message);
                     $('#errorRegistration').modal('show');
                 }
@@ -202,7 +195,6 @@ $( function () {
             contentType: false,
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     // console.log("masuk Kedalam success");
                     $('#success .modal-body').text(data.message);
@@ -233,7 +225,6 @@ $( function () {
             contentType: false,
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     // console.log("masuk Kedalam success");
                     $('#success .modal-body').text(data.message);
@@ -265,7 +256,6 @@ $( function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $('#editId').val(data.data.id);
                 $('#editNamaPaket').val(data.data.namaPaket);
                 $('#editDeskripsi').val(data.data.deskripsi);

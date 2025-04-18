@@ -30,17 +30,11 @@ $(function() {
 
     // melihat detail profile
     $('.lihatProfile').on('click', function(e) {
-        // e.preventDefault();
-        // const id = $(this).data('id');
-        console.log("masuk");
         $.ajax({
             url: baseUrl + 'Profile/getProfile',
             method: 'get',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
-                console.log(data.data.namaLengkap);
-                console.log(data.data.noTelepon);
                 if (data.status === 'success') {
                     $('#namaLengkap').val(data.data.namaLengkap);
                     $('#nmrTelepons').val(data.data.noTelepon);
@@ -68,7 +62,6 @@ $(function() {
     $('#formBatalPesanan').on('submit', function(e) {
         e.preventDefault();
         let data = $(this).serialize();
-        console.log(data);
         $.ajax({
             url: baseUrl + 'Riwayat/batalPesanan',
             data: data,
@@ -94,7 +87,6 @@ $(function() {
     $('.bayarPesanan').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
-        console.log(id);
         $('#id_pembayaran').val(id);
         $('#bayar').modal('show');
     });
@@ -111,7 +103,6 @@ $(function() {
             contentType: false,
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -158,7 +149,6 @@ $(function() {
     $('.verifikasi').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
-        console.log(id);
         $('#id').val(id);
         $('#verifikasi').modal('show');
     });
@@ -166,7 +156,6 @@ $(function() {
     $('#verfikasiForm').on('submit', function(e) {
         e.preventDefault();
         const data = new FormData(this);
-        console.log(data);
         $.ajax({
             url: baseUrl + 'Pembayaran/verifikasiPembayaran',
             data: data,
@@ -175,7 +164,6 @@ $(function() {
             contentType: false,
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -195,7 +183,6 @@ $(function() {
     $('.delete').on('click', function(e) {
         e.preventDefault();
         const id = $(this).data('id');
-        console.log(id);
         $('#idDeelete').val(id);
         $('#delete').modal('show');
     });
@@ -204,7 +191,6 @@ $(function() {
     $('#deleteForm').on('submit', function(e) {
         e.preventDefault();
         const data = $(this).serialize();
-        console.log(data);
         $.ajax({
             url: baseUrl + 'Paket/deletePaket',
             data: data,
@@ -230,7 +216,6 @@ $(function() {
     $('#editPaketForm').on('submit', function(e) {
         e.preventDefault();
         const data = new FormData(this);
-        console.log(data);
         $.ajax({
             url: baseUrl + 'Paket/updatePaket',
             data: data,
@@ -239,7 +224,6 @@ $(function() {
             contentType: false,
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -332,9 +316,6 @@ function lakukanPemesananPaketPenyelaman(event){
     const idKeahlian = document.getElementById('keahlian').value;
     const idGuide = document.getElementById('idGuide').value;
 
-    console.log(idPaket);
-    console.log(idKeahlian);
-    console.log(idGuide);
     $('#idPaket').val(idPaket);
     $('#keahlianId').val(idKeahlian);
     $('#guideId').val(idGuide);
