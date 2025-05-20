@@ -1,4 +1,3 @@
-const baseUrl = 'http://localhost/dive-trip/public/';
 $(function() {
 
     // mengedit profile user
@@ -6,7 +5,7 @@ $(function() {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Profile/updateProfile',
+            url: baseUrl + 'Profile/updateProfile',
             data: data,
             method: 'post',
             processData: false, // Penting untuk FormData
@@ -273,7 +272,7 @@ function updateGuide() {
     const idSelected = document.getElementById('tourGuide').value;
     backDefaultValue();
     $.ajax({
-        url: 'http://localhost/dive-trip/public/Guide/getGuide',
+        url: baseUrl + 'Guide/getGuide',
         data: { id: idSelected },
         method: 'post',
         dataType: 'json',
@@ -296,7 +295,7 @@ function updateKeahlian() {
     backDefaultValue();
 
     $.ajax({
-        url: 'http://localhost/dive-trip/public/Guide/getKeahlian',
+        url: baseUrl + 'Guide/getKeahlian',
         data: { id: keahlianSelected },
         method: 'post',
         dataType: 'json',

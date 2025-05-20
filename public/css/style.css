@@ -1,10 +1,10 @@
-*{
-        font-family: "Poppins", serif;
-        font-weight: 200;
-        font-style: normal;
+* {
+    font-family: "Poppins", serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
-.body{
+.body {
     overflow: hidden !important;
 }
 
@@ -35,7 +35,9 @@
     font-weight: bold;
     color: white;
 }
-.navbar-brand, .nav-link {
+
+.navbar-brand,
+.nav-link {
     color: white !important;
     font-weight: bold;
     color: white;
@@ -50,12 +52,12 @@
 
 .sidebar {
     background-color: #0683ff;
-    color: white; 
+    color: white;
     min-height: 100vh;
-    width: 250px; 
+    width: 250px;
     position: fixed;
-    left: 0; 
-    top: 0; 
+    left: 0;
+    top: 0;
 }
 
 .sidebar-header {
@@ -72,7 +74,7 @@
 
 .sidebar-menu li {
     padding: 10px 15px;
-    height: 40px; 
+    height: 40px;
     border-bottom: 1px solid #2085ea;
 }
 
@@ -83,7 +85,7 @@
 }
 
 .sidebar-menu li:hover {
-    background-color: #1574d3; 
+    background-color: #1574d3;
 }
 
 .dashboard-card {
@@ -106,24 +108,29 @@
     text-align: center;
     margin-bottom: 20px;
 }
+
 .dashboard-card h3 {
     font-size: 36px;
     margin-bottom: 5px;
 }
+
 .dashboard-card p {
     margin: 0;
     font-size: 14px;
 }
+
 .activities-card {
     border: 1px solid #dee2e6;
     border-radius: 5px;
     margin-bottom: 20px;
 }
+
 .activities-card .card-header {
     background-color: #f8f9fa;
     font-weight: bold;
     padding: 10px 15px;
 }
+
 .activities-card .list-group-item {
     padding: 10px 15px;
     border-left: none;
@@ -134,6 +141,7 @@
     max-width: 800px;
     margin: 0 auto;
 }
+
 .profile-image {
     width: 150px;
     height: 150px;
@@ -145,9 +153,11 @@
     justify-content: center;
     position: relative;
 }
+
 .profile-image span {
     color: #adb5bd;
 }
+
 .edit-button {
     position: absolute;
     bottom: 0;
@@ -162,11 +172,13 @@
     align-items: center;
     justify-content: center;
 }
+
 .save-button {
     background-color: #28a745;
     color: white;
     width: 100%;
 }
+
 .table-actions .btn {
     padding: 2px 8px;
     font-size: 14px;
@@ -174,24 +186,35 @@
 
 /* Increase specificity */
 .dataTables_wrapper .dt-button {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: rgb(22, 0, 0); /* Text color */
-    border: none; /* Remove border */
-    padding: 10px 15px; /* Padding */
-    margin: 5px; /* Margin between buttons */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Font size */
-    transition: background-color 0.3s; /* Smooth transition */
+    background-color: #007bff;
+    /* Bootstrap primary color */
+    color: rgb(22, 0, 0);
+    /* Text color */
+    border: none;
+    /* Remove border */
+    padding: 10px 15px;
+    /* Padding */
+    margin: 5px;
+    /* Margin between buttons */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 14px;
+    /* Font size */
+    transition: background-color 0.3s;
+    /* Smooth transition */
 }
 
 .dataTables_wrapper .dt-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
+    /* Darker shade on hover */
 }
 
 
 .package-card {
-    height: 200px; /* Sesuaikan tinggi sesuai kebutuhan */
-    background-color: #f0f0f0; /* Warna latar belakang */
+    height: 200px;
+    /* Sesuaikan tinggi sesuai kebutuhan */
+    background-color: #f0f0f0;
+    /* Warna latar belakang */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,19 +222,116 @@
 }
 
 .card-img-top {
-    width: 100%;   
-    height: 200px; 
-    object-fit: cover; 
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .card-img-top-lg {
-    width: 100%;   
-    height: auto; 
-    object-fit: cover; 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 
-
+.testimonial-section {
+        background-color: #f8f9fa;
+        padding: 80px 0;
+    }
+    .section-title {
+        position: relative;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #007bff;
+    }
+    .testimonial-card {
+        background-color: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .testimonial-content {
+        padding: 30px;
+        text-align: center;
+    }
+    .profile-img-container {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border: 5px solid #f8f9fa;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .comment-text {
+        font-style: italic;
+        color: #555;
+        font-size: 1.1rem;
+        margin: 20px 0;
+        line-height: 1.6;
+    }
+    .testimonial-meta {
+        margin-top: 20px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 40px;
+        height: 40px;
+        background-color: #007bff;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1;
+    }
+    .carousel-control-prev {
+        left: -20px;
+    }
+    .carousel-control-next {
+        right: -20px;
+    }
+    .carousel-indicators {
+        bottom: -50px;
+    }
+    .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #007bff;
+        opacity: 0.5;
+    }
+    .carousel-indicators .active {
+        opacity: 1;
+    }
+    .rating {
+        margin: 15px 0;
+    }
+    .testimonial-id {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
 
 /* batas */
 
@@ -343,7 +463,7 @@
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* .stats-icon {
@@ -473,11 +593,13 @@
     max-height: 650px;
     overflow-y: auto;
 }
+
 .table {
-    table-layout: fixed; 
+    table-layout: fixed;
 }
+
 .table th {
-    position: sticky; 
-    top: 0; 
+    position: sticky;
+    top: 0;
     z-index: 10;
 }

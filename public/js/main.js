@@ -1,10 +1,12 @@
+const baseUrl = 'http://172.125.1.203/dive-trip/public/';
+
 $( function () {
 
     // lihat detail pemesanan oleh admin
     $('.lihatDetailPemesanan').on('click', function () {
         const id = $(this).data('id');
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Pemesanan/detail',
+            url: baseUrl + 'Pemesanan/detail',
             data: {id: id},
             method: 'post',
             dataType: 'json',
@@ -38,16 +40,16 @@ $( function () {
         };
 
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Login/session',
+            url: baseUrl +  'Login/session',
             data: {data: dataToSend},
             method: 'post',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     if (data.role === 'ADMIN') {
-                        window.location.href = "http://localhost/dive-trip/public/Dashboard";
+                        window.location.href = baseUrl + 'Dashboard';
                     }else if(data.role === 'USER') {
-                        window.location.href = "http://localhost/dive-trip/public/Home";
+                        window.location.href = baseUrl + 'Home';
                     }
                 } else {
                     $('#errorLogin .modal-body').text(data.message);
@@ -65,7 +67,7 @@ $( function () {
     $('.lihatDetaiPaketPenyelaman').on('click', function () {
         const id = $(this).data('id');
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Penyelam/detailPaket',
+            url: baseUrl + 'Penyelam/detailPaket',
             data: {id: id},
             method: 'post',
             dataType: 'json',
@@ -113,7 +115,7 @@ $( function () {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Penyelam/savePemesanan',
+            url: baseUrl + 'Penyelam/savePemesanan',
             data: data,
             method: 'post',
             dataType: 'json',
@@ -158,7 +160,7 @@ $( function () {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Register/save',
+            url: baseUrl + 'Register/save',
             data: data,
             method: 'post',
             dataType: 'json',
@@ -188,7 +190,7 @@ $( function () {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Paket/savePaketNyelam',
+            url: baseUrl + 'Paket/savePaketNyelam',
             data: data,
             method: 'post',
             processData: false, // Penting untuk FormData
@@ -218,7 +220,7 @@ $( function () {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Paket/savePaketKursus',
+            url: baseUrl + 'Paket/savePaketKursus',
             data: data,
             method: 'post',
             processData: false, // Penting untuk FormData
@@ -251,7 +253,7 @@ $( function () {
     $('.editPaket').on('click', function () {
         const id = $(this).data('id');
         $.ajax({
-            url: 'http://localhost/dive-trip/public/Paket/getPaketById',
+            url: baseUrl + 'Paket/getPaketById',
             data: {id: id},
             method: 'post',
             dataType: 'json',
@@ -335,3 +337,26 @@ $(document).ready(function () {
         table.draw();
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the carousel
+        console.log("masuk kedalam carousel");
+        
+        var testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
+            interval: 5000, // Change slides every 5 seconds
+            wrap: true      // Continuous loop
+        });
+    });
+
+function generateStarRating(rating){
+    let stars = '';
+    console.log("masuk kedalam generateStarRating");
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            stars += '<i class="fas fa-star text-warning"></i>';
+        } else {
+            stars += '<i class="far fa-star text-warning"></i>';
+        }
+    }
+    return stars;
+}
