@@ -11,8 +11,14 @@ class Testimonis
 
     public function getAllTestimonials()
     {
-        $query = "SELECT * FROM " . $this->table . " ORDER BY date DESC";
-        return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        $query = "SELECT t.komentar, t.rating, t.tanggal,
+            u.namaLengkap, u.picture
+            FROM tbl_testimoni t JOIN tb_user u
+            ON t.id_user = u.id
+            ORDER BY t.tanggal DESC";
+            
+        $this->db->query($query);
+        return $this->db->resultSet();
     }
 
     public function addTestimonial($email, $rating, $comment)

@@ -33,11 +33,10 @@
                     <div class="testimonial-card">
                         <div class="testimonial-content">
                             <div class="profile-img-container">
-                                <img src="<?= BASEURL;?>/img/asset/image.png" class="profile-img"
-                                    alt="Profile">
+                                <img src="<?= BASEURL; ?>/img/asset/<?= $testimonial['picture']; ?>" class="profile-img" alt="Profile">
                             </div>
                             <h4>
-                                <?php echo $testimonial['name']; ?>
+                                <?php echo $testimonial['namaLengkap']; ?>
                             </h4>
                             <div class="rating">
                                 <?php $stars = '';
@@ -52,11 +51,10 @@
                                     ?>
                             </div>
                             <p class="comment-text">
-                                <?php echo $testimonial['comment']; ?>
+                                <?php echo $testimonial['komentar']; ?>
                             </p>
                             <div class="testimonial-meta d-flex justify-content-center align-items-center">
-                                <!-- <span class="testimonial-id"><?php echo $testimonial['id']; ?></span> -->
-                                <span class="date"><?php echo date('d M Y', strtotime($testimonial['date'])) ?></span>
+                                <span class="date"><?php echo date('d M Y', strtotime($testimonial['tanggal'])) ?></span>
                             </div>
                         </div>
                     </div>
