@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.125.1.203/dive-trip/public/';
+const baseUrl = 'http://172.125.3.122/dive-trip/public/';
 
 $( function () {
 

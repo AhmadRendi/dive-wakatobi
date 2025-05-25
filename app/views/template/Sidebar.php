@@ -7,6 +7,7 @@
     <li><a class="nav-link" href="<?= BASEURL ?>/Kursus">Paket Kursus</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Laporan">Laporan</a></li>
+    <li><a class="nav-link" href="<?= BASEURL ?>/Message">Message</a></li>
     <li><a class="nav-link" href="<?= BASEURL ?>/Login/Logout">Logout</a></li>
   </ul>
 </div>

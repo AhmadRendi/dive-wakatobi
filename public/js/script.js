@@ -1,7 +1,7 @@
-$(function() {
+$(function () {
 
     // mengedit profile user
-    $('#editProfileForm').on('submit', function(e) {
+    $('#editProfileForm').on('submit', function (e) {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
@@ -11,7 +11,7 @@ $(function() {
             processData: false, // Penting untuk FormData
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -20,7 +20,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -28,13 +28,13 @@ $(function() {
     });
 
     // melihat detail profile
-    $('.lihatProfile').on('click', function(e) {
+    $('.lihatProfile').on('click', function (e) {
         console.log("masuk");
         $.ajax({
             url: baseUrl + 'Profile/getProfile',
             method: 'get',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#namaLengkap').val(data.data.namaLengkap);
                     $('#nmrTelepons').val(data.data.noTelepon);
@@ -44,7 +44,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -52,14 +52,14 @@ $(function() {
     });
 
     // Membatalkan Pesanan
-    $('.batalPesanan').on('click', function(e) {
+    $('.batalPesanan').on('click', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#id').val(id);
         $('#confirm').modal('show');
     });
 
-    $('#formBatalPesanan').on('submit', function(e) {
+    $('#formBatalPesanan').on('submit', function (e) {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
@@ -67,7 +67,7 @@ $(function() {
             data: data,
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -76,7 +76,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -84,15 +84,15 @@ $(function() {
     });
 
     // membayar paket yang telah dipesan
-    $('.bayarPesanan').on('click', function(e) {
+    $('.bayarPesanan').on('click', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#id_pembayaran').val(id);
         $('#bayar').modal('show');
     });
 
-    
-    $('#bayarPaket').on('submit', function(e) {
+
+    $('#bayarPaket').on('submit', function (e) {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
@@ -102,7 +102,7 @@ $(function() {
             processData: false,
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -111,7 +111,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -119,15 +119,15 @@ $(function() {
     });
 
     // melihat pembayaran oleh admin
-    $('.lihatBuktiPembayaran').on('click', function(e) {
+    $('.lihatBuktiPembayaran').on('click', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $.ajax({
             url: baseUrl + 'Pembayaran/getBuktiPembayaran',
-            data: {id: id},
+            data: { id: id },
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     var imageUrl = baseUrl + 'img/asset/' + data.data.picture;
                     $('#butiPembayaran .card-img-top img').attr('src', imageUrl);
@@ -137,7 +137,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -146,14 +146,14 @@ $(function() {
 
 
     // Melakukan verifikasi pembayaran oleh admin
-    $('.verifikasi').on('click', function(e) {
+    $('.verifikasi').on('click', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#id').val(id);
         $('#verifikasi').modal('show');
     });
 
-    $('#verfikasiForm').on('submit', function(e) {
+    $('#verfikasiForm').on('submit', function (e) {
         e.preventDefault();
         const data = new FormData(this);
         $.ajax({
@@ -163,7 +163,7 @@ $(function() {
             processData: false,
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -172,7 +172,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -180,7 +180,7 @@ $(function() {
     });
 
     // Delete 
-    $('.delete').on('click', function(e) {
+    $('.delete').on('click', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#idDeelete').val(id);
@@ -188,7 +188,7 @@ $(function() {
     });
 
     // Delete
-    $('#deleteForm').on('submit', function(e) {
+    $('#deleteForm').on('submit', function (e) {
         e.preventDefault();
         const data = $(this).serialize();
         $.ajax({
@@ -196,7 +196,7 @@ $(function() {
             data: data,
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -205,7 +205,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -213,7 +213,7 @@ $(function() {
     });
 
     // Mengedit paket
-    $('#editPaketForm').on('submit', function(e) {
+    $('#editPaketForm').on('submit', function (e) {
         e.preventDefault();
         const data = new FormData(this);
         $.ajax({
@@ -223,7 +223,7 @@ $(function() {
             processData: false,
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     $('#success').modal('show');
@@ -232,7 +232,7 @@ $(function() {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -241,11 +241,11 @@ $(function() {
 
 });
 
-function backDefaultValue(){
+function backDefaultValue() {
     const idSelected = document.getElementById('tourGuide').value;
     const keahlianSelected = document.getElementById('keahlian').value;
 
-    if(idSelected === "") {
+    if (idSelected === "") {
         document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
         document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
         document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
@@ -310,7 +310,7 @@ function updateKeahlian() {
     });
 }
 
-function lakukanPemesananPaketPenyelaman(event){
+function lakukanPemesananPaketPenyelaman(event) {
     event.preventDefault();
     const idPaket = document.getElementById('id').value;
     const idKeahlian = document.getElementById('keahlian').value;
@@ -323,7 +323,7 @@ function lakukanPemesananPaketPenyelaman(event){
     myModal.show();
 }
 
-function updateTanggal(){
+function updateTanggal() {
     const startAt = document.getElementById('startAt');
     const endAt = document.getElementById('endAt');
 
@@ -339,7 +339,7 @@ function updateTanggal(){
             url: baseUrl + 'Laporan/index',
             data: data,
             method: 'post',
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -347,6 +347,44 @@ function updateTanggal(){
     }
 }
 
+// Search functionality
+    document.getElementById('searchInput').addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            this.closest('form').submit();
+        }
+    });
+    
+    // Client-side filtering for quick results
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const searchQuery = this.value.toLowerCase();
+        const messageCards = document.querySelectorAll('.message-card');
+        
+        messageCards.forEach(card => {
+            const name = card.querySelector('.card-title').textContent.toLowerCase();
+            const email = card.querySelector('.card-subtitle').textContent.toLowerCase();
+            const message = card.querySelector('.card-text').textContent.toLowerCase();
+            
+            if (name.includes(searchQuery) || email.includes(searchQuery) || message.includes(searchQuery)) {
+                card.closest('.col-lg-6').style.display = '';
+            } else {
+                card.closest('.col-lg-6').style.display = 'none';
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Search functionality
+    const searchForm = document.getElementById('searchForm');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+            console.log('Form submitted');
+        });
+    }
+
+    // Debug: Log current URL
+    console.log('Current URL:', window.location.href);
+    console.log('Current search params:', window.location.search);
+});
 // document.getElementById('registerForm').addEventListener('sumbit', registration);
 document.getElementById('selectGuideForm').addEventListener('submit', lakukanPemesananPaketPenyelaman);
 document.getElementById('tourGuide').addEventListener('change', checkSelection);

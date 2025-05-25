@@ -2,7 +2,11 @@
     <div class="container text-white">
         <h1>Selamat Datang di Wakatobi Dive Center</h1>
         <p class="lead">Temukan pengalaman menyelam terbaik di surga bawah laut Wakatobi.</p>
-        <a href="#" class="btn btn-success">Lihat Testimoni</a>
+        <?php if($_SESSION['user_role'] == "USER" || $_SESSION['user_role'] == "ADMIN"): ?>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTestimoni">
+                Tambah Testimoni
+            </button>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -19,53 +23,6 @@
 <?php endif; ?>
 
 <?php if($_SESSION['user_role'] == "USER"): ?>
-<!-- <div class="container my-5">
-    <div class="row">
-        <div class="col-md-12 text-center mb-4">
-            <h2>Testimoni</h2>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <?php if(!empty($data)): ?>
-        <?php foreach($data as $package): ?>
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 shadow-lg border border-0 align-items-center">
-                <div class="d-flex mt-4 position-absolute top-0 start-0 translate-middle-y">
-                    <div class="rounded-circle" style="width: 35px; height: 35px;">
-                        <img src="<?= BASEURL;?>/img/asset/image.png" class="rounded-circle"
-                            alt="Profile" style="width: 35px; height: 35px;">
-                    </div>
-                    <div class="ms-1 mt-2">
-                        <p> <?= $package['nama'] ?> </p>
-                    </div>
-                </div>
-                <div class="card border border-0 align-items-center">
-                    <div class="card mt-3 mb-3 border border-0 justify-content-center">
-                        <h5 class="card-title">
-                        </h5>
-                    </div>
-                    <div class="card mb-3 border border-0 justify-content-center">
-                        <p class="card-text">
-                            <p> <?= $package['rating'] ?> </p>
-                        </p>
-                    </div>
-                    <div class="card border border-0 mb-3 justify-content-center" style="max-height: 100px; overflow-y: auto;">
-                        <p class="card-text font-weight-bold">
-                            <p> <?= $package['testimoni'] ?> </p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-        <?php else: ?>
-        <div class="col-md-12">
-            <div class="alert alert-info">Tidak ada paket perjalanan yang tersedia saat ini.</div>
-        </div>
-        <?php endif; ?>
-    </div>
-</div> -->
 <section class="testimonial-section">
     <div class="container">
         <h2 class="section-title">Apa Kata Mereka Tentang Kami</h2>
@@ -125,3 +82,29 @@
     </div>
 </section>
 <?php endif; ?>
+<div class="modal fade" id="modalTestimoni" tabindex="-1" aria-labelledby="modalTestimoniLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalTestimoniLabel">Testimoni</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" action="<?= BASEURL;?>/Testimoni/add" method="POST">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Rating</label>
+                <input type="number" min="1" max="5" class="form-control" id="rating" name="rating" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Komentar</label>
+                <textarea class="form-control" id="komentar" name="komentar" rows="3" required></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
