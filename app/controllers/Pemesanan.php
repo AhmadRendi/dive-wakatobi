@@ -108,7 +108,7 @@ class Pemesanan  extends Controller {
 
     public function index(){
 
-        if($_SESSION['role'] != 'ADMIN'){
+        if($_SESSION['user_role'] == 'ADMIN'){
             $data = $this->models()->getAllPesanan();
             $pesananDenganNamaPaket = [];
 

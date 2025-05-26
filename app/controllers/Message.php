@@ -85,7 +85,7 @@ class Message extends Controller
         $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
         // Filter messages
-        $filteredMessages = array_filter($data, function($message) use ($statusFilter, $priorityFilter, $searchQuery) {
+        $filteredMessages = array_filter($data, function($message) use ($statusFilter, $searchQuery) {
             $matchesStatus = empty($statusFilter) || $message['status'] === $statusFilter;
             $matchesSearch = empty($searchQuery) || 
                             stripos($message['name'], $searchQuery) !== false || 

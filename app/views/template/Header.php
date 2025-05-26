@@ -1,3 +1,9 @@
+<?php
+    if($_SESSION['user_role'] == null){
+        $_SESSION['user_role'] = '';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>

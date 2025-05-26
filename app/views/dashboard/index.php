@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="container">
+                    <!-- <div class="container">
                         <div class="activities-card card mt-4 shadow-lg">
                             <div class="card-header">
                                 Aktivitas Terbaru
@@ -52,7 +52,7 @@
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
