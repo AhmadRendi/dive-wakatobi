@@ -7,18 +7,18 @@
     
     <div class="row p-4">
         <div class="col-md-6">
-            <form action="" method="">
+            <form action="<?= BASEURL;?>/HubungiKami/kirimPesan" method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email">
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Pesan</label>
-                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Masukkan pesan"></textarea>
+                    <label for="pesan" class="form-label">Pesan</label>
+                    <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Masukkan pesan"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Kirim Pesan</button>
             </form>

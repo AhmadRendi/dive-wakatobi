@@ -1,13 +1,13 @@
 const baseUrl = 'http://172.125.3.122/dive-trip/public/';
 
-$( function () {
+$(function () {
 
     // lihat detail pemesanan oleh admin
     $('.lihatDetailPemesanan').on('click', function () {
         const id = $(this).data('id');
         $.ajax({
             url: baseUrl + 'Pemesanan/detail',
-            data: {id: id},
+            data: { id: id },
             method: 'post',
             dataType: 'json',
             success: function (data) {
@@ -25,7 +25,7 @@ $( function () {
     });
 
     // Login User
-    $('#login_form').on('submit', function(e) {
+    $('#login_form').on('submit', function (e) {
         e.preventDefault();
         let data = $(this).serialize();
 
@@ -40,15 +40,15 @@ $( function () {
         };
 
         $.ajax({
-            url: baseUrl +  'Login/session',
-            data: {data: dataToSend},
+            url: baseUrl + 'Login/session',
+            data: { data: dataToSend },
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     if (data.role === 'ADMIN') {
                         window.location.href = baseUrl + 'Dashboard';
-                    }else if(data.role === 'USER') {
+                    } else if (data.role === 'USER') {
                         window.location.href = baseUrl + 'Home';
                     }
                 } else {
@@ -56,7 +56,7 @@ $( function () {
                     $('#errorLogin').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#errorLogin .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#errorLogin').modal('show');
             }
@@ -68,7 +68,7 @@ $( function () {
         const id = $(this).data('id');
         $.ajax({
             url: baseUrl + 'Penyelam/detailPaket',
-            data: {id: id},
+            data: { id: id },
             method: 'post',
             dataType: 'json',
             success: function (data) {
@@ -88,11 +88,11 @@ $( function () {
         const idSelected = document.getElementById('tourGuide').value;
         const idPaket = document.getElementById('id').value;
 
-        const today = new Date(); 
-        const day = String(today.getDate()).padStart(2, '0'); 
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
         const month = String(today.getMonth() + 1).padStart(2, '0');
-        const year = today.getFullYear(); 
-    
+        const year = today.getFullYear();
+
         const formattedDate = `${year}-${month}-${day}`;
         document.getElementById('tanggalPemesanan').value = formattedDate;
 
@@ -111,7 +111,7 @@ $( function () {
     let isModalClosedByJavaScript = false;
 
     // melakukan pemesanan
-    $("#pesanPaketPenyelam").on('submit', function(e) {
+    $("#pesanPaketPenyelam").on('submit', function (e) {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
@@ -119,7 +119,7 @@ $( function () {
             data: data,
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#success .modal-body').text(data.message);
                     isModalClosedByJavaScript = true;
@@ -130,7 +130,7 @@ $( function () {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -156,7 +156,7 @@ $( function () {
 
 
     // register user 
-    $('#registerForm').on('submit', function(e) {
+    $('#registerForm').on('submit', function (e) {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
@@ -164,7 +164,7 @@ $( function () {
             data: data,
             method: 'post',
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     $('#successRegister .modal-body').text(data.message);
                     $('#successRegister').modal('show');
@@ -173,7 +173,7 @@ $( function () {
                     $('#errorRegistration').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#errorRegister .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#errorRegister').modal('show');
             }
@@ -186,7 +186,7 @@ $( function () {
     });
 
     // Melakukan penambahakan data paket penyelaman
-    $('#savePaketNyelamForm').on('submit', function(e) {
+    $('#savePaketNyelamForm').on('submit', function (e) {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
@@ -196,7 +196,7 @@ $( function () {
             processData: false, // Penting untuk FormData
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     // console.log("masuk Kedalam success");
                     $('#success .modal-body').text(data.message);
@@ -207,7 +207,7 @@ $( function () {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
@@ -216,7 +216,7 @@ $( function () {
 
 
     // Melakukan penambahakan data paket kursus
-    $('#savePaketKursusForm').on('submit', function(e) {
+    $('#savePaketKursusForm').on('submit', function (e) {
         e.preventDefault();
         let data = new FormData(this);
         $.ajax({
@@ -226,7 +226,7 @@ $( function () {
             processData: false, // Penting untuk FormData
             contentType: false,
             dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
                 if (data.status === 'success') {
                     // console.log("masuk Kedalam success");
                     $('#success .modal-body').text(data.message);
@@ -237,15 +237,15 @@ $( function () {
                     $('#error').modal('show');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
                 $('#error').modal('show');
             }
         });
     });
 
-      // Reload halaman setelah modal ditutup
-      $('#success').on('hidden.bs.modal', function () {
+    // Reload halaman setelah modal ditutup
+    $('#success').on('hidden.bs.modal', function () {
         location.reload();
     });
 
@@ -254,7 +254,7 @@ $( function () {
         const id = $(this).data('id');
         $.ajax({
             url: baseUrl + 'Paket/getPaketById',
-            data: {id: id},
+            data: { id: id },
             method: 'post',
             dataType: 'json',
             success: function (data) {
@@ -269,7 +269,27 @@ $( function () {
         });
     });
 
-    
+    // Melakukan Update pesan dari unread menjadi read
+    $('.updatePesan').on('click', function () {
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: baseUrl + 'Message/updateStatus',
+            data: { id: id },
+            method: 'post',
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Response Text:', jqXHR.responseText);
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+
+    });
+
+    $('.reloadUpdateMessage').on('hidden.bs.modal', function () {
+        console.log("Modal message ditutup");
+        location.reload();
+    });
 
     // Configurasi DataTable
     new DataTable('#data_table', {
@@ -338,17 +358,17 @@ $(document).ready(function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-        // Initialize the carousel
-        console.log("masuk kedalam carousel");
-        
-        var testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
-            interval: 5000, // Change slides every 5 seconds
-            wrap: true      // Continuous loop
-        });
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize the carousel
+    console.log("masuk kedalam carousel");
 
-function generateStarRating(rating){
+    var testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
+        interval: 5000, // Change slides every 5 seconds
+        wrap: true      // Continuous loop
+    });
+});
+
+function generateStarRating(rating) {
     let stars = '';
     console.log("masuk kedalam generateStarRating");
     for (let i = 1; i <= 5; i++) {

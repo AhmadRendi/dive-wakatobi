@@ -48,7 +48,7 @@
                 <div class="stats-card replied">
                     <i class="fas fa-reply"></i>
                     <h3><?= $data['stats']['read']; ?></h3>
-                    <p class="mb-0">Pesan Dibalas</p>
+                    <p class="mb-0">Pesan Dibaca</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -73,54 +73,53 @@
             <?php else: ?>
             <?php foreach ($data['messages'] as $message): ?>
             <div class="col-lg-6 mb-4">
-                <div class="card message-card <?= $message['status']; ?>" data-bs-toggle="modal" data-bs-target="#messageModal<?= $message['id']; ?>">
+                <div class="card message-card <?= $message['status']; ?> updatePesan" data-bs-toggle="modal" data-bs-target="#messageModal<?= $message['id']; ?>" data-id= <?= $message['id']; ?>>
                     <div class="card-body">
                         <div class="message-header">
-                            <h5 class="card-title mb-0"><?= htmlspecialchars($message['name']); ?></h5>
+                            <h5 class="card-title mb-0"><?= htmlspecialchars($message['nama']); ?></h5>
                             <span class="badge <?= $this->getStatusBadgeClass($message['status']); ?>">
                                 <?= $this->translateStatus($message['status']); ?>
                             </span>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted"><?= htmlspecialchars($message['email']); ?></h6>
                         <div class="message-content">
-                            <p class="card-text"><?= htmlspecialchars($message['message']); ?></p>
+                            <p class="card-text"><?= htmlspecialchars($message['pesan']); ?></p>
                         </div>
                         <div class="message-footer">
-                            <span class="text-muted"><i class="far fa-clock me-1"></i> <?= $this->formatDate($message['date']); ?></span>
-                            <!-- <span class="badge <?= $this->getPriorityBadgeClass($message['priority']); ?>">
-                                <?= $this->translatePriority($message['priority']); ?>
-                            </span> -->
+                            <span class="text-muted"><i class="far fa-clock me-1"></i> <?= $this->formatDate($message['tanggal']); ?></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Message Modal -->
-            <div class="modal fade" id="messageModal<?= $message['id']; ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal fade reloadUpdateMessage" id="messageModal<?= $message['id']; ?>" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Detail Pesan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <div>
-                                    <h4><?= htmlspecialchars($message['name']); ?></h4>
+                                    <h4><?= htmlspecialchars($message['nama']); ?></h4>
                                     <p class="text-muted mb-0"><?= htmlspecialchars($message['email']); ?></p>
                                 </div>
                                 <div class="text-end">
                                     <span class="badge <?= $this->getStatusBadgeClass($message['status']); ?> mb-2">
                                         <?= $this->translateStatus($message['status']); ?>
                                     </span>
-                                    <p class="text-muted mb-0"><i class="far fa-clock me-1"></i> <?= $this->formatDate($message['date']); ?></p>
+                                    <p class="text-muted mb-0"><i class="far fa-clock me-1"></i> <?= $this->formatDate($message['tanggal']); ?></p>
                                 </div>
                             </div>
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <p><?= nl2br(htmlspecialchars($message['message'])); ?></p>
+                                    <p><?= nl2br(htmlspecialchars($message['pesan'])); ?></p>
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-danger me-2 closeSeenMessage" data-bs-dismiss="modal">
+                                Keluar
+                            </button>
                         </div>
                     </div>
                 </div>

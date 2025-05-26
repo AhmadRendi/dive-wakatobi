@@ -4,7 +4,7 @@ session_start();
 
 class Message extends Controller
 {
-    private $data = [
+    private $datas = [
         [
             'id' => 1,
             'name' => 'Budi Santoso',
@@ -72,6 +72,8 @@ class Message extends Controller
 
     public function index()
     {
+        $data = $this->model('Pesan')->getAllMessages();
+
         // Check if user is logged in as admin, if not redirect to login
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'ADMIN') {
             header('Location: ' . BASEURL . '/Login');
@@ -80,19 +82,17 @@ class Message extends Controller
 
         // Get filter values from GET parameters
         $statusFilter = isset($_GET['status']) ? $_GET['status'] : '';
-        $priorityFilter = isset($_GET['priority']) ? $_GET['priority'] : '';
         $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
         // Filter messages
-        $filteredMessages = array_filter($this->data, function($message) use ($statusFilter, $priorityFilter, $searchQuery) {
+        $filteredMessages = array_filter($data, function($message) use ($statusFilter, $priorityFilter, $searchQuery) {
             $matchesStatus = empty($statusFilter) || $message['status'] === $statusFilter;
-            $matchesPriority = empty($priorityFilter) || $message['priority'] === $priorityFilter;
             $matchesSearch = empty($searchQuery) || 
                             stripos($message['name'], $searchQuery) !== false || 
                             stripos($message['email'], $searchQuery) !== false || 
                             stripos($message['message'], $searchQuery) !== false;
             
-            return $matchesStatus && $matchesPriority && $matchesSearch;
+            return $matchesStatus && $matchesSearch;
         });
 
         // Reset array keys after filtering
@@ -100,9 +100,9 @@ class Message extends Controller
 
         // Calculate message statistics
         $stats = [
-            'total' => count($this->data),
-            'unread' => count(array_filter($this->data, function($m) { return $m['status'] === 'unread'; })),
-            'read' => count(array_filter($this->data, function($m) { return $m['status'] === 'read'; }))
+            'total' => count($data),
+            'unread' => count(array_filter($data, function($m) { return $m['status'] === 'Unread'; })),
+            'read' => count(array_filter($data, function($m) { return $m['status'] === 'Read'; }))
         ];
 
         $this->view('template/Header');
@@ -110,8 +110,6 @@ class Message extends Controller
         $this->view('message/index', [
             'messages' => $filteredMessages,
             'stats' => $stats,
-            'statusFilter' => $statusFilter,
-            'priorityFilter' => $priorityFilter,
             'searchQuery' => $searchQuery
         ]);
         $this->view('template/Footer');
@@ -120,85 +118,18 @@ class Message extends Controller
     // Update message status
     public function updateStatus()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id']) && isset($_POST['status'])) {
-            $messageId = $_POST['message_id'];
-            $status = $_POST['status'];
-            
-            // In a real application, you would update the database
-            // For this example, we'll just redirect back
-            
-            header('Location: ' . BASEURL . '/Message?status_updated=true');
-            exit;
-        }
+        $this->model('Pesan')->updatePesanById($_POST['id']);
     }
     
-    // Update message priority
-    public function updatePriority()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id']) && isset($_POST['priority'])) {
-            $messageId = $_POST['message_id'];
-            $priority = $_POST['priority'];
-            
-            // In a real application, you would update the database
-            // For this example, we'll just redirect back
-            
-            header('Location: ' . BASEURL . '/Message?priority_updated=true');
-            exit;
-        }
-    }
-    
-    // Reply to a message
-    public function reply()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id']) && isset($_POST['reply_text'])) {
-            $messageId = $_POST['message_id'];
-            $replyText = $_POST['reply_text'];
-            
-            // In a real application, you would save the reply and update the message status
-            // For this example, we'll just redirect back
-            
-            header('Location: ' . BASEURL . '/Message?reply_sent=true');
-            exit;
-        }
-    }
-    
-    // Delete a message
-    public function delete()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
-            $messageId = $_POST['message_id'];
-            
-            // In a real application, you would delete from the database
-            // For this example, we'll just redirect back
-            
-            header('Location: ' . BASEURL . '/message?message_deleted=true');
-            exit;
-        }
-    }
-
     // Helper methods that should be accessible in the view
     public function getStatusBadgeClass($status) 
     {
         switch ($status) {
-            case 'unread':
+            case 'Unread':
                 return 'bg-danger';
-            case 'read':
+            case 'Read':
                 return 'bg-warning';
             
-        }
-    }
-
-    public function getPriorityBadgeClass($priority) 
-    {
-        switch ($priority) {
-            case 'high':
-                return 'bg-danger';
-            case 'medium':
-                return 'bg-warning';
-            case 'low':
-                return 'bg-info';
-            default:
-                return 'bg-secondary';
         }
     }
 
@@ -212,20 +143,9 @@ class Message extends Controller
     public function translateStatus($status) 
     {
         switch($status) {
-            case 'unread': return 'Belum Dibaca';
-            case 'read': return 'Sudah Dibaca';
-            case 'replied': return 'Sudah Dibalas';
+            case 'Unread': return 'Belum Dibaca';
+            case 'Read': return 'Sudah Dibaca';
             default: return ucfirst($status);
-        }
-    }
-    
-    public function translatePriority($priority) 
-    {
-        switch($priority) {
-            case 'high': return 'Prioritas Tinggi';
-            case 'medium': return 'Prioritas Sedang';
-            case 'low': return 'Prioritas Rendah';
-            default: return ucfirst($priority);
         }
     }
 }
