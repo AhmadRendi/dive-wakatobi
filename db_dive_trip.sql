@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2025 at 06:38 AM
+-- Generation Time: Jun 05, 2025 at 11:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,17 +31,18 @@ CREATE TABLE `tbl_guide` (
   `id` int(11) NOT NULL,
   `guideName` varchar(100) NOT NULL,
   `guideRating` varchar(10) DEFAULT NULL,
-  `guideBio` text DEFAULT NULL
+  `guideBio` text DEFAULT NULL,
+  `picture` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_guide`
 --
 
-INSERT INTO `tbl_guide` (`id`, `guideName`, `guideRating`, `guideBio`) VALUES
-(1, 'Guide 1', '4.5', 'Penyelam berpengalaman dengan lebih dari 10 tahun pengalaman di industri penyelaman, ahli dalam snorkeling dan scuba diving.'),
-(2, 'Guide 2', '4.6', 'Instruktur menyelam bersertifikat dengan pengalaman internasional, spesialis dalam pelatihan scuba diving dan penyelaman mendalam.'),
-(3, 'Guide 3', '4.8', 'Pemandu wisata laut yang berpengalaman, ahli dalam ekosistem laut dan teknik snorkeling serta scuba diving.');
+INSERT INTO `tbl_guide` (`id`, `guideName`, `guideRating`, `guideBio`, `picture`) VALUES
+(1, 'Guide 1', '4.5', 'Penyelam berpengalaman dengan lebih dari 10 tahun pengalaman di industri penyelaman, ahli dalam snorkeling dan scuba diving.', '0'),
+(2, 'Guide 2', '4.6', 'Instruktur menyelam bersertifikat dengan pengalaman internasional, spesialis dalam pelatihan scuba diving dan penyelaman mendalam.', 'alfian.jpeg'),
+(3, 'Guide 3', '4.8', 'Pemandu wisata laut yang berpengalaman, ahli dalam ekosistem laut dan teknik snorkeling serta scuba diving.', 'Aci.jpeg');
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,9 @@ INSERT INTO `tbl_pemesanan` (`id`, `id_user`, `id_paket`, `id_guide`, `id_keahli
 (2, 1, 4, 3, 1, '2025-04-17', 'DiBatalkan', 4, 5000000, 'User'),
 (3, 3, 4, 3, 3, '2025-04-29', 'DiBatalkan', 4, 5000000, 'User Kedua'),
 (4, 1, 4, 3, 2, '2025-04-28', 'Terverifikasi', 8, 5000000, 'User'),
-(5, 1, 6, 3, 2, '2025-05-19', 'Terverifikasi', 6, 5000000, 'User');
+(5, 1, 6, 3, 2, '2025-05-19', 'Terverifikasi', 6, 5000000, 'User'),
+(6, 1, 4, 2, 2, '2025-06-05', 'Menunggu Pembayaran', 1, 5000000, 'User'),
+(7, 1, 6, 2, 2, '2025-06-05', 'Menunggu Pembayaran', 2, 5000000, 'User');
 
 -- --------------------------------------------------------
 
@@ -200,15 +203,19 @@ CREATE TABLE `tbl_pesan` (
   `email` varchar(35) DEFAULT NULL,
   `pesan` text DEFAULT NULL,
   `tanggal` date DEFAULT curdate(),
-  `status` enum('Unread','Read') DEFAULT 'Unread'
+  `status` enum('Unread','Read') DEFAULT 'Unread',
+  `noHp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_pesan`
 --
 
-INSERT INTO `tbl_pesan` (`id`, `nama`, `email`, `pesan`, `tanggal`, `status`) VALUES
-(1, 'Fulan Satu', 'master@gmail.com', 'hahaha', '2025-05-26', 'Read');
+INSERT INTO `tbl_pesan` (`id`, `nama`, `email`, `pesan`, `tanggal`, `status`, `noHp`) VALUES
+(1, 'Fulan Satu', 'master@gmail.com', 'hahaha', '2025-05-26', 'Read', ''),
+(2, 'User 1', 'master@gmail.com', 'hahahah', '2025-06-05', 'Read', ''),
+(3, 'Users', 'master@gmail.com', 'hahah', '2025-06-05', 'Read', '08xxxx'),
+(4, 'User Kedua Kali', 'g@gmail.com', 'percobaan', '2025-06-05', 'Read', '08xxxxxx');
 
 -- --------------------------------------------------------
 
@@ -348,13 +355,13 @@ ALTER TABLE `tbl_pembayaran`
 -- AUTO_INCREMENT for table `tbl_pemesanan`
 --
 ALTER TABLE `tbl_pemesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_pesan`
 --
 ALTER TABLE `tbl_pesan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimoni`
