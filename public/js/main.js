@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.43.5/dive-trip/public/';
+const baseUrl = 'http://localhost/dive-trip/public/';
 
 $(function () {
 
@@ -360,8 +360,6 @@ $(document).ready(function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize the carousel
-    console.log("masuk kedalam carousel");
-
     var testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
         interval: 5000, // Change slides every 5 seconds
         wrap: true      // Continuous loop

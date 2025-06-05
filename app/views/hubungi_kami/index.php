@@ -13,6 +13,10 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
                 </div>
                 <div class="mb-3">
+                    <label for="noHp" class="form-label">Nomor Handphone</label>
+                    <input type="text" class="form-control" id="noHp" name="noHp" placeholder="Masukkan Nomor Handphone">
+                </div>
+                <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email">
                 </div>

@@ -17,13 +17,14 @@ class Pesan{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addMessage($nama, $email, $pesan){
+    public function addMessage($nama, $email, $pesan, $noHp){
         try{
-            $query = "INSERT INTO " . $this->table . " (nama, email, pesan) VALUES (?, ?, ?)";
+            $query = "INSERT INTO " . $this->table . " (nama, email, pesan, noHp) VALUES (?, ?, ?, ?)";
             $this->db->query($query);
             $this->db->bind(1, $nama);
             $this->db->bind(2, $email);
             $this->db->bind(3, $pesan);
+            $this->db->bind(4, $noHp);
             return $this->db->execute();
         }catch (PDOException $e){
             throw new Exception('Error: ' . $e->getMessage());

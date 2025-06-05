@@ -8,7 +8,6 @@ class Home extends Controller {
         
         $data = $this->model('Testimonis')->getAllTestimonials();
 
-        // $data = null;
         $this->view('template/Header');
         $this->view('template/Sidebar');
         $this->view('home/index', $data);

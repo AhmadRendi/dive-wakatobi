@@ -239,6 +239,23 @@ $(function () {
         });
     });
 
+    $('#selectGuideForm').on('submit', function (event) {
+        event.preventDefault();
+        const idPaket = document.getElementById('id').value;
+        const idKeahlian = document.getElementById('keahlian').value;
+        const idGuide = document.getElementById('idGuide').value;
+
+        console.log("idPaket: " + idPaket);
+        console.log("idKeahlian: " + idKeahlian);
+        console.log("idGuide: " + idGuide);
+
+        $('#idPaket').val(idPaket);
+        $('#keahlianId').val(idKeahlian);
+        $('#guideId').val(idGuide);
+        const myModal = new bootstrap.Modal(document.getElementById('pesanPaketPenyelaman'));
+        myModal.show();
+    });
+
 });
 
 function backDefaultValue() {
@@ -311,10 +328,15 @@ function updateKeahlian() {
 }
 
 function lakukanPemesananPaketPenyelaman(event) {
+    console.log("lakukanPemesananPaketPenyelaman");
     event.preventDefault();
     const idPaket = document.getElementById('id').value;
     const idKeahlian = document.getElementById('keahlian').value;
     const idGuide = document.getElementById('idGuide').value;
+
+    console.log("idPaket: " + idPaket);
+    console.log("idKeahlian: " + idKeahlian);
+    console.log("idGuide: " + idGuide);
 
     $('#idPaket').val(idPaket);
     $('#keahlianId').val(idKeahlian);

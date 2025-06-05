@@ -23,8 +23,9 @@ class HubungiKami extends Controller {
             $nama = $_POST['nama'];
             $email = $_POST['email'];
             $pesan = $_POST['pesan'];
+            $noHp = $_POST['noHp'];
 
-            $model->addMessage($nama, $email, $pesan);
+            $model->addMessage($nama, $email, $pesan, $noHp);
 
 
             header('Location: ' . BASEURL . '/HubungiKami?pesan_terkirim=true');

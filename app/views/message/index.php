@@ -104,6 +104,7 @@
                                 <div>
                                     <h4><?= htmlspecialchars($message['nama']); ?></h4>
                                     <p class="text-muted mb-0"><?= htmlspecialchars($message['email']); ?></p>
+                                    <p class="text-muted mb-0"><?= htmlspecialchars($message['noHp']); ?></p>
                                 </div>
                                 <div class="text-end">
                                     <span class="badge <?= $this->getStatusBadgeClass($message['status']); ?> mb-2">

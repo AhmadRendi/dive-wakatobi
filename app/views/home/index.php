@@ -10,19 +10,6 @@
     </div>
 </div>
 
-<?php if($_SESSION['user_role'] == null): ?>
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Mengapa Memilih Kami?</h2>
-            <p>Wakatobi adalah destinasi wisata selam terbaik di Indonesia, dengan terumbu karang yang indah dan biota
-                laut yang beragam.</p>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
-
-<?php if($_SESSION['user_role'] == "USER"): ?>
 <section class="testimonial-section">
     <div class="container">
         <h2 class="section-title">Apa Kata Mereka Tentang Kami</h2>
@@ -79,7 +66,6 @@
         </div>
     </div>
 </section>
-<?php endif; ?>
 <div class="modal fade" id="modalTestimoni" tabindex="-1" aria-labelledby="modalTestimoniLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
