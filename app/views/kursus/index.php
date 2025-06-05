@@ -248,7 +248,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="" alt="Guide 2" class="img-fluid rounded" id="guideImage">
+                                    <img src="" id="guideImage" alt="Guide 2" class="img-fluid rounded" id="guideImage">
                                 </div>
                                 <div class="col-md-9">
                                     <h4 id="guideName"></h4>

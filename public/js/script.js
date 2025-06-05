@@ -294,11 +294,12 @@ function updateGuide() {
         method: 'post',
         dataType: 'json',
         success: function (data) {
+            console.log("data: ", data);
             $('#idGuide').val(data.id);
             $('#guideName').text(data.guideName);
             $('#guideRating').text(data.guideRating);
             $('#guideBio').text(data.guideBio);
-            // $('#guideImage').attr('src', data.guideImage);
+            $('#guideImage').attr('src', baseUrl + 'img/asset/' + data.picture);
             checkSelection();
         },
         error: function (xhr, status, error) {
