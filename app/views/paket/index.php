@@ -93,11 +93,6 @@
                             required>
                     </div>
                     <div class="mb-3">
-                        <label for="editWaktu" class="form-label">Waktu</label>
-                        <input type="time" class="form-control border border-dark" id="editWaktu" name="editWaktu"
-                            required>
-                    </div>
-                    <div class="mb-3">
                         <label for="editLokasi" class="form-label">Lokasi</label>
                         <select class="form-select" name="editLokasi" id="editLokasi" aria-label="Default select example">
                             <option selected>Pilih Lokasi</option>
@@ -140,10 +135,6 @@
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
                         <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="waktu" class="form-label">Waktu</label>
-                        <input type="time" class="form-control border border-dark" id="waktu" name="waktu" required>
                     </div>
                     <div class="mb-3">
                         <label for="lokasi" class="form-label">Lokasi</label>

@@ -11,15 +11,14 @@ class Packet {
 
     public function savePaket($data, $file){
         try{
-            $query = "INSERT INTO $this->table (namaPaket, deskripsi, harga, picture, paket, waktu, lokasi) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO $this->table (namaPaket, deskripsi, harga, picture, paket, lokasi) VALUES ( ?, ?, ?, ?, ?, ?)";
             $this->db->query($query);
             $this->db->bind(1, $data['namaPaket']);
             $this->db->bind(2, $data['deskripsi']);
             $this->db->bind(3, $data['harga']);
             $this->db->bind(4, $file);
             $this->db->bind(5, $data['paket']);
-            $this->db->bind(6, $data['waktu']);
-            $this->db->bind(7, $data['lokasi']);
+            $this->db->bind(6, $data['lokasi']);
             $this->db->execute();
             return "Data berhasil disimpan";
         }catch (PDOException $e){
@@ -29,7 +28,7 @@ class Packet {
 
     public function getPaket(){
         try{
-            $query = "SELECT * FROM $this->table WHERE paket = 'PENYELAM'";
+            $query = "SELECT * FROM $this->table WHERE paket = 'PENYELAM' AND disable = 0";
             $this->db->query($query);
             return $this->db->resultSet();
         }catch (PDOException $e){
@@ -39,7 +38,7 @@ class Packet {
 
     public function getPaketKursus(){
         try{
-            $query = "SELECT * FROM $this->table WHERE paket = 'KURSUS'";
+            $query = "SELECT * FROM $this->table WHERE paket = 'KURSUS' AND disable = 0";
             $this->db->query($query);
             return $this->db->resultSet();
         }catch (PDOException $e){
@@ -71,7 +70,9 @@ class Packet {
 
     public function deletePaket($id){
         try{
-            $query = "DELETE FROM $this->table WHERE id = ?";
+            $query = "UPDATE $this->table
+                SET disable = 1
+                WHERE id = ?";
             $this->db->query($query);
             $this->db->bind(1, $id);
             $this->db->execute();
@@ -83,14 +84,13 @@ class Packet {
 
     public function updatePaket($data){
         try{
-            $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, waktu = ?, lokasi = ? WHERE id = ?";
+            $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, lokasi = ? WHERE id = ?";
             $this->db->query($query);
             $this->db->bind(1, $data['namaPaket']);
             $this->db->bind(2, $data['deskripsi']);
             $this->db->bind(3, $data['harga']);
-            $this->db->bind(4, $data['waktu']);
-            $this->db->bind(5, $data['lokasi']);
-            $this->db->bind(6, $data['id']);
+            $this->db->bind(4, $data['lokasi']);
+            $this->db->bind(5, $data['id']);
             $this->db->execute();
             return "Data berhasil diupdate";
         }catch (PDOException $e){

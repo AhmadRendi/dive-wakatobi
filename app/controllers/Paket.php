@@ -119,7 +119,6 @@ class Paket extends Controller {
                 'deskripsi' => $_POST['deskripsi'],
                 'harga' => $_POST['harga'],
                 'paket' => 'PENYELAM',
-                'waktu' => $_POST['waktu'],
                 'lokasi' => $_POST['lokasi'],
             ];
 
@@ -145,7 +144,6 @@ class Paket extends Controller {
                 'deskripsi' => $_POST['deskripsi'],
                 'harga' => $_POST['harga'],
                 'paket' => 'KURSUS',
-                'waktu' => $_POST['waktu'],
                 'lokasi' => $_POST['lokasi'],
             ];
 
@@ -203,7 +201,6 @@ class Paket extends Controller {
                 'namaPaket' => $_POST['editNamaPaket'],
                 'deskripsi' => $_POST['editDeskripsi'],
                 'harga' => $_POST['editHarga'],
-                'waktu' => $_POST['editWaktu'],
                 'lokasi' => $_POST['editLokasi'],
             ];
 
