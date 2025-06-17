@@ -141,14 +141,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="editHarga" class="form-label">Harga</label>
-                        <input type="number" class="form-control border border-dark" id="editHarga" name="editHarga"
+                        <input type="number" class="form-control border border-dark" max="50000000" id="editHarga" name="editHarga"
                             required>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="editWaktu" class="form-label">Waktu</label>
                         <input type="time" class="form-control border border-dark" id="editWaktu" name="editWaktu"
                             required>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="editLokasi" class="form-label">Lokasi</label>
                         <select class="form-select" name="editLokasi" id="editLokasi" aria-label="Default select example">
@@ -330,12 +330,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="number" class="form-control border border-dark" id="harga" name="harga" required>
+                        <input type="number" class="form-control border border-dark" id="harga" name="harga" max="50000000" required>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="waktu" class="form-label">Waktu</label>
                         <input type="time" class="form-control border border-dark" id="waktu" name="waktu" required>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="lokasi" class="form-label">Lokasi</label>
                         <select class="form-select" name="lokasi" id="lokasi" aria-label="Default select example">
