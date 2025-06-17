@@ -6,11 +6,15 @@ class Home extends Controller {
 
     public function index() {
         
-        $data = $this->model('Testimonis')->getAllTestimonials();
+$data = [
+    'testimonials' => $this->model('Testimonis')->getAllTestimonials(),
+    'penyelam' => $this->model('Packet')->getPaket(),
+    'kursus' => $this->model('Packet')->getPaketKursus()
+];
 
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('home/index', $data);
-        $this->view('template/Footer');
+$this->view('template/Header');
+$this->view('template/Sidebar');
+$this->view('home/index', $data);
+$this->view('template/Footer');
     }
 }
