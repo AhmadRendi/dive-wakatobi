@@ -33,7 +33,7 @@ class Booking {
 
     public function getAllPesanan(){
         try{
-            $query = "SELECT id, id_paket, namaLengkap, tanggalPemesanan, status FROM $this->table";
+            $query = "SELECT id, id_paket, namaLengkap, tanggalPemesanan, status FROM $this->table WHERE disable = 0";
             // $query = "SELECT * FROM $this->table";
             $this->db->query($query);
             return $this->db->resultSet();
@@ -165,5 +165,19 @@ class Booking {
         }
     }
 
+
+    public function deletePesanan($id){
+        try{
+            $query = "UPDATE $this->table
+                SET disable = 1
+                WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            $this->db->execute();
+            return "Data pemesanan berhasil dihapus";
+        }catch (PDOException $e){
+            throw new Exception('Error: ' . $e->getMessage());
+        }
+    }
 
 }

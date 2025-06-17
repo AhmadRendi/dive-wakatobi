@@ -58,7 +58,8 @@
                                 <td class="table-actions">
                                     <button class="btn btn-primary btn-sm lihatDetailPemesanan"
                                         data-id="<?= $order['id']; ?>">Lihat</button>
-                                    <a href="" class="btn btn-danger btn-sm" data-id>Hapus</a>
+                                    <button class="btn btn-danger btn-sm deletePemesanan"
+                                        data-id="<?= $order['id']; ?>">Hapus</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

@@ -291,6 +291,28 @@ $(function () {
         location.reload();
     });
 
+    // Delete Pesaanan
+    $('.deletePemesanan').on('click', function () {
+        const id = $(this).data('id');
+        $.ajax({
+            url: baseUrl + 'Pemesanan/delete',
+            data: { id: id },
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status === 'success') {
+                    $('#success .modal-body').text(data.message);
+                    $('#success').modal('show');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Response Text:', jqXHR.responseText);
+                $('#error .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#error').modal('show');
+            }
+        });
+    });
+
     // Configurasi DataTable
     new DataTable('#data_table', {
         paging: true,

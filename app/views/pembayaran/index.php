@@ -62,7 +62,7 @@
                                     <?php else: ?>
                                         <button class="btn btn-secondary btn-sm" disabled>Verifikasi</button>
                                     <?php endif; ?>
-                                    <button class="btn btn-danger btn-sm" data-id=<?= $order['id'] ;?>>Hapus</button>
+                                    <!-- <button class="btn btn-danger btn-sm" data-id=<?= $order['id'] ;?>>Hapus</button> -->
                                 </td>
                             </tr>
                             <?php endforeach; ?>
