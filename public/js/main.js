@@ -12,14 +12,15 @@ $(function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
+                console.log("Data yang diterima:", data);
                 $('#detailNamaWisatawan').val(data.namaLengkap);
                 $('#tanggalPemesanan').val(data.tanggalPemesanan);
                 $('#namaPaket').val(data.namaPaket);
                 $('#status').val(data.status);
                 $('#jumlahPeserta').val(data.jmlPeserta);
                 $('#harga').val(formatRupiah(data.harga)).change();
-                $('#waktu').val(data.waktu);
-
+                $('#namaGuide').val(data.namaGuide);
+                
                 $('#lihatDetail').modal('show');
             }
         });

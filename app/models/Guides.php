@@ -18,4 +18,15 @@ class Guides {
             throw new PDOException('Error: ' . $e->getMessage());
         }
     }
+
+    public function getGuideById($id) {
+        try {
+            $query = "SELECT guideName FROM $this->table WHERE id = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            return $this->db->single();
+        } catch (PDOException $e) {
+            throw new PDOException('Error: ' . $e->getMessage());
+        }
+    }
 }

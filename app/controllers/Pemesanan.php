@@ -37,13 +37,13 @@ class Pemesanan  extends Controller {
             $data = $this->models()->getPesananById($id);
 
             $paket = $this->model("Packet")->getPaketById($data['id_paket']);
+
+            $namaGuide = $this->model("Guides")->getGuideById($data['id_guide']);
             
             $namaPaket = !empty($paket) ? $paket['namaPaket'] : '';
-            // $waktu = !empty($paket) ? $paket['waktu'] : '';
 
             $data['namaPaket'] = $namaPaket;
-            // $data['waktu'] = $waktu;
-
+            $data['namaGuide'] = !empty($namaGuide) ? $namaGuide['guideName'] : '';
 
             $result = $data;
             echo json_encode($result);
