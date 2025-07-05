@@ -109,14 +109,14 @@
                         </div>
                         <label for="metodePembayaran" class="form-label">Metode Pembayaran</label>
                         <select class="form-select" name="metodePembayaran" id="metodePembayaran" aria-label="Default select example">
-                            <option selected>Pilih Metode Pemayaran</option>
+                            <option value="" selected>Pilih Metode Pemayaran</option>
                             <option value="CASH">Cash</option>
                             <option value="TRANSFER">Transfer</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
-                        <input type="file" class="form-control border border-dark" id="foto" name="foto" required>
+                        <input type="file" class="form-control border border-dark" id="foto" name="foto">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>

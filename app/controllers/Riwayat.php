@@ -53,24 +53,24 @@ class Riwayat extends Controller {
         $fileDestination = $folderDestination . $fileNameNew;
     
         $allowed = ['jpg', 'jpeg', 'png'];
+
+        if($fileName == ''){
+            throw new Exception('File tidak boleh kosong');
+        }
     
-        // Validasi ekstensi file
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 1000000) {
-                    // Validasi apakah direktori tujuan ada, jika tidak ada, buat direktori
                     if (!is_dir($folderDestination)) {
                         if (!mkdir($folderDestination, 0755, true)) {
                             throw new Exception('Cannot create directory: ' . $folderDestination);
                         }
                     }
     
-                    // Debug: Periksa apakah file temporary ada
                     if (!file_exists($fileTmp)) {
                         throw new Exception('Temporary file does not exist: ' . $fileTmp);
                     }
     
-                    // Pindahkan file ke direktori tujuan
                     if (move_uploaded_file($fileTmp, $fileDestination)) {
                         return $fileNameNew;
                     } else {
@@ -87,6 +87,13 @@ class Riwayat extends Controller {
         }
     }
 
+    public function checkMetodePembayaran($metode){
+        if($metode == null || $metode == ''){
+            throw new Exception('Metode pembayaran tidak boleh kosong');
+        }
+
+    }
+
     public function bayarPesanan(){
         header('Content-Type: application/json');
         try{
@@ -94,8 +101,11 @@ class Riwayat extends Controller {
             // $file = $_FILES['foto'];
 
             $file = $this->uploadImage($_FILES['foto']);
+            
+            $this->checkMetodePembayaran($data['metodePembayaran']);
 
             $result = $this->model('Payment')->savePembayaran($data, $file);
+
 
             echo json_encode(['status' => 'success','message' => $result]);
         }catch (Exception $e){
