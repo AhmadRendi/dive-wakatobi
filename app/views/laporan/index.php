@@ -3,7 +3,8 @@
         <h4 class="m-0"></h4>
         <div class="d-flex align-items-center">
             <a href="<?= BASEURL ?>/Profile" class="ms-2">
-                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture'] ; ?>" class="rounded-circle ms-2" alt="Profile" style="width: 40px; height: 40px;">
+                <img src="<?= BASEURL; ?>/img/asset/<?= $_SESSION['picture']; ?>" class="rounded-circle ms-2"
+                    alt="Profile" style="width: 40px; height: 40px;">
             </a>
         </div>
     </div>
@@ -15,51 +16,60 @@
                     <h2 class="card-title">Pengelolaan Laporan</h2>
                 </div>
                 <div class="card border border-0 mb-3" style="width: 50%;">
-                    <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end"> 
+                    <div class="input-group align-items-center d-grid gap-4 d-md-flex justify-content-md-end">
                         <label class="form-label mt-2">Filter Berdasarkan Tanggal</label>
-                        <input type="date" id="startAt" class="form-control rounded" placeholder="Select Date" aria-label="Select Date">
-                        <input type="date" id="endAt" class="form-control rounded" placeholder="Select Date" aria-label="Select Date">
+                        <input type="date" id="startAt" class="form-control rounded" placeholder="Select Date"
+                            aria-label="Select Date">
+                        <input type="date" id="endAt" class="form-control rounded" placeholder="Select Date"
+                            aria-label="Select Date">
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table id="table_datatables" class="display" style="width:100%">
-                        <thead style="background-color:rgb(15, 60, 225); color:white;">
+                <table id="table_datatables" class="display" style="width:100%">
+                    <thead style="background-color:rgb(15, 60, 225); color:white;">
+                        <tr>
+                            <th>No</th>
+                            <th>Paket</th>
+                            <th>Nama Wisatawan</th>
+                            <th>Tanggal Pemesanan</th>
+                            <th>Status Pembayaran</th>
+                            <th>Total Pembayaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $index => $order): ?>
                             <tr>
-                                <th>No</th>
-                                <th>ID Pemesanan</th>
-                                <th>Nama Wisatawan</th>
-                                <th>Tanggal Pemesanan</th>
-                                <th>Status Pembayaran</th>
-                                <th>Total Pembayaran</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($data as $index => $order): ?>
-                            <tr>
                                 <td>
-                                    <h6><?php echo $index + 1; ?></h6>
+                                    <h6><?= $index + 1; ?></h6>
                                 </td>
                                 <td>
-                                    <h6><?php echo htmlspecialchars($order['id']); ?></h6>
+                                    <h6><?= htmlspecialchars($order['namaPaket']); ?></h6>
                                 </td>
                                 <td>
-                                    <h6><?php echo htmlspecialchars($order['namaLengkap']); ?></h6>
+                                    <h6><?= htmlspecialchars($order['namaLengkap']); ?></h6>
                                 </td>
                                 <td>
-                                    <h6><?php echo htmlspecialchars($order['tanggalPemesanan']); ?></h6>
+                                    <h6><?= htmlspecialchars($order['tanggalPemesanan']); ?></h6>
                                 </td>
                                 <td>
-                                    <h6><?php echo htmlspecialchars($order['status']); ?></h6>
+                                    <h6><?= htmlspecialchars($order['status']); ?></h6>
                                 </td>
                                 <td>
-                                    <h6><?php echo htmlspecialchars($order['harga']); ?></h6>
+                                    <h6><?= htmlspecialchars($order['harga']); ?></h6>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php endforeach; ?>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th colspan="5" style="text-align:right;">Total Semua:</th>
+                            <th id="totalSemuaHarga"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+
             </div>
         </div>
     </div>
+</div>
 </div>

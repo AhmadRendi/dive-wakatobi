@@ -20,7 +20,7 @@ $(function () {
                 $('#jumlahPeserta').val(data.jmlPeserta);
                 $('#harga').val(formatRupiah(data.harga)).change();
                 $('#namaGuide').val(data.namaGuide);
-                
+
                 $('#lihatDetail').modal('show');
             }
         });
@@ -348,11 +348,48 @@ function formatRupiah(angka) {
 $(document).ready(function () {
     const table = $('#table_datatables').DataTable({
         dom: 'Bfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        buttons: [
+            'copy', 'csv', 'excel',
+            {
+                extend: 'pdfHtml5',
+                footer: false, // Penting: aktifkan footer
+                customize: function (doc) {
+                    // Ambil total dari footer tabel
+                    const totalText = document.querySelector('#table_datatables tfoot th:last-child').innerText;
+
+                    // Tambahkan total sebagai teks di bawah tabel di PDF
+                    doc.content.push({
+                        text: 'TOTAL SEMUA: ' + totalText,
+                        margin: [0, 20, 0, 0], // [left, top, right, bottom]
+                        alignment: 'right',
+                        bold: true
+                    });
+                }
+            },
+            'print'
+        ],
         paging: true,
         scrollCollapse: true,
-        scrollY: '370px'
+        scrollY: '370px',
+        footerCallback: function (row, data, start, end, display) {
+            let api = this.api();
+
+            const parseHarga = function (value) {
+                if (typeof value === 'string') {
+                    let cleanText = value.replace(/<\/?[^>]+(>|$)/g, '');
+                    cleanText = cleanText.replace(/[^0-9]/g, '');
+                    return parseFloat(cleanText) || 0;
+                }
+                return typeof value === 'number' ? value : 0;
+            };
+
+            let total = api.column(5, { search: 'applied' }).data()
+                .reduce((a, b) => parseHarga(a) + parseHarga(b), 0);
+
+            $(api.column(5).footer()).html('Rp ' + total.toLocaleString('id-ID'));
+        }
     });
+
 
     // Fungsi untuk memfilter data berdasarkan tanggal
     $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
@@ -408,25 +445,25 @@ function generateStarRating(rating) {
 
 // Batas 
 // Fungsi untuk menangani active state
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // Fungsi untuk set active berdasarkan URL saat ini
     function setActiveNavItem() {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         // Remove active class from all links
         navLinks.forEach(link => {
             link.classList.remove('active', 'pulse', 'glow');
         });
-        
+
         // Add active class to current page link
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href && (currentPath.includes(href.split('/').pop()) || 
+            if (href && (currentPath.includes(href.split('/').pop()) ||
                 (href.includes('/Home') && (currentPath === '/' || currentPath.includes('index'))))) {
                 link.classList.add('active', 'glow'); // Tambah class glow untuk efek
-                
+
                 // Tambah efek pulse setelah delay
                 setTimeout(() => {
                     link.classList.add('pulse');
@@ -434,37 +471,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Set active saat halaman dimuat
     setActiveNavItem();
-    
+
     // Handle click events
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             // Jangan prevent default untuk navigasi normal
-            
+
             // Remove active from all
             document.querySelectorAll('.nav-link').forEach(l => {
                 l.classList.remove('active', 'pulse', 'glow');
             });
-            
+
             // Add active to clicked item
             this.classList.add('active', 'glow');
-            
+
             // Add pulse effect after short delay
             setTimeout(() => {
                 this.classList.add('pulse');
             }, 100);
         });
     });
-    
+
     // Handle mobile menu close
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    
+
     if (navbarToggler && navbarCollapse) {
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 // Close mobile menu when link is clicked
                 if (window.innerWidth < 992) {
                     navbarCollapse.classList.remove('show');
@@ -476,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Efek scroll untuk navbar
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');

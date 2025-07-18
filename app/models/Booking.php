@@ -105,7 +105,7 @@ class Booking {
     public function getLaporan($startAt = null, $endAt = null) {
         try {
             // Query dasar
-            $query = "SELECT pemesanan.id, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga 
+            $query = "SELECT pemesanan.id, paket.namaPaket, user.namaLengkap, pemesanan.tanggalPemesanan, pemesanan.status, paket.harga 
                       FROM tbl_pemesanan AS pemesanan
                       JOIN tbl_paket AS paket ON pemesanan.id_paket = paket.id
                       JOIN tb_user AS user ON pemesanan.id_user = user.id";
