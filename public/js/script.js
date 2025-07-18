@@ -339,6 +339,12 @@ function updateGuide() {
     });
 }
 
+
+function lihatSOP(){
+    console.log("lihatSOP");
+    window.open(baseUrl + 'img/asset/SOP.pdf', '_blank');
+}
+
 function updateKeahlian() {
     const keahlianSelected = document.getElementById('keahlian').value;
     backDefaultValue();
