@@ -89,6 +89,7 @@ $(function () {
         event.preventDefault();
         const idSelected = document.getElementById('tourGuide').value;
         const idPaket = document.getElementById('id').value;
+        const harga = document.getElementById('harga').value;
 
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
@@ -100,6 +101,7 @@ $(function () {
 
         if (idSelected === "") {
             $('#id').val(idPaket);
+            $('#harga').val(harga);
             document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
             document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
             document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian

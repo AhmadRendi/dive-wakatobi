@@ -52,7 +52,13 @@ $(function () {
     });
 
     // Membatalkan Pesanan
-    $('.batalPesanan').on('click', function (e) {
+    // $('.batalPesanan').on('click', function (e) {
+    //     e.preventDefault();
+    //     const id = $(this).data('id');
+    //     $('#id').val(id);
+    //     $('#confirm').modal('show');
+    // });
+    $(document).on('click', '.batalPesanan', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#id').val(id);
@@ -84,8 +90,16 @@ $(function () {
     });
 
     // membayar paket yang telah dipesan
-    $('.bayarPesanan').on('click', function (e) {
+    // $('.bayarPesanan').on('click', function (e) {
+    //     e.preventDefault();
+    //     console.log("masuk bayar");
+    //     const id = $(this).data('id');
+    //     $('#id_pembayaran').val(id);
+    //     $('#bayar').modal('show');
+    // });
+    $(document).on('click', '.bayarPesanan', function (e) {
         e.preventDefault();
+        console.log("masuk bayar");
         const id = $(this).data('id');
         $('#id_pembayaran').val(id);
         $('#bayar').modal('show');
@@ -119,7 +133,8 @@ $(function () {
     });
 
     // melihat pembayaran oleh admin
-    $('.lihatBuktiPembayaran').on('click', function (e) {
+    // Melihat bukti pembayaran
+    $(document).on('click', '.lihatBuktiPembayaran', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $.ajax({
@@ -144,14 +159,14 @@ $(function () {
         });
     });
 
-
-    // Melakukan verifikasi pembayaran oleh admin
-    $('.verifikasi').on('click', function (e) {
+    // Verifikasi pembayaran oleh admin
+    $(document).on('click', '.verifikasi', function (e) {
         e.preventDefault();
         const id = $(this).data('id');
         $('#id').val(id);
         $('#verifikasi').modal('show');
     });
+
 
     $('#verfikasiForm').on('submit', function (e) {
         e.preventDefault();
@@ -244,10 +259,12 @@ $(function () {
         const idPaket = document.getElementById('id').value;
         const idKeahlian = document.getElementById('keahlian').value;
         const idGuide = document.getElementById('idGuide').value;
+        const harga = document.getElementById('harga').value;
 
         console.log("idPaket: " + idPaket);
         console.log("idKeahlian: " + idKeahlian);
         console.log("idGuide: " + idGuide);
+        console.log("harga: " + harga);
 
         $('#idPaket').val(idPaket);
         $('#keahlianId').val(idKeahlian);
@@ -256,6 +273,20 @@ $(function () {
         myModal.show();
     });
 
+});
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const jmlPesertaInput = document.getElementById('jmlPeserta');
+//     console.log("jmlPesertaInput: ", jmlPesertaInput);
+// });
+
+document.getElementById('jmlPeserta').addEventListener('input', function () {
+    const jmlPeserta = this.value;
+    const rawHarga = document.getElementById('harga').innerText || document.getElementById('harga').value;
+    const angkaBersih = rawHarga.replace(/\D/g, '');
+    const hargaAngka = parseInt(angkaBersih) || 0;
+    const totalHarga = hargaAngka * jmlPeserta;
+    document.getElementById('totalHarga').value = totalHarga;
 });
 
 function backDefaultValue() {
@@ -371,35 +402,35 @@ function updateTanggal() {
 }
 
 // Search functionality
-    document.getElementById('searchInput').addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-            this.closest('form').submit();
+document.getElementById('searchInput').addEventListener('keyup', function (e) {
+    if (e.key === 'Enter') {
+        this.closest('form').submit();
+    }
+});
+
+// Client-side filtering for quick results
+document.getElementById('searchInput').addEventListener('input', function () {
+    const searchQuery = this.value.toLowerCase();
+    const messageCards = document.querySelectorAll('.message-card');
+
+    messageCards.forEach(card => {
+        const name = card.querySelector('.card-title').textContent.toLowerCase();
+        const email = card.querySelector('.card-subtitle').textContent.toLowerCase();
+        const message = card.querySelector('.card-text').textContent.toLowerCase();
+
+        if (name.includes(searchQuery) || email.includes(searchQuery) || message.includes(searchQuery)) {
+            card.closest('.col-lg-6').style.display = '';
+        } else {
+            card.closest('.col-lg-6').style.display = 'none';
         }
     });
-    
-    // Client-side filtering for quick results
-    document.getElementById('searchInput').addEventListener('input', function() {
-        const searchQuery = this.value.toLowerCase();
-        const messageCards = document.querySelectorAll('.message-card');
-        
-        messageCards.forEach(card => {
-            const name = card.querySelector('.card-title').textContent.toLowerCase();
-            const email = card.querySelector('.card-subtitle').textContent.toLowerCase();
-            const message = card.querySelector('.card-text').textContent.toLowerCase();
-            
-            if (name.includes(searchQuery) || email.includes(searchQuery) || message.includes(searchQuery)) {
-                card.closest('.col-lg-6').style.display = '';
-            } else {
-                card.closest('.col-lg-6').style.display = 'none';
-            }
-        });
-    });
+});
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Search functionality
     const searchForm = document.getElementById('searchForm');
     if (searchForm) {
-        searchForm.addEventListener('submit', function(e) {
+        searchForm.addEventListener('submit', function (e) {
             console.log('Form submitted');
         });
     }
@@ -408,6 +439,20 @@ function updateTanggal() {
     console.log('Current URL:', window.location.href);
     console.log('Current search params:', window.location.search);
 });
+
+function totalHarga() {
+    const jmlPeserta = document.getElementById('jmlPeserta').value;
+    const harga = document.getElementById('harga').value;
+
+    console.log("Jumlah Peserta: " + jmlPeserta, " Harga per Peserta: " + harga);
+    // const hargaPerPeserta = document.getElementById('jmlPeserta').value;
+    // const totalHarga = document.getElementById('totalHarga');
+
+
+}
+
+
+
 // document.getElementById('registerForm').addEventListener('sumbit', registration);
 document.getElementById('selectGuideForm').addEventListener('submit', lakukanPemesananPaketPenyelaman);
 document.getElementById('tourGuide').addEventListener('change', checkSelection);

@@ -245,7 +245,7 @@
                                 <select class="form-select" id="tourGuide" onChange="updateGuide()">
                                     <option value="" selected>-- Pilih Tour Guide --</option>
                                     <?php foreach($data['guide'] as $guide): ?>
-                                        <option value="<?= $guide['id'] ?>"><?= $guide['guideName'] ?> (Rating <?= $guide['guideRating'] ?>)</option>
+                                        <option value="<?= $guide['id'] ?>"><?= $guide['guideName'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -305,6 +305,10 @@
                     <div class="mb-3">
                         <label for="jmlPeserta" class="form-label">Jumlah Peserta</label>
                         <input type="number" class="form-control border border-dark" id="jmlPeserta" name="jmlPeserta" required>
+                    </div>
+                     <div class="mb-3">
+                        <label for="totalHarga" class="form-label">Jumlah Peserta</label>
+                        <input type="number" class="form-control border border-dark" id="totalHarga" name="totalHarga" required readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>

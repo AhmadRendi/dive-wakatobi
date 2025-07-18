@@ -96,6 +96,7 @@
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="idGuide" id="idGuide">
                     <input type="hidden" name="idKeahlian" id="idKeahlian">
+                    <input type="hidden" name="harga" id="harga">
                     <div class="card shadow-lg border border-0 mb-3">
                         <div class="card-body row">
                             <div class="col-md-4">
@@ -116,7 +117,7 @@
                                 <select class="form-select" id="tourGuide" onChange="updateGuide()">
                                     <option value="" selected>-- Pilih Tour Guide --</option>
                                     <?php foreach($data['guide'] as $guide): ?>
-                                        <option value="<?= $guide['id'] ?>"><?= $guide['guideName'] ?> (Rating <?= $guide['guideRating'] ?>)</option>
+                                        <option value="<?= $guide['id'] ?>"><?= $guide['guideName'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -160,6 +161,7 @@
                     <input type="hidden" name="idPaket" id="idPaket">
                     <input type="hidden" name="guideId" id="guideId">
                     <input type="hidden" name="keahlianId" id="keahlianId">
+                    <input type="hidden" name="harga" id="harga">
                     <div class="mb-3">
                         <label for="namaLengkap" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control border border-dark" id="namaLengkap"
@@ -176,6 +178,10 @@
                     <div class="mb-3">
                         <label for="jmlPeserta" class="form-label">Jumlah Peserta</label>
                         <input type="number" class="form-control border border-dark" id="jmlPeserta" name="jmlPeserta" required>
+                    </div>
+                     <div class="mb-3">
+                        <label for="totalHarga" class="form-label">Total Harga</label>
+                        <input type="number" class="form-control border border-dark" id="totalHarga" name="totalHarga" required readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>

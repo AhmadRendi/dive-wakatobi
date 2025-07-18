@@ -122,9 +122,7 @@ class Penyelam extends Controller{
 
             $modelPaket = $this->models()->getPaketById($_POST['idPaket']);
 
-            $harga = $modelPaket['harga'];
-
-            
+            // $harga = $modelPaket['harga'];
 
             $data = [
                 'id_user' => $idUser,
@@ -135,7 +133,7 @@ class Penyelam extends Controller{
                 'tanggalPemesanan' => $_POST['tanggalPemesanan'],
                 'status' => 'Menunggu Pembayaran',
                 'jmlPeserta' => $_POST['jmlPeserta'],
-                'harga' => $harga
+                'harga' => $_POST['totalHarga']
             ];
 
             $this->validateName($data['namaLengkap']);
