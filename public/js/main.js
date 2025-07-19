@@ -345,6 +345,20 @@ function formatRupiah(angka) {
     return formatter.format(angka);
 }
 
+
+function rubahBank() {
+    const bank = document.getElementById('bank').value;
+    if( bank === 'BRI') {
+        document.getElementById('rek').value = '1234567890';
+    }
+    else if (bank === 'MANDIRI') {
+        document.getElementById('rek').value = '0987654321';
+    }
+    else {
+        document.getElementById('rek').value = '';
+    }
+}
+
 $(document).ready(function () {
     const table = $('#table_datatables').DataTable({
         dom: 'Bfrtip',

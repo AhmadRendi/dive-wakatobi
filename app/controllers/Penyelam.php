@@ -133,7 +133,8 @@ class Penyelam extends Controller{
                 'tanggalPemesanan' => $_POST['tanggalPemesanan'],
                 'status' => 'Menunggu Pembayaran',
                 'jmlPeserta' => $_POST['jmlPeserta'],
-                'harga' => $_POST['totalHarga']
+                'harga' => $_POST['totalHarga'],
+                'noHp' => $_POST['noHp'],
             ];
 
             $this->validateName($data['namaLengkap']);

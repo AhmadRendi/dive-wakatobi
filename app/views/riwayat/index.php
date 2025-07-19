@@ -113,6 +113,13 @@
                             <option value="CASH">Cash</option>
                             <option value="TRANSFER">Transfer</option>
                         </select>
+                        <label for="metodePembayaran" class="form-label mt-2">Bank</label>
+                        <select class="form-select" name="bank" id="bank" aria-label="Default select example" onchange="rubahBank()">
+                            <option value="" selected>Pilih Bank</option>
+                            <option value="BRI">BRI</option>
+                            <option value="MANDIRI">MANDIRI</option>
+                        </select>
+
                     </div>
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>

@@ -51,7 +51,7 @@
                             </div>
                             <div class="card border border-0 mb-3 justify-content-center">
                                 <p class="card-text font-weight-bold">Rp
-                                    <?= number_format($package['harga'], 0, ',', '.') ?>
+                                    <?= number_format($package['harga'], 0, ',', '.') ?> /Orang
                                 </p>
                             </div>
                             <!-- <div class="card border border-0 mb-3 justify-content-center">
@@ -100,7 +100,7 @@
                             </div>
                             <div class="card border border-0 mb-3 justify-content-center">
                                 <p class="card-text font-weight-bold">Rp
-                                    <?= number_format($package['harga'], 0, ',', '.') ?>
+                                    <?= number_format($package['harga'], 0, ',', '.') ?> /Orang
                                 </p>
                             </div>
                             <!-- <div class="card border border-0 mb-3 justify-content-center">

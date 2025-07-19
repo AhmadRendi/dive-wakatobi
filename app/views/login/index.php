@@ -19,7 +19,6 @@
                     </form>
                     <div class="auth-links mt-3">
                         <p class="form-label">Belum punya akun? <a href="<?= BASEURL ;?>/Register">Daftar sekarang</a></p>
-                        <p><a href="">Lupa password?</a></p>
                      </div>
                 </div>
             </div>

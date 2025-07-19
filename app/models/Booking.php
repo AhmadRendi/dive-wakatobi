@@ -11,8 +11,8 @@ class Booking {
 
     public function savePemesanan($data){
         try{
-            $query = "INSERT INTO $this->table (id_user, id_paket, id_guide, id_keahlian, namaLengkap, tanggalPemesanan, status, jmlPeserta, harga) "
-                    . "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO $this->table (id_user, id_paket, id_guide, id_keahlian, namaLengkap, tanggalPemesanan, status, jmlPeserta, harga, noHp) "
+                    . "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->db->query($query);
             $this->db->bind(1, $data['id_user']);
             $this->db->bind(2, $data['id_paket']);
@@ -23,6 +23,7 @@ class Booking {
             $this->db->bind(7, $data['status']);
             $this->db->bind(8, $data['jmlPeserta']);
             $this->db->bind(9, $data['harga']);
+            $this->db->bind(10, $data['noHp']);
             $this->db->execute();
 
             return "Data pemesanan berhasil disimpan";

@@ -28,7 +28,7 @@
                             </div>
                             <div class="card border border-0 mb-3 justify-content-center">
                                 <p class="card-text font-weight-bold">Rp
-                                    <?= number_format($package['harga'], 0, ',', '.') ?>
+                                    <?= number_format($package['harga'], 0, ',', '.')?> /Orang
                                 </p>
                             </div>
                             <div class="card border border-0 mb-3 justify-content-center">
@@ -170,6 +170,10 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control border border-dark" id="email" name="email" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="noHp" class="form-label">Nomor WA</label>
+                        <input type="number" class="form-control border border-dark" id="noHp" name="noHp" required>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalPemesanan" class="form-label">Tanggal Pemesanan</label>
