@@ -89,6 +89,11 @@
                             name="detailNamaWisatawan" readonly>
                     </div>
                     <div class="mb-3">
+                        <label for="detailNoHp" class="form-label">Nomor Handphone</label>
+                        <input type="text" class="form-control border border-dark" id="detailNoHp"
+                            name="detailNoHp" readonly>
+                    </div>
+                    <div class="mb-3">
                         <label for="tanggalPemesanan" class="form-label">Tanggal Pemesanan</label>
                         <input type="textarea" class="form-control border border-dark" id="tanggalPemesanan"
                             name="tanggalPemesanan" readonly>

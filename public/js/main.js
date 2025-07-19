@@ -20,6 +20,7 @@ $(function () {
                 $('#jumlahPeserta').val(data.jmlPeserta);
                 $('#harga').val(formatRupiah(data.harga)).change();
                 $('#namaGuide').val(data.namaGuide);
+                $('#detailNoHp').val(data.noHp);
 
                 $('#lihatDetail').modal('show');
             }
