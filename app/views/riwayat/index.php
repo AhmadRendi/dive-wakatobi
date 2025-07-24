@@ -109,7 +109,7 @@
                         </div>
                         <label for="metodePembayaran" class="form-label">Metode Pembayaran</label>
                         <select class="form-select" name="metodePembayaran" id="metodePembayaran" aria-label="Default select example">
-                            <option value="" selected>Pilih Metode Pemayaran</option>
+                            <option value="" selected>Pilih Metode Pembayaran</option>
                             <option value="CASH">Cash</option>
                             <option value="TRANSFER">Transfer</option>
                         </select>
@@ -118,11 +118,13 @@
                             <option value="" selected>Pilih Bank</option>
                             <option value="BRI">BRI</option>
                             <option value="MANDIRI">MANDIRI</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BNI">BNI</option>
                         </select>
 
                     </div>
                     <div class="mb-3">
-                        <label for="foto" class="form-label">Foto</label>
+                        <label for="foto" class="form-label">Foto Bukti Pembayaran</label>
                         <input type="file" class="form-control border border-dark" id="foto" name="foto">
                     </div>
                     <div class="modal-footer">

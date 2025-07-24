@@ -355,6 +355,12 @@ function rubahBank() {
     else if (bank === 'MANDIRI') {
         document.getElementById('rek').value = '0987654321';
     }
+    else if(bank === 'BCA') {
+        document.getElementById('rek').value = '1122334455';
+    }
+    else if (bank === 'BNI') {
+        document.getElementById('rek').value = '5566778899';
+    }
     else {
         document.getElementById('rek').value = '';
     }
