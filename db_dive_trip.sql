@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 18, 2025 at 08:04 AM
+-- Generation Time: Jul 24, 2025 at 01:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,9 +40,9 @@ CREATE TABLE `tbl_guide` (
 --
 
 INSERT INTO `tbl_guide` (`id`, `guideName`, `guideRating`, `guideBio`, `picture`) VALUES
-(1, 'Guide 1', '4.5', 'Penyelam berpengalaman dengan lebih dari 10 tahun pengalaman di industri penyelaman, ahli dalam snorkeling dan scuba diving.', '0'),
-(2, 'Guide 2', '4.6', 'Instruktur menyelam bersertifikat dengan pengalaman internasional, spesialis dalam pelatihan scuba diving dan penyelaman mendalam.', 'alfian.jpeg'),
-(3, 'Guide 3', '4.8', 'Pemandu wisata laut yang berpengalaman, ahli dalam ekosistem laut dan teknik snorkeling serta scuba diving.', 'Aci.jpeg');
+(1, 'Setto Ariyadi', '4.5', 'Penyelam berpengalaman dengan lebih dari 10 tahun pengalaman di industri penyelaman, ahli dalam snorkeling dan scuba diving.', 'Setto Ariadi.jpg'),
+(2, 'Alfian', '4.6', 'Instruktur menyelam bersertifikat dengan pengalaman internasional, spesialis dalam pelatihan scuba diving dan penyelaman mendalam.', 'alfian.jpeg'),
+(3, 'Aci', '4.8', 'Pemandu wisata laut yang berpengalaman, ahli dalam ekosistem laut dan teknik snorkeling serta scuba diving.', 'Aci.jpeg');
 
 -- --------------------------------------------------------
 
@@ -83,32 +83,34 @@ CREATE TABLE `tbl_paket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_paket`
---
-
-INSERT INTO `tbl_paket` (`id`, `namaPaket`, `deskripsi`, `harga`, `picture`, `paket`, `lokasi`, `disable`) VALUES
-(1, 'Paket A', ' Paket A adalah', 4000000, '67ffa877384789.15529437.jpeg', 'PENYELAM', 'Wangi-Wangi', 1),
-(4, 'Paket A', ' paket A', 5000000, '67ffce8c085a51.97727307.jpeg', 'KURSUS', 'Wangi-Wangi', 0),
-(6, 'Paket B', ' Paket B adalah', 5000000, '680c7a02526d80.40381775.jpeg', 'PENYELAM', 'Binongko', 0),
-(7, 'Paket A', ' vsa', 412, '68517f685fa4c9.16636390.jpeg', 'KURSUS', 'Wangi-Wangi', 1),
-(8, 'Paket A', ' sda', 10000000, '68517fd10b9416.47774274.jpeg', 'KURSUS', 'Kaledupa', 1),
-(9, 'Paket A', ' haha', 4555, '685186a6472808.74579357.jpeg', 'PENYELAM', 'Tomia', 0);
-
---
 -- Triggers `tbl_paket`
 --
 DELIMITER $$
 CREATE TRIGGER `before_insert_paket` BEFORE INSERT ON `tbl_paket` FOR EACH ROW BEGIN
-    DECLARE count_existing INT;
+    DECLARE count_existing INT DEFAULT 0;
 
-    -- Cek apakah kombinasi lokasi dan waktu sudah ada
+    -- Cek apakah nama paket sudah ada
     SELECT COUNT(*) INTO count_existing
     FROM tbl_paket
-    WHERE lokasi = NEW.lokasi AND paket = NEW.paket;
+    WHERE namaPaket = NEW.namaPaket;
 
     -- Jika ada, maka batalkan penyisipan
     IF count_existing > 0 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Paket dengan lokasi dan waktu yang sama sudah ada';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Nama Paket telah tersedia. Harap gunakan nama lain.';
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_update_name_paket` BEFORE UPDATE ON `tbl_paket` FOR EACH ROW BEGIN
+    -- Jika namaPaket yang diupdate berbeda dari namaPaket lama
+    IF NEW.namaPaket <> OLD.namaPaket THEN
+        -- Cek apakah namaPaket baru sudah ada di dalam table
+        IF EXISTS (SELECT 1 FROM tbl_paket WHERE namaPaket = NEW.namaPaket) THEN
+            -- Jika ada namaPaket yang sama, kirimkan error
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nama sudah tersedia, update gagal';
+        END IF;
     END IF;
 END
 $$
@@ -126,15 +128,6 @@ CREATE TABLE `tbl_pembayaran` (
   `metodePembayaran` varchar(50) NOT NULL,
   `picture` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_pembayaran`
---
-
-INSERT INTO `tbl_pembayaran` (`id`, `id_pemesanan`, `metodePembayaran`, `picture`) VALUES
-(2, 1, 'CASH', '67ffbfd54fe264.16465184.jpeg'),
-(3, 4, 'CASH', '680c795feb3e47.62298685.jpeg'),
-(4, 5, 'CASH', '682af3d3147390.39990052.png');
 
 --
 -- Triggers `tbl_pembayaran`
@@ -165,21 +158,9 @@ CREATE TABLE `tbl_pemesanan` (
   `jmlPeserta` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
   `namaLengkap` varchar(100) DEFAULT NULL,
-  `disable` tinyint(1) DEFAULT 0
+  `disable` tinyint(1) DEFAULT 0,
+  `noHp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_pemesanan`
---
-
-INSERT INTO `tbl_pemesanan` (`id`, `id_user`, `id_paket`, `id_guide`, `id_keahlian`, `tanggalPemesanan`, `status`, `jmlPeserta`, `harga`, `namaLengkap`, `disable`) VALUES
-(1, 1, 1, 2, 2, '2025-04-16', 'Terverifikasi', 3, 4000000, 'User 1', 1),
-(2, 1, 4, 3, 1, '2025-04-17', 'DiBatalkan', 4, 5000000, 'User', 0),
-(3, 3, 4, 3, 3, '2025-04-29', 'DiBatalkan', 4, 5000000, 'User Kedua', 0),
-(4, 1, 4, 3, 2, '2025-04-28', 'Terverifikasi', 8, 5000000, 'User', 0),
-(5, 1, 6, 3, 2, '2025-05-19', 'Terverifikasi', 6, 5000000, 'User', 0),
-(6, 1, 4, 2, 2, '2025-06-05', 'Menunggu Pembayaran', 1, 5000000, 'User', 0),
-(7, 1, 6, 2, 2, '2025-06-05', 'Menunggu Pembayaran', 2, 5000000, 'User', 0);
 
 -- --------------------------------------------------------
 
@@ -197,16 +178,6 @@ CREATE TABLE `tbl_pesan` (
   `noHp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_pesan`
---
-
-INSERT INTO `tbl_pesan` (`id`, `nama`, `email`, `pesan`, `tanggal`, `status`, `noHp`) VALUES
-(1, 'Fulan Satu', 'master@gmail.com', 'hahaha', '2025-05-26', 'Read', ''),
-(2, 'User 1', 'master@gmail.com', 'hahahah', '2025-06-05', 'Read', ''),
-(3, 'Users', 'master@gmail.com', 'hahah', '2025-06-05', 'Read', '08xxxx'),
-(4, 'User Kedua Kali', 'g@gmail.com', 'percobaan', '2025-06-05', 'Read', '08xxxxxx');
-
 -- --------------------------------------------------------
 
 --
@@ -220,15 +191,6 @@ CREATE TABLE `tbl_testimoni` (
   `rating` int(5) DEFAULT NULL,
   `tanggal` date NOT NULL DEFAULT curdate()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_testimoni`
---
-
-INSERT INTO `tbl_testimoni` (`id`, `id_user`, `komentar`, `rating`, `tanggal`) VALUES
-(3, 1, 'asvds', 3, '2025-05-25'),
-(4, 1, 'asvds', 3, '2025-05-25'),
-(5, 1, 'sda', 4, '2025-06-17');
 
 -- --------------------------------------------------------
 
@@ -253,8 +215,7 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`id`, `namaLengkap`, `email`, `username`, `password`, `picture`, `noTelepon`, `role`) VALUES
 (1, 'Users B', 'user@gmail.com', 'users', '$2y$10$3dXAk9kZOX3Yl2rn9AITDuBu/JmXqq/55VHW6lM1Lb9hLyIbSpOQq', '6801a4fd63c742.34401464.jpeg', '08XXXX', 'USER'),
-(2, 'Admin', 'admin@gmail.com', 'admin', '$2y$10$9qvcnhs1/fEKJTsZwo4jPuXwG62Cpx5IA6DfaDURASlChFWRLuY.K', '680035b9a212d5.46753294.jpeg', 'fwe12', 'ADMIN'),
-(3, 'User Kedua', 'userkedua@gmail.com', 'userkedua', '$2y$10$WSjlN8a65gXjwYY86tktfeYdnvy.wksiZVdQngHlAuUaqO7zAXHiO', 'image.png', NULL, 'USER');
+(2, 'Admin', 'admin@gmail.com', 'admin', '$2y$10$9qvcnhs1/fEKJTsZwo4jPuXwG62Cpx5IA6DfaDURASlChFWRLuY.K', '680035b9a212d5.46753294.jpeg', 'fwe12', 'ADMIN');
 
 --
 -- Indexes for dumped tables
@@ -334,19 +295,19 @@ ALTER TABLE `tbl_keahlian`
 -- AUTO_INCREMENT for table `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_pembayaran`
 --
 ALTER TABLE `tbl_pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_pemesanan`
 --
 ALTER TABLE `tbl_pemesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tbl_pesan`
@@ -358,38 +319,13 @@ ALTER TABLE `tbl_pesan`
 -- AUTO_INCREMENT for table `tbl_testimoni`
 --
 ALTER TABLE `tbl_testimoni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tbl_pembayaran`
---
-ALTER TABLE `tbl_pembayaran`
-  ADD CONSTRAINT `fk_pemesanan` FOREIGN KEY (`id_pemesanan`) REFERENCES `tbl_pemesanan` (`id`);
-
---
--- Constraints for table `tbl_pemesanan`
---
-ALTER TABLE `tbl_pemesanan`
-  ADD CONSTRAINT `fk_guide` FOREIGN KEY (`id_guide`) REFERENCES `tbl_guide` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_keahlian` FOREIGN KEY (`id_keahlian`) REFERENCES `tbl_keahlian` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_paket` FOREIGN KEY (`id_paket`) REFERENCES `tbl_paket` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `tbl_testimoni`
---
-ALTER TABLE `tbl_testimoni`
-  ADD CONSTRAINT `fk_user_testimoni` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
