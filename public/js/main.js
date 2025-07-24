@@ -349,13 +349,13 @@ function formatRupiah(angka) {
 
 function rubahBank() {
     const bank = document.getElementById('bank').value;
-    if( bank === 'BRI') {
+    if (bank === 'BRI') {
         document.getElementById('rek').value = '1234567890';
     }
     else if (bank === 'MANDIRI') {
         document.getElementById('rek').value = '0987654321';
     }
-    else if(bank === 'BCA') {
+    else if (bank === 'BCA') {
         document.getElementById('rek').value = '1122334455';
     }
     else if (bank === 'BNI') {
@@ -367,24 +367,100 @@ function rubahBank() {
 }
 
 $(document).ready(function () {
+    //     const table = $('#table_datatables').DataTable({
+    //         dom: 'Bfrtip',
+    //         buttons: [
+    //             'copy', 'csv', 'excel',
+    //             {
+    //                 extend: 'pdfHtml5',
+    //                 footer: false, // Penting: aktifkan footer
+    //                 customize: function (doc) {
+    //                     // Ambil total dari footer tabel
+    //                     const totalText = document.querySelector('#table_datatables tfoot th:last-child').innerText;
+
+    //                     // Tambahkan total sebagai teks di bawah tabel di PDF
+    //                     doc.content.push({
+    //                         text: 'TOTAL SEMUA: ' + totalText,
+    //                         margin: [0, 20, 0, 0], // [left, top, right, bottom]
+    //                         alignment: 'right',
+    //                         bold: true
+    //                     });
+    //                 }
+    //             },
+    //             'print'
+    //         ],
+    //         paging: true,
+    //         scrollCollapse: true,
+    //         scrollY: '370px',
+    //         footerCallback: function (row, data, start, end, display) {
+    //             let api = this.api();
+
+    //             const parseHarga = function (value) {
+    //                 if (typeof value === 'string') {
+    //                     let cleanText = value.replace(/<\/?[^>]+(>|$)/g, '');
+    //                     cleanText = cleanText.replace(/[^0-9]/g, '');
+    //                     return parseFloat(cleanText) || 0;
+    //                 }
+    //                 return typeof value === 'number' ? value : 0;
+    //             };
+
+    //             let total = api.column(5, { search: 'applied' }).data()
+    //                 .reduce((a, b) => parseHarga(a) + parseHarga(b), 0);
+
+    //             $(api.column(5).footer()).html('Rp ' + total.toLocaleString('id-ID'));
+    //         }
+    //     });
+
+
+
     const table = $('#table_datatables').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel',
             {
                 extend: 'pdfHtml5',
-                footer: false, // Penting: aktifkan footer
+                footer: true,
                 customize: function (doc) {
-                    // Ambil total dari footer tabel
-                    const totalText = document.querySelector('#table_datatables tfoot th:last-child').innerText;
+                    // Tambahkan margin atas supaya header cukup ruang
+                    doc.pageMargins = [40, 80, 40, 40];
 
-                    // Tambahkan total sebagai teks di bawah tabel di PDF
+                    // Tambahkan header teks di bagian atas PDF
+                    doc.content.unshift({
+                        stack: [
+                            { text: 'PEMERINTAH KABUPATEN WAKATOBI', style: 'header' },
+                            { text: 'KECAMATAN WANGI-WANGI', style: 'subheader' },
+                            { text: 'DESA SOMBU', style: 'subheader' },
+                            { text: 'Jl. Poros Desa Sombu No. ...  Tlp. (0404) ...... Wangi-Wangi', style: 'small' },
+                            { text: ' ' } // spasi pemisah
+                        ],
+                        margin: [0, 0, 0, 12],
+                        alignment: 'center'
+                    });
+
+                    // Tambahkan total pembayaran di bawah tabel
+                    const totalText = document.querySelector('#table_datatables tfoot th:last-child').innerText;
                     doc.content.push({
                         text: 'TOTAL SEMUA: ' + totalText,
-                        margin: [0, 20, 0, 0], // [left, top, right, bottom]
+                        margin: [0, 20, 0, 0],
                         alignment: 'right',
                         bold: true
                     });
+
+                    // Style untuk teks
+                    doc.styles.header = {
+                        fontSize: 14,
+                        bold: true,
+                        alignment: 'center'
+                    };
+                    doc.styles.subheader = {
+                        fontSize: 12,
+                        bold: true,
+                        alignment: 'center'
+                    };
+                    doc.styles.small = {
+                        fontSize: 10,
+                        alignment: 'center'
+                    };
                 }
             },
             'print'
@@ -410,6 +486,8 @@ $(document).ready(function () {
             $(api.column(5).footer()).html('Rp ' + total.toLocaleString('id-ID'));
         }
     });
+
+
 
 
     // Fungsi untuk memfilter data berdasarkan tanggal
