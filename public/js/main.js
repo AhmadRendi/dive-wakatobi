@@ -104,7 +104,7 @@ $(function () {
             $('#id').val(idPaket);
             $('#harga').val(harga);
             document.getElementById('guideName').textContent = "Select Tour Guide"; // Reset nama guide
-            document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
+            // document.getElementById('guideRating').textContent = "Select Tour Guide"; // Reset rating
             document.getElementById('guideKeahlian').textContent = "Select Tour Guide"; // Reset keahlian
             document.getElementById('guideBio').textContent = "Select Tour Guide"; // Reset bio
             document.getElementById('guideImage').src = "";
@@ -427,9 +427,9 @@ $(document).ready(function () {
                     // Tambahkan header teks di bagian atas PDF
                     doc.content.unshift({
                         stack: [
-                            { text: 'PEMERINTAH KABUPATEN WAKATOBI', style: 'header' },
-                            { text: 'KECAMATAN WANGI-WANGI', style: 'subheader' },
-                            { text: 'DESA SOMBU', style: 'subheader' },
+                            { text: 'PT PUTRI SELAM WAKATOBI', style: 'header' },
+                            { text: 'DIVE CENTER WAKATOBI DIVE TRIP', style: 'subheader' },
+                            { text: 'KECAMATAN WANGI-WANGI KABUPATEN WAKATOBI', style: 'subheader' },
                             { text: 'Jl. Poros Desa Sombu No. ...  Tlp. (0404) ...... Wangi-Wangi', style: 'small' },
                             { text: ' ' } // spasi pemisah
                         ],

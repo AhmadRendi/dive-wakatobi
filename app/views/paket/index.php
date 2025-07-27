@@ -85,7 +85,7 @@
                     <div class="mb-3">
                         <label for="editDeskripsi" class="form-label">Deskripsi</label>
                         <textarea type="textarea" class="form-control border border-dark" id="editDeskripsi"
-                            name="editDeskripsi" required> </textarea>
+                            name="editDeskripsi" rows="10" cols="50" required> </textarea>
                     </div>
                     <div class="mb-3">
                         <label for="editHarga" class="form-label">Harga</label>

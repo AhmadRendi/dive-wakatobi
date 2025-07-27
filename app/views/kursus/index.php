@@ -260,7 +260,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h4 id="guideName"></h4>
-                                    <p><strong>Rating:</strong> <span id="guideRating"></span></p>
+                                    <!-- <p><strong>Rating:</strong> <span id="guideRating"></span></p> -->
                                     <p><strong>Keahlian:</strong> <span id="guideKeahlian"></span></p>
                                     <p><strong>Bio:</strong> <span id="guideBio"></span></p>
                                 </div>
