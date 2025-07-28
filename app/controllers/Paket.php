@@ -197,13 +197,29 @@ class Paket extends Controller {
     public function updatePaket(){
         header('Content-Type: application/json');
         try{
-            $data = [
+            $data = null;
+            if(!empty($_FILES['editFoto']['name'])) {
+                $file = $this->uploadImage($_FILES['editFoto']);
+                $data = [
                 'id' => $_POST['id'],
                 'namaPaket' => $_POST['editNamaPaket'],
                 'deskripsi' => $_POST['editDeskripsi'],
                 'harga' => $_POST['editHarga'],
                 'lokasi' => $_POST['editLokasi'],
+                'foto' => $file,
             ];
+            } else {
+                 // No file uploaded, keep the existing image
+                 $data = [
+                'id' => $_POST['id'],
+                'namaPaket' => $_POST['editNamaPaket'],
+                'deskripsi' => $_POST['editDeskripsi'],
+                'harga' => $_POST['editHarga'],
+                'lokasi' => $_POST['editLokasi'],
+                'foto' => null, // No new file uploaded
+                ];
+            }
+            
 
             // $this->validateName($data['namaPaket']);
             // $this->validateDeskripsi($data['deskripsi']);

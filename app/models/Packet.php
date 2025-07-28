@@ -84,13 +84,31 @@ class Packet {
 
     public function updatePaket($data){
         try{
-            $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, lokasi = ? WHERE id = ?";
-            $this->db->query($query);
-            $this->db->bind(1, $data['namaPaket']);
-            $this->db->bind(2, $data['deskripsi']);
-            $this->db->bind(3, $data['harga']);
-            $this->db->bind(4, $data['lokasi']);
-            $this->db->bind(5, $data['id']);
+            if($data['foto'] != null){
+                $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, picture = ?, lokasi = ? WHERE id = ?";
+                $this->db->query($query);
+                $this->db->bind(1, $data['namaPaket']);
+                $this->db->bind(2, $data['deskripsi']);
+                $this->db->bind(3, $data['harga']);
+                $this->db->bind(4, $data['foto']);
+                $this->db->bind(5, $data['lokasi']);
+                $this->db->bind(6, $data['id']);
+            } else {
+                $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, lokasi = ? WHERE id = ?";
+                $this->db->query($query);
+                $this->db->bind(1, $data['namaPaket']);
+                $this->db->bind(2, $data['deskripsi']);
+                $this->db->bind(3, $data['harga']);
+                $this->db->bind(4, $data['lokasi']);
+                $this->db->bind(5, $data['id']);
+            }
+            // $query = "UPDATE $this->table SET namaPaket = ?, deskripsi = ?, harga = ?, lokasi = ? WHERE id = ?";
+            // $this->db->query($query);
+            // $this->db->bind(1, $data['namaPaket']);
+            // $this->db->bind(2, $data['deskripsi']);
+            // $this->db->bind(3, $data['harga']);
+            // $this->db->bind(4, $data['lokasi']);
+            // $this->db->bind(5, $data['id']);
             $this->db->execute();
             return "Data berhasil diupdate";
         }catch (PDOException $e){

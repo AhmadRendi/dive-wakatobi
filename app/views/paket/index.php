@@ -109,6 +109,10 @@
                             <option value="Wakatobi">Wakatobi</option>
                         </select required>
                     </div>
+                    <div class="mb-3">
+                        <label for="editFoto" class="form-label">Foto</label>
+                        <input type="file" class="form-control border border-dark" id="editFoto" name="editFoto">
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
