@@ -94,15 +94,24 @@ class Riwayat extends Controller {
 
     }
 
+    public function checkRek($rek){
+        $allowedReks = ['BCA', 'BRI', 'BNI', 'MANDIRI'];
+        if(!in_array($rek, $allowedReks)){
+            throw new Exception('Rekening tidak valid');
+        }
+    }
+
     public function bayarPesanan(){
         header('Content-Type: application/json');
         try{
             $data = $_POST;
             // $file = $_FILES['foto'];
-
-            $file = $this->uploadImage($_FILES['foto']);
             
             $this->checkMetodePembayaran($data['metodePembayaran']);
+
+            $this->checkRek($data['bank']);
+
+            $file = $this->uploadImage($_FILES['foto']);
 
             $result = $this->model('Payment')->savePembayaran($data, $file);
 
