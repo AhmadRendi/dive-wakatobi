@@ -18,7 +18,7 @@ class Payment {
             $this->db->bind(2, $data['metodePembayaran']);
             $this->db->bind(3, $file);
             
-            // $this->db->execute();
+            $this->db->execute();
 
             return "Pembayaran Berhasil";
         }catch (PDOException $e){
