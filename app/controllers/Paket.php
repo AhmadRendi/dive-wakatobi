@@ -3,32 +3,55 @@
 
 session_start();
 
-class Paket extends Controller {
+class Paket extends Controller
+{
 
 
-    public function index(){
+    public function index()
+    {
 
-        if($_SESSION['user_role'] == 'ADMIN' || $_SESSION['user_role'] == 'USER'){
-            try{
+        if ($_SESSION['user_role'] == 'ADMIN' || $_SESSION['user_role'] == 'USER') {
+            try {
                 $data = $this->models()->getPaket();
+
+                if (!empty($data)) {
+                    foreach ($data as &$paket) {
+                        if (isset($paket['deskripsi']) && is_string($paket['deskripsi'])) {
+                            $deskripsiPaket = $paket['deskripsi'];
+
+                            $posTermasuk = stripos($deskripsiPaket, 'Termasuk :');
+
+                            if ($posTermasuk !== false) {
+                                $deskripsiKegiatan = substr($deskripsiPaket, 0, $posTermasuk);
+                            } else {
+                                $deskripsiKegiatan = $deskripsiPaket;
+                            }
+                            $paket['deskripsi'] = trim($deskripsiKegiatan);
+                        }
+                    }
+                    unset($paket);
+                }
+
                 $this->view('template/Header');
                 $this->view('template/Sidebar');
                 $this->view('paket/index', $data);
                 $this->view('template/Footer');
-            }catch (Exception $e){
-                echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            } catch (Exception $e) {
+                echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
             }
-        }else {
+        } else {
             header('Location: ' . BASEURL . '/Login');
             exit;
         }
     }
 
-    private function models(){
+    private function models()
+    {
         return $this->model('Packet');
     }
 
-    private function uploadImage($file) {
+    private function uploadImage($file)
+    {
         $fileName = $file['name'];
         $fileSize = $file['size'];
         $fileError = $file['error'];
@@ -36,19 +59,19 @@ class Paket extends Controller {
 
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
-    
-        // Tentukan folder tujuan
-        $folderDestination =  '../public/img/asset/';
 
-        if(!is_dir($folderDestination)){
+        // Tentukan folder tujuan
+        $folderDestination = '../public/img/asset/';
+
+        if (!is_dir($folderDestination)) {
             throw new Exception('Directory is not found ' . $folderDestination);
         }
 
         $fileNameNew = uniqid('', true) . "." . $fileActualExt;
         $fileDestination = $folderDestination . $fileNameNew;
-    
+
         $allowed = ['jpg', 'jpeg', 'png'];
-    
+
         // Validasi ekstensi file
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
@@ -60,12 +83,12 @@ class Paket extends Controller {
                             throw new Exception('Cannot create directory: ' . $folderDestination);
                         }
                     }
-    
+
                     // Debug: Periksa apakah file temporary ada
                     if (!file_exists($fileTmp)) {
                         throw new Exception('Temporary file does not exist: ' . $fileTmp);
                     }
-    
+
                     // Pindahkan file ke direktori tujuan
                     if (move_uploaded_file($fileTmp, $fileDestination)) {
                         return $fileNameNew;
@@ -83,38 +106,43 @@ class Paket extends Controller {
         }
     }
 
-    private function validatePaket($data){
-        if(empty($data['namaPaket'])){
+    private function validatePaket($data)
+    {
+        if (empty($data['namaPaket'])) {
             throw new Exception("Nama Paket tidak boleh kosong");
         }
-        if(empty($data['deskripsi'])){
+        if (empty($data['deskripsi'])) {
             throw new Exception("Deskripsi tidak boleh kosong");
         }
-        if(empty($data['harga'])){
+        if (empty($data['harga'])) {
             throw new Exception("Harga tidak boleh kosong");
         }
     }
 
-    private function validateName($name){
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/", $name)){
+    private function validateName($name)
+    {
+        if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
             throw new Exception("Nama Paket tidak boleh mengandung simbol");
         }
     }
 
-    private function validateDeskripsi($deskripsi){
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/", $deskripsi)){
+    private function validateDeskripsi($deskripsi)
+    {
+        if (!preg_match("/^[a-zA-Z0-9 ]*$/", $deskripsi)) {
             throw new Exception("Deskripsi tidak boleh mengandung simbol");
         }
     }
-    private function validateHarga($harga){
-        if(!preg_match("/^[0-9]*$/", $harga)){
+    private function validateHarga($harga)
+    {
+        if (!preg_match("/^[0-9]*$/", $harga)) {
             throw new Exception("Harga tidak boleh mengandung simbol");
         }
     }
 
-    public function savePaketNyelam(){
+    public function savePaketNyelam()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $data = [
                 'namaPaket' => $_POST['namaPaket'],
                 'deskripsi' => $_POST['deskripsi'],
@@ -131,15 +159,16 @@ class Paket extends Controller {
             $this->validateHarga($data['harga']);
 
             $result = $this->models()->savePaket($data, $file);
-            echo json_encode(['status' => 'success','message' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'message' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
-    public function savePaketKursus(){
+    public function savePaketKursus()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $data = [
                 'namaPaket' => $_POST['namaPaket'],
                 'deskripsi' => $_POST['deskripsi'],
@@ -156,79 +185,83 @@ class Paket extends Controller {
             $this->validateHarga($data['harga']);
 
             $result = $this->models()->savePaket($data, $file);
-            echo json_encode(['status' => 'success','message' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'message' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
-    public function getPaket(){
+    public function getPaket()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $result = $this->models()->getPaket();
-            echo json_encode(['status' => 'success','data' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'data' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
-    public function getPaketById(){
+    public function getPaketById()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $id = $_POST['id'];
             $result = $this->models()->getPaketById($id);
-            echo json_encode(['status' => 'success','data' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'data' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
-    public function deletePaket(){
+    public function deletePaket()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $id = $_POST['idDelete'];
             $result = $this->models()->deletePaket($id);
-            echo json_encode(['status' => 'success','message' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'message' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
-    public function updatePaket(){
+    public function updatePaket()
+    {
         header('Content-Type: application/json');
-        try{
+        try {
             $data = null;
-            if(!empty($_FILES['editFoto']['name'])) {
+            if (!empty($_FILES['editFoto']['name'])) {
                 $file = $this->uploadImage($_FILES['editFoto']);
                 $data = [
-                'id' => $_POST['id'],
-                'namaPaket' => $_POST['editNamaPaket'],
-                'deskripsi' => $_POST['editDeskripsi'],
-                'harga' => $_POST['editHarga'],
-                'lokasi' => $_POST['editLokasi'],
-                'foto' => $file,
-            ];
+                    'id' => $_POST['id'],
+                    'namaPaket' => $_POST['editNamaPaket'],
+                    'deskripsi' => $_POST['editDeskripsi'],
+                    'harga' => $_POST['editHarga'],
+                    'lokasi' => $_POST['editLokasi'],
+                    'foto' => $file,
+                ];
             } else {
-                 // No file uploaded, keep the existing image
-                 $data = [
-                'id' => $_POST['id'],
-                'namaPaket' => $_POST['editNamaPaket'],
-                'deskripsi' => $_POST['editDeskripsi'],
-                'harga' => $_POST['editHarga'],
-                'lokasi' => $_POST['editLokasi'],
-                'foto' => null, // No new file uploaded
+                // No file uploaded, keep the existing image
+                $data = [
+                    'id' => $_POST['id'],
+                    'namaPaket' => $_POST['editNamaPaket'],
+                    'deskripsi' => $_POST['editDeskripsi'],
+                    'harga' => $_POST['editHarga'],
+                    'lokasi' => $_POST['editLokasi'],
+                    'foto' => null, // No new file uploaded
                 ];
             }
-            
+
 
             // $this->validateName($data['namaPaket']);
             // $this->validateDeskripsi($data['deskripsi']);
             $this->validateHarga($data['harga']);
 
             $result = $this->models()->updatePaket($data);
-            echo json_encode(['status' => 'success','message' => $result]);
-        }catch (Exception $e){
-            echo json_encode(['status' => 'error','message' => $e->getMessage()]);
+            echo json_encode(['status' => 'success', 'message' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 }
